@@ -6,7 +6,7 @@
 #    By: azarsarikhani <azarsarikhani@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/06/26 13:36:16 by azarsarikha      ###   ########.fr        #
+#    Updated: 2023/06/26 15:46:35 by azarsarikha      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,11 @@ $(NAME): $(SRC)
 
 .PHONY: clean
 clean:
-	rm -f $(OBJECTS)
+	@rm -f $(OBJECTS)
 
 .PHONY: fclean
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 .PHONY: re
 re: fclean all
