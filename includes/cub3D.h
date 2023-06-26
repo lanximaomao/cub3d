@@ -4,6 +4,7 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include <stdlib.h>
+# include "libft.h"
 
 # ifndef WIN_SIZE_X
 # define WIN_SIZE_X 1920
@@ -44,5 +45,6 @@ typedef struct s_cub
 }			t_cub;
 
 //parsing-> validation -> raycasting -> possible features
+int	validate(void);
 
 #endif
