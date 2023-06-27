@@ -14,6 +14,12 @@
 # define WIN_SIZE_y 1080
 # endif
 
+typedef struct s_map
+{
+	char	**map;
+	int		direction;
+}			t_map;
+
 typedef struct s_input
 {
 	int		*color_f;
@@ -25,11 +31,6 @@ typedef struct s_input
 	t_map	*map;
 }			t_input;
 
-typedef struct s_map
-{
-	char	**map;
-	int		direction;
-}			t_map;
 
 typedef struct s_img
 {
