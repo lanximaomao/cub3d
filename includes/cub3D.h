@@ -16,12 +16,13 @@
 
 typedef struct s_input
 {
-	int		color_f;
-	int		color_c;
-	char	*f_east;
-	char	*f_west;
-	char	*f_south;
-	char	*f_north;
+	int		*color_f;
+	int		*color_c;
+	char	*t_east;
+	char	*t_west;
+	char	*t_south;
+	char	*t_north;
+	t_map	*map;
 }			t_input;
 
 typedef struct s_map

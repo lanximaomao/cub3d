@@ -6,7 +6,7 @@
 /*   By: azarsarikhani <azarsarikhani@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/06/26 15:45:41 by azarsarikha      ###   ########.fr       */
+/*   Updated: 2023/06/27 09:59:15 by azarsarikha      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 	mlx = mlx_init();
 	win = mlx_new_window(mlx,200,200,"cub3D");
 	mlx_pixel_put(mlx,win,20,20,0x660066);
-	mlx_loop(mlx);
 	validate();
+	mlx_loop(mlx);
 	return (0);
 }
