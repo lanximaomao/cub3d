@@ -6,7 +6,7 @@
 #    By: azarsarikhani <azarsarikhani@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/06/26 15:44:34 by azarsarikha      ###   ########.fr        #
+#    Updated: 2023/06/27 11:08:59 by azarsarikha      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ FILES = main\
 	validate
 
 
-HEADER = cub3D.h libft.h mlx.h
+HEADER = cub3D.h libft.h mlx.h get_next_line.h
 HEADER := $(addprefix $I/,$(HEADER))
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name '$(FILE).c'))

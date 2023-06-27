@@ -6,7 +6,7 @@
 #    By: azarsarikhani <azarsarikhani@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/06/26 15:46:35 by azarsarikha      ###   ########.fr        #
+#    Updated: 2023/06/27 11:23:25 by azarsarikha      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ SRC = ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.
 		print_nbr.c print_utils.c print_unsigned.c print_ptr.c ft_lstmap.c \
 		ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
-		
+		get_next_line.c
 OBJECTS = $(SRC:.c=.o)
-INCLUDE = libft.h
+INCLUDE = libft.h get_next_line.h
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 

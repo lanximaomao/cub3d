@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: azarsarikhani <azarsarikhani@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 16:35:41 by lsun              #+#    #+#             */
-/*   Updated: 2022/12/22 15:41:04 by lsun             ###   ########.fr       */
+/*   Updated: 2023/06/27 11:15:49 by azarsarikha      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
 
 char	*ft_strjoin_gnl(char *s1, char *s2)
 {
@@ -60,12 +61,10 @@ static char	*ft_trim(char *stash)
 static char	*ft_out(char *stash)
 {
 	int		i;
-	int		j;
 	int		len;
 	char	*nl;
 
 	i = -1;
-	j = 0;
 	while (stash[++i])
 	{
 		if (stash[i] == '\n' || stash[i + 1] == '\0')

@@ -6,7 +6,7 @@
 /*   By: azarsarikhani <azarsarikhani@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/06/27 09:59:15 by azarsarikha      ###   ########.fr       */
+/*   Updated: 2023/06/27 10:59:06 by azarsarikha      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int main(int argc, char** argv)
 	mlx_pixel_put(mlx,win,20,20,0x660066);
 	validate();
 	mlx_loop(mlx);
+	//render();
 	return (0);
 }
