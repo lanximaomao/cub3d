@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: azarsarikhani <azarsarikhani@student.42    +#+  +:+       +#+         #
+#    By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/06/27 11:08:59 by azarsarikha      ###   ########.fr        #
+#    Updated: 2023/06/29 12:41:51 by asarikha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,12 @@ O = obj
 I = includes
 
 FILES = main\
-	validate
+	validate\
+	end\
+	render
 
 
-HEADER = cub3D.h libft.h mlx.h get_next_line.h
+HEADER = cub3D.h libft.h mlx.h get_next_line.h render.h
 HEADER := $(addprefix $I/,$(HEADER))
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name '$(FILE).c'))

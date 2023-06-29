@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: azarsarikhani <azarsarikhani@student.42    +#+  +:+       +#+        */
+/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/06/26 13:02:56 by azarsarikha      ###   ########.fr       */
+/*   Updated: 2023/06/29 09:18:20 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
