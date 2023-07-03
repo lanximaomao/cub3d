@@ -14,11 +14,9 @@ cub3D creates a “realistic” 3D graphical representation of the inside of a m
 
 To compile the program, run the following command:
 
-**2. Running the Program:**
-
 	make
 
-**3. Run programme:**
+**2. Running the Program:**
 
 The program takes a map in format of *.cub as argument:
 	`map.cub`
