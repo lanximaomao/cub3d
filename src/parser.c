@@ -66,9 +66,9 @@ static int get_matrix(t_cub *cub)
 	cub->input->map->matrix = ft_split(cub->input->map->map_1d, '\n');
 	if (!cub->input->map->matrix)
 		exit(1); // malloc fail
-	//display_map(cub->input->map->matrix);
-	//display_texture(cub->input);
-	//display_color(cub->input);
+	display_map(cub->input->map->matrix);
+	display_texture(cub->input);
+	display_color(cub->input);
 	return (0);
 }
 // note: change map structure; add one more function into libft which is needed by gnl
