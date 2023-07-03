@@ -1,6 +1,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# include <stdio.h>
 # include <fcntl.h>
 # include <mlx.h>
 # include <stdlib.h>
@@ -14,14 +15,19 @@
 # define WIN_SIZE_y 1080
 # endif
 
+
 typedef struct s_map
 {
-	char	**map;
+	char	*map_1d;
+	char	**matrix;
+	int		size_x;
+	int		size_y;
 	int		direction;
 }			t_map;
 
 typedef struct s_input
 {
+	int		count;
 	int		*color_f;
 	int		*color_c;
 	char	*t_east;

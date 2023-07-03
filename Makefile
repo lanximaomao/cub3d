@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: azarsarikhani <azarsarikhani@student.42    +#+  +:+       +#+         #
+#    By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/06/27 11:08:59 by azarsarikha      ###   ########.fr        #
+#    Updated: 2023/06/27 12:14:58 by linlinsun        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,12 +45,12 @@ O_DIRS = $(dir $(OBJS))
 MLX_PATH	= mlx/
 MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)$(MLX_NAME)
-MLX_LNK	= -L ./mlx -lmlx -framework OpenGL -framework AppKit 
+MLX_LNK	= -L ./mlx -lmlx -framework OpenGL -framework AppKit
 
 NAME = cub3D
 
 ### RULES ###
-all: $(MLX) $(LIBFT) $(NAME) 
+all: $(MLX) $(LIBFT) $(NAME)
 
 $O/%.o: $S/%.c $(HEADER)
 	@mkdir -p $(O_DIRS)
@@ -60,8 +60,8 @@ $(NAME): $(OBJS)
 	@echo "Compiling cub3D..."
 	@$(CC) $(CFLAGS) $(MLX) $(MLX_LNK) $(LIBFT) $(OBJS) -o $(NAME)
 	@echo "$(COLOUR_GREEN) $(NAME) created$(COLOUR_END)"
-	
-### MLX	
+
+### MLX
 $(MLX):
 	@echo "Making MiniLibX..."
 	@make -sC $(MLX_PATH)
