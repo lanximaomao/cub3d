@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/06/29 15:55:10 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/03 11:10:06 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	key_event(int keycode, t_cub *cub3d)
 {
 	if (keycode == KEY_ESC)
 	{
+		end_cub3d(cub3d);
 	}
 	// else if (keycode == KEY_PLUS)
 	// 	zoom(mlx, 0.5);

@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/06/29 12:36:54 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/06/30 10:40:30 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	clean_exit(int exit_code, t_fractol *cub3d)
 
 int	end_cub3d(t_cub *cub3d)
 {
+	//free_everything
 	clean_exit(0, cub3d);
 	return (0);
 }
