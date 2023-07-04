@@ -1,23 +1,49 @@
-#ifndef COLOR_HPP
-# define COLOR_HPP
+#ifndef COLOR_H
+# define COLOR_H
+
+#define COLOR_BLACK     0x000000
+#define COLOR_WHITE     0xFFFFFF
+#define COLOR_RED       0xFF0000
+#define COLOR_GREEN     0x00FF00
+#define COLOR_BLUE      0x0000FF
+#define COLOR_YELLOW    0xFFFF00
+#define COLOR_CYAN      0x00FFFF
+#define COLOR_MAGENTA   0xFF00FF
+#define COLOR_GRAY      0x808080
+#define COLOR_LIGHTGRAY 0xC0C0C0
+#define COLOR_DARKGRAY  0x404040
+#define COLOR_BROWN     0x964B00
+#define COLOR_ORANGE    0xFFA500
+#define COLOR_PINK      0xFFC0CB
+#define COLOR_PURPLE    0x800080
+#define COLOR_LIME      0x00FF00
+#define COLOR_NAVY      0x000080
+#define COLOR_TEAL      0x008080
+#define COLOR_OLIVE     0x808000
+#define COLOR_MAROON    0x800000
+#define COLOR_AQUA      0x00FFFF
+#define COLOR_SILVER    0xC0C0C0
+#define COLOR_LIGHTBLUE 0xADD8E6
+#define COLOR_GOLD      0xFFD700
+#define COLOR_VIOLET    0xEE82EE
 
 // Define color escape sequences
-# define COLOR_RESET "\033[0m"
-# define COLOR_BLACK "\033[30m"
-# define COLOR_RED "\033[31m"
-# define COLOR_GREEN "\033[32m"
-# define COLOR_YELLOW "\033[33m"
-# define COLOR_BLUE "\033[34m"
-# define COLOR_MAGENTA "\033[35m"
-# define COLOR_CYAN "\033[36m"
-# define COLOR_WHITE "\033[37m"
-# define COLOR_BRIGHT_BLACK "\033[90m"
-# define COLOR_BRIGHT_RED "\033[91m"
-# define COLOR_BRIGHT_GREEN "\033[92m"
-# define COLOR_BRIGHT_YELLOW "\033[93m"
-# define COLOR_BRIGHT_BLUE "\033[94m"
-# define COLOR_BRIGHT_MAGENTA "\033[95m"
-# define COLOR_BRIGHT_CYAN "\033[96m"
-# define COLOR_BRIGHT_WHITE "\033[97m"
+# define ESC_COLOR_RESET "\033[0m"
+# define ESC_COLOR_BLACK "\033[30m"
+# define ESC_COLOR_RED "\033[31m"
+# define ESC_COLOR_GREEN "\033[32m"
+# define ESC_COLOR_YELLOW "\033[33m"
+# define ESC_COLOR_BLUE "\033[34m"
+# define ESC_COLOR_MAGENTA "\033[35m"
+# define ESC_COLOR_CYAN "\033[36m"
+# define ESC_COLOR_WHITE "\033[37m"
+# define ESC_COLOR_BRIGHT_BLACK "\033[90m"
+# define ESC_COLOR_BRIGHT_RED "\033[91m"
+# define ESC_COLOR_BRIGHT_GREEN "\033[92m"
+# define ESC_COLOR_BRIGHT_YELLOW "\033[93m"
+# define ESC_COLOR_BRIGHT_BLUE "\033[94m"
+# define ESC_COLOR_BRIGHT_MAGENTA "\033[95m"
+# define ESC_COLOR_BRIGHT_CYAN "\033[96m"
+# define ESC_COLOR_BRIGHT_WHITE "\033[97m"
 
 #endif
