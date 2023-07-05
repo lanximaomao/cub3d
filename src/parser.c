@@ -1,7 +1,4 @@
-#include "../includes/cub3D.h"
-#include "../includes/libft.h"
-#include "../includes/get_next_line.h"
-#include "../includes/color.h"
+#include "cub3D.h"
 
 static void display_map(char **matrix)
 {

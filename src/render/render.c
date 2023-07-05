@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 13:48:14 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:41:39 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	creat_img(t_cub *cub3d, int x, int y, int color)
 
 void	render(t_cub *cub3d)
 {
+	printf("in render\n");
 	mlx_clear_window(cub3d->mlx_ptr, cub3d->win_ptr);
 	//drwa_background(cub3d);
 	draw_map2d(cub3d);

@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 14:38:07 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:24:23 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "libft.h"
 # include "render.h"
 # include "event.h"
+# include "color.h"
 
 # ifndef WIN_SIZE_X
 #  define WIN_SIZE_X 1920
@@ -111,5 +112,7 @@ void	draw_map2d(t_cub *cub3d);
 void	draw_player2d(t_cub *cub3d);
 void	calculate_rays(t_cub *cub3d);
 void	creat_img(t_cub *cub3d, int x, int y, int color);
+void	clean_exit(int exit_code, t_cub *cub3d);
+int		message(char *str1, char *str2, int errno);
 
 #endif

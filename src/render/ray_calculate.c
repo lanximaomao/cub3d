@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 13:56:05 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:43:17 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	horizontal(t_cub *cub3d)
 
 void	calculate_rays(t_cub *cub3d)
 {
+	printf("in calculate rays\n");
 	cub3d->var->r = -1;
 	while (++(cub3d->var->r) < 60)
 	{

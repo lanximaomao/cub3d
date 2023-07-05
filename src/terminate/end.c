@@ -6,13 +6,13 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 13:46:08 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 16:24:08 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	clean_exit(int exit_code, t_cub *cub3d)
+void	clean_exit(int exit_code, t_cub *cub3d)
 {
 	if (!cub3d)
 		exit(exit_code);
@@ -39,6 +39,14 @@ static void	clean_exit(int exit_code, t_cub *cub3d)
 		exit (exit_code);
 	}
 	exit (exit_code);
+}
+
+int	message(char *str1, char *str2, int errno)
+{
+	ft_putstr_fd("cub3d: ", 2);
+	ft_putstr_fd(str1, 2);
+	ft_putendl_fd(str2, 2);
+	return (errno);
 }
 
 int	end_cub3d(t_cub *cub3d)

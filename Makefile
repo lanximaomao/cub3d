@@ -6,7 +6,7 @@
 #    By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/07/05 14:43:08 by asarikha         ###   ########.fr        #
+#    Updated: 2023/07/05 15:45:50 by asarikha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ FILES = main\
 	
 
 
-HEADER = cub3D.h libft.h mlx.h get_next_line.h render.h
+HEADER = cub3D.h libft.h mlx.h get_next_line.h render.h color.h
 HEADER := $(addprefix $I/,$(HEADER))
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name '$(FILE).c'))
@@ -87,13 +87,15 @@ $(LIBFT):
 
 clean:
 	@cd libft && $(MAKE) clean
+	
 	@cd mlx && $(MAKE) clean
-	@echo "$(COLOUR_RED) $(LIBFT) removed$(COLOUR_END)"
+	@echo "$(COLOUR_RED) $(MLX) removed$(COLOUR_END)"
 	@$(RM) $(OBJS)
 	@if [ -d $O ]; then $(RM) -rf $(O_DIRS) $O; fi
 
 fclean : clean
 	@cd libft && $(MAKE) fclean
+	@echo "$(COLOUR_RED) $(LIBFT) removed$(COLOUR_END)"
 	@$(RM) $(NAME)
 	@echo "$(COLOUR_RED) $(NAME) removed$(COLOUR_END)"
 

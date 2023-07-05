@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 13:55:16 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 15:42:55 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	creat_player(t_cub *cub3d, int x_from, int y_from, int color)
 
 void	draw_map2d(t_cub *cub3d)
 {
+	printf("in draw_map\n");
 	int	i;
 	int	j;
 	int	color;
@@ -65,6 +66,7 @@ void	draw_map2d(t_cub *cub3d)
 		}
 		i++;
 	}
+	printf("reeturning from draw_map\n");
 }
 
 void	draw_player2d(t_cub *cub3d)
@@ -95,4 +97,5 @@ void	draw_player2d(t_cub *cub3d)
 		}
 		i++;
 	}
+	printf("reeturning from draw_player\n");
 }
