@@ -5,12 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 13:52:03 by asarikha         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2023/07/05 14:19:52 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+
+
+#include "../includes/cub3D.h"
+#include "../includes/parser.h"
 
 void	hook_and_loop(t_cub *cub3d)
 {
@@ -49,3 +52,20 @@ int	main(int argc, char **argv)
 	hook_and_loop(&cub);
 	return (0);
 }
+
+//int main(int argc, char** argv)
+//{
+//	void	*mlx;
+//	void	*win;
+
+//	(void)argc;
+//	(void)argv;
+//	write(1,"z",1);
+//	mlx = mlx_init();
+//	win = mlx_new_window(mlx,200,200,"cub3D");
+//	mlx_pixel_put(mlx,win,20,20,0x660066);
+//	validate();
+//	mlx_loop(mlx);
+//	//render();
+//	return (0);
+//}
