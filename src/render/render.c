@@ -6,13 +6,13 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 12:22:04 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:48:14 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static	void	creat_img(t_cub *cub3d, int x, int y, int color)
+void	creat_img(t_cub *cub3d, int x, int y, int color)
 {
 	int		bits_per_pixel;
 	int		line_length;

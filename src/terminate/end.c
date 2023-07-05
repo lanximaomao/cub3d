@@ -6,23 +6,23 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/06/30 10:40:30 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:46:08 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	clean_exit(int exit_code, t_fractol *cub3d)
+static void	clean_exit(int exit_code, t_cub *cub3d)
 {
 	if (!cub3d)
 		exit(exit_code);
-	if (cub3d->img.img_ptr && cub3d->win_ptr && cub3d->mlx_ptr)
+	if (cub3d->img->img_ptr && cub3d->win_ptr && cub3d->mlx_ptr)
 	{
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->img.img_ptr);
+		mlx_destroy_image(cub3d->mlx_ptr, cub3d->img->img_ptr);
 		mlx_destroy_window(cub3d->mlx_ptr, cub3d->win_ptr);
 		cub3d->mlx_ptr = NULL;
 		cub3d->win_ptr = NULL;
-		cub3d->img.addr = NULL;
+		cub3d->img->addr = NULL;
 		exit (exit_code);
 	}
 	else if (cub3d->win_ptr && cub3d->mlx_ptr)
@@ -32,10 +32,10 @@ static void	clean_exit(int exit_code, t_fractol *cub3d)
 		cub3d->mlx_ptr = NULL;
 		exit (exit_code);
 	}
-	else if (cub3d->img.img_ptr && cub3d->mlx_ptr)
+	else if (cub3d->img->img_ptr && cub3d->mlx_ptr)
 	{
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->img.img_ptr);
-		cub3d->img.img_ptr = NULL;
+		mlx_destroy_image(cub3d->mlx_ptr, cub3d->img->img_ptr);
+		cub3d->img->img_ptr = NULL;
 		exit (exit_code);
 	}
 	exit (exit_code);

@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/06/30 10:03:16 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:52:03 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ int	main(int argc, char **argv)
 		printf("cannot open file.\n");
 		return (1);
 	}
-	if (parser(fd, &cub) == -1)
-	{
-		printf("Error\n");
-		return (-1);
-	}
+	// if (parser(fd, &cub) == -1)
+	// {
+	// 	printf("Error\n");
+	// 	return (-1);
+	// }
 	close(fd);
+	cub.input->position->x_p = -1;
+	cub.input->position->y_p = -1;
 	validate();
 	render(&cub);
 	hook_and_loop(&cub);

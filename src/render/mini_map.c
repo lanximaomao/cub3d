@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 10:46:28 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:55:16 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ static void	creat_player(t_cub *cub3d, int x_from, int y_from, int color)
 
 void	draw_map2d(t_cub *cub3d)
 {
-	int	x;
-	int	y;
 	int	i;
 	int	j;
 	int	color;
@@ -59,7 +57,7 @@ void	draw_map2d(t_cub *cub3d)
 		while (j < cub3d->input->map->size_y)
 		{
 			if (cub3d->input->map->matrix[i][j] == '1')
-				clolor = BLACK;
+				color = BLACK;
 			else if (cub3d->input->map->matrix[i][j] == '0')
 				color = WHITE;
 			creat_grid(cub3d, i * GRID_P, i * GRID_P, color);
@@ -76,8 +74,9 @@ void	draw_player2d(t_cub *cub3d)
 	int	color;
 
 	i = 0;
+	color = 0;
 	if (cub3d->input->position->x_p != -1)
-		return (creat_playr(cub3d, cub3d->input->position->x_p - 2
+		return (creat_player(cub3d, cub3d->input->position->x_p - 2
 				, cub3d->input->position->y_p - 2, color));
 	while (i < cub3d->input->map->size_x)
 	{
@@ -89,8 +88,8 @@ void	draw_player2d(t_cub *cub3d)
 			|| cub3d->input->map->matrix[i][j] == 'E'
 			|| cub3d->input->map->matrix[i][j] == 'W')
 			{
-				clolor = GREEN;
-				creat_playr(cub3d, i * GRID_P + 30, j * GRID_P + 30, color);
+				color = GREEN;
+				creat_player(cub3d, i * GRID_P + 30, j * GRID_P + 30, color);
 			}
 			j++;
 		}

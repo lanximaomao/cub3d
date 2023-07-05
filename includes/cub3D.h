@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 11:54:21 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:48:45 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <fcntl.h>
 # include <mlx.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include "libft.h"
 # include "render.h"
 # include "event.h"
@@ -55,8 +56,6 @@ typedef struct s_vars
 	float	tan;
 	float	rx;
 	float	ry;
-	int		px;
-	int		py;
 	float	xo;
 	float	yo;
 	int		mx;
@@ -87,7 +86,7 @@ typedef struct s_input
 typedef struct s_img
 {
 	void	*img_ptr;
-	int		*addr;
+	char	*addr;
 }			t_img;
 
 typedef struct s_cub
@@ -105,5 +104,9 @@ void	render(t_cub *cub3d);
 int		end_cub3d(t_cub *cub3d);
 int		mouse_event(int keycode, int x, int y, t_cub *cub3d);
 int		key_event(int keycode, t_cub *cub3d);
+void	draw_map2d(t_cub *cub3d);
+void	draw_player2d(t_cub *cub3d);
+void	calculate_rays(t_cub *cub3d);
+void	creat_img(t_cub *cub3d, int x, int y, int color);
 
 #endif

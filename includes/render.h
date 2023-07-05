@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 12:21:46 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:37:06 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,5 @@
 # define YELLOW 0xffff00
 # define PURPLE 0x800080
 # define PINK 0xff33cc
-
-void	draw_map2d(t_cub *cub3d);
-void	draw_player2d(t_cub *cub3d);
-void	calculate_rays(t_cub *cub3d);
 
 #endif

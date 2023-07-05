@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/03 11:10:06 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:57:05 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	mouse_event(int keycode, int x, int y, t_cub *cub3d)
 {
+	x = 0;
+	y = 0;
 	if (keycode == MOUSE_WHEEL_UP)
 	{
 	}
