@@ -6,12 +6,11 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/04 11:38:46 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 10:46:28 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
 
 static void	creat_grid(t_cub *cub3d, int x_from, int y_from, int color)
 {
@@ -97,9 +96,4 @@ void	draw_player2d(t_cub *cub3d)
 		}
 		i++;
 	}
-}
-
-void	draw_rays2d(t_cub *cub3d)
-{
-	
 }

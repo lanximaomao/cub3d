@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/03 16:03:18 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 12:22:04 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	render(t_cub *cub3d)
 	//drwa_background(cub3d);
 	draw_map2d(cub3d);
 	draw_player2d(cub3d);
-	draw_rays2d(cub3d);
+	calculate_rays(cub3d);
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
 		cub3d->img->img_ptr, 0, 0);
 }

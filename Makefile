@@ -6,7 +6,7 @@
 #    By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/06/29 12:41:51 by asarikha         ###   ########.fr        #
+#    Updated: 2023/07/05 12:20:38 by asarikha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,11 @@ I = includes
 FILES = main\
 	validate\
 	end\
-	render
+	render\
+	mini_map\
+	ray_calculate\
+	event
+	
 
 
 HEADER = cub3D.h libft.h mlx.h get_next_line.h render.h
