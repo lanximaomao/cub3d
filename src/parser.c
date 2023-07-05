@@ -85,7 +85,7 @@ static int get_map(t_cub *cub, char* line)
 	// check for unclosed maps
 
 	// calculate size_x of map
-	if (ft_strlen(line) > cub->input->map->size_x)
+	if ((int)ft_strlen(line) > cub->input->map->size_x)
 		cub->input->map->size_x = ft_strlen(line);
 	//printf("count=%d\n", cub->input->count);
 	//printf("size_x=%d\n", cub->input->map->size_x);

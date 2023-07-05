@@ -6,14 +6,14 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/05 14:19:52 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:41:28 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 
-#include "../includes/cub3D.h"
-#include "../includes/parser.h"
+#include "cub3D.h"
+#include "parser.h"
 
 void	hook_and_loop(t_cub *cub3d)
 {
@@ -39,33 +39,16 @@ int	main(int argc, char **argv)
 		printf("cannot open file.\n");
 		return (1);
 	}
-	// if (parser(fd, &cub) == -1)
-	// {
-	// 	printf("Error\n");
-	// 	return (-1);
-	// }
+	if (parser(fd, &cub) == -1)
+	{
+		printf("Error\n");
+		return (-1);
+	}
 	close(fd);
 	cub.input->position->x_p = -1;
 	cub.input->position->y_p = -1;
-	validate();
+	//validate();
 	render(&cub);
 	hook_and_loop(&cub);
 	return (0);
 }
-
-//int main(int argc, char** argv)
-//{
-//	void	*mlx;
-//	void	*win;
-
-//	(void)argc;
-//	(void)argv;
-//	write(1,"z",1);
-//	mlx = mlx_init();
-//	win = mlx_new_window(mlx,200,200,"cub3D");
-//	mlx_pixel_put(mlx,win,20,20,0x660066);
-//	validate();
-//	mlx_loop(mlx);
-//	//render();
-//	return (0);
-//}
