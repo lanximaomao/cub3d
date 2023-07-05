@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 13:48:45 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:10:35 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include <math.h>
+# include <stdio.h>
 # include <fcntl.h>
 # include <mlx.h>
 # include <stdlib.h>
@@ -29,6 +30,7 @@
 # ifndef WIN_SIZE_Y
 #  define WIN_SIZE_Y 1080
 # endif
+
 
 typedef struct s_map
 {

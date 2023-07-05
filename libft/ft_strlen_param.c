@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate.c                                         :+:      :+:    :+:   */
+/*   ft_strlen_param.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/06/29 09:18:20 by asarikha         ###   ########.fr       */
+/*   Created: 2022/11/15 16:39:34 by lsun              #+#    #+#             */
+/*   Updated: 2023/07/05 14:12:35 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-int	validate(void)
+size_t	ft_strlen_param(const char *str, char c)
 {
-	write(1,"a",1);
+	size_t	len;
+
+	len = 0;
+	while (str[len] != '\0' && str[len] != c)
+	{
+		len++;
+	}
+	if (str[len] == c)
+		return (len + 1);
 	return (0);
 }
