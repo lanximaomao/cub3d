@@ -6,7 +6,7 @@
 #    By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/07/05 14:24:05 by asarikha         ###   ########.fr        #
+#    Updated: 2023/07/05 14:43:08 by asarikha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,13 @@ O = obj
 I = includes
 
 FILES = main\
-	validate\
 	end\
 	render\
 	mini_map\
 	ray_calculate\
-	event
+	event\
+	parser\
+	utils
 	
 
 
@@ -86,6 +87,7 @@ $(LIBFT):
 
 clean:
 	@cd libft && $(MAKE) clean
+	@cd mlx && $(MAKE) clean
 	@echo "$(COLOUR_RED) $(LIBFT) removed$(COLOUR_END)"
 	@$(RM) $(OBJS)
 	@if [ -d $O ]; then $(RM) -rf $(O_DIRS) $O; fi

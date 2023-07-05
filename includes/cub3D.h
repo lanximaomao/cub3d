@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 14:10:35 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/05 14:38:07 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_vars
 
 typedef struct s_input
 {
+	int			count;
 	int			*color_f;
 	int			*color_c;
 	char		*t_east;
