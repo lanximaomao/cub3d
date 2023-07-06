@@ -1,5 +1,10 @@
 #include "cub3D.h"
 
+// make a perfect cubic map by filling the irregular shapes with _
+// size_x and size_y
+// which way the player is facing.
+// check for memory leak
+
 static void display_map(char **matrix)
 {
 	int i;
@@ -12,6 +17,8 @@ static void display_map(char **matrix)
 		j = 0;
 		while (matrix[i][j])
 		{
+			if (matrix[i][j] == ' ')
+				matrix[i][j] = '_';
 			printf("%c", matrix[i][j]);
 			j++;
 		}
@@ -91,7 +98,7 @@ static int get_map(t_cub *cub, char* line)
 	// parsing
 	cub->input->map->map_1d = ft_strjoin_gnl(cub->input->map->map_1d, line); // if null
 	if (!cub->input->map->map_1d)
-		return (-1);
+		exit (1); // update to error msg
 	//printf("1d=%s\n\n\n", cub->input->map->map_1d);
 	return (0);
 }
@@ -186,10 +193,10 @@ static int get_color_f(t_cub *cub, char* line)
 	{
 		split_f = ft_split(line, ',');
 		if (!split_f)
-			return (-1);
+			exit (1); // update to error msg
 	}
 	else
-		return (-1);
+		exit (1); // update to error msg
 	i = 0;
 	while (i < 3)
 	{
@@ -197,14 +204,14 @@ static int get_color_f(t_cub *cub, char* line)
 		{
 			cub->input->color_f[i] = ft_atoi_isnum(split_f[i]);
 			if (cub->input->color_f[i] == -1)
-				return (-1);
+				exit (1); // update to error msg
 		}
 		else
-			return (-1);
+			exit (1); // update to error msg
 		i++;
 	}
 	if (split_f[i]) // more than three color
-		return (-1);
+		exit (1); // update to error msg
 	return (0);
 }
 
@@ -228,8 +235,8 @@ static int get_texture(t_cub *cub, char*line, int flag)
 		|| (flag == 2 && cub->input->t_south)
 		|| (flag == 3 && cub->input->t_west)
 		|| (flag == 4 && cub->input->t_east))
-		return (-1); // duplicate texture definition
-	while (line[i] >= 9 && line[i] <= 13)//skil white spaces
+		exit (1); // duplicate texture definition // add error msg
+	while (line[i] >= 9 && line[i] <= 13)//skip white spaces
 		i++;
 	line += i;
 	i = 0;
@@ -265,58 +272,26 @@ static int line_processor(t_cub *cub, char* line)
 	int i;
 
 	i = 0;
-	//printf(COLOR_RED "line=%s\n" COLOR_RESET, line);
-	while (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13))
-		i++;
+	while (!ft_strncmp(cub->input->map->map_1d, "", 1)
+		&& (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13)))
+			i++;
 	if (!line[i+1]) // empty line, just return
 		return (0);
 	if (line[i] == 'N' && line[i+1] == 'O')
-	{
-		if (get_texture(cub, line, 1) == -1)
-			return (-1);
-	}
+		get_texture(cub, line, 1);
 	else if (line[i] == 'S' && line[i+1] == 'O')
-	{
-		if (get_texture(cub, line, 2) == -1)
-			return (-1);
-	}
+		get_texture(cub, line, 2);
 	else if (line[i] == 'W' && line[i+1] == 'E')
-	{
-		if (get_texture(cub, line, 3) == -1)
-			return (-1);
-	}
+		get_texture(cub, line, 3);
 	else if (line[i] == 'E' && line[i+1] == 'A')
-	{
-		if (get_texture(cub, line, 4) == -1)
-			return (-1);
-	}
+		get_texture(cub, line, 4);
 	else if (line[i] == 'F')
-	{
-		if (get_color_f(cub, line) == -1)
-			return (-1);
-	}
+		get_color_f(cub, line);
 	else if (line[i] == 'C')
-	{
-		if (get_color_c(cub, line) == -1)
-			return (-1);
-	}
-	else if (get_map(cub, line) == -1)
-		return (-1); // if this returns -1;
+		get_color_c(cub, line);
+	else
+		get_map(cub, line);
 	return (0);
-}
-
-static void init_input(t_input *input, t_position *pos)
-{
-	input->count = 6;
-	input->color_f = NULL;
-	input->color_c = NULL;
-	input->t_north = NULL;
-	input->t_south = NULL;
-	input->t_west = NULL;
-	input->t_east = NULL;
-	input->position = pos;
-	input->position->x_p = -1;
-	input->position->y_p = -1;
 }
 
 static void init_map(t_map *map)
@@ -329,36 +304,61 @@ static void init_map(t_map *map)
 	if (!map->map_1d)
 		exit(1);
 }
-// pls also add map init
+
+static void init_input(t_input *input)
+{
+	input->count = 6;
+	input->color_f = NULL;
+	input->color_c = NULL;
+	input->t_north = NULL;
+	input->t_south = NULL;
+	input->t_west = NULL;
+	input->t_east = NULL;
+	input->position->x_p = -1;
+	input->position->y_p = -1;
+	init_map(input->map);
+}
+
+// to be fix: change exit(1) to clean_exit function
+static void init_cub(t_cub *cub)
+{
+	cub->img = ft_calloc(sizeof(t_img), 1);
+	if (!cub->img)
+		exit(1);
+	cub->var = ft_calloc(sizeof(t_vars), 1);
+	if (!cub->var)
+		exit(1);
+	cub->input = ft_calloc(sizeof(t_input), 1);
+	if (!cub->input)
+		exit(1);
+	cub->input->map = ft_calloc(sizeof(t_map), 1);
+	if (!cub->input->map)
+		exit(1);
+	cub->input->position = ft_calloc(sizeof(t_position), 1);
+	if (!cub->input->position)
+		exit(1);
+	init_input(cub->input);
+}
+
+
 int parser(int fd, t_cub *cub)
 {
-	t_map *map;
-	t_input *input;
-	t_position	*pos;
-	t_vars		*var;
-
 	char* line;
-	map = ft_calloc(sizeof(t_map), 1);
-	input = ft_calloc(sizeof(t_input), 1);
-	pos = ft_calloc(sizeof(t_position), 1);
-	var = ft_calloc(sizeof(t_vars), 1);
+
 	line = NULL;
-	init_input(input, pos);
-	init_map(map);
-	cub->input = input;
-	cub->input->map = map;
-	cub->var = var;
+	init_cub(cub);
 	while (42)
 	{
 		line = get_next_line(fd); // to be freed // error catch?
 		if (!line)
 		{
+			printf("size of map is %d*%d\n", cub->input->map->size_x, cub->input->map->size_y);
 			get_matrix(cub); // check here whether it is null
 			return (0); // finish reading or not able to read?
 		}
 		//process each line
 		if (line_processor(cub, line) == -1)
-			return (-1);
+			exit (1); //
 		free(line);
 		line = NULL;
 	}
