@@ -5,6 +5,33 @@
 // which way the player is facing.
 // check for memory leak
 
+static void get_direction(t_cub *cub)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < cub->input->map->size_y)
+	{
+		j = 0;
+		while (j < cub->input->map->size_x)
+		{
+			if (cub->input->map->matrix[i][j] == 'N')
+				cub->input->map->direction = 1;
+			else if (cub->input->map->matrix[i][j] == 'S')
+				cub->input->map->direction = 2;
+			else if (cub->input->map->matrix[i][j] == 'W')
+				cub->input->map->direction = 3;
+			else if (cub->input->map->matrix[i][j] == 'E')
+				cub->input->map->direction = 4;
+			j++;
+		}
+		i++;
+	}
+	if (cub->input->map->direction != 0)
+		printf("\n\ndirection=%d\n\n", cub->input->map->direction);
+}
+
 static void display_map(char **matrix)
 {
 	int i;
@@ -40,44 +67,65 @@ static void display_color(t_input *input)
 	int i;
 
 	i = 0;
-	printf("floor color:");
-	while (i < 3)
-	{
-		printf("%d ", input->color_f[i]);
-		i++;
-	}
-	printf("\n");
-	i = 0;
-	printf("ceiling color:");
-	while (i < 3)
-	{
-		printf("%d ", input->color_c[i]);
-		i++;
-	}
-	printf("\n");
+	printf("floor color = %d, %d, %d\n", input->color_f->r, input->color_f->g, input->color_f->b);
+	printf("ceiling color = %d, %d, %d\n", input->color_c->r, input->color_c->g, input->color_c->b);
 }
 
+
+// direction
 static int get_matrix(t_cub *cub)
 {
 	int i;
+	int j;
+	char **tmp_matrix;
 
 	i = 0;
 	if (!cub->input->map->map_1d)
-		return (-1);
-	//printf("1D map = %s\n", cub->input->map->map_1d);
-	//printf(COLOR_BLUE "size_x=%d\n" COLOR_RESET, cub->input->map->size_x);
-	//printf(COLOR_BLUE "size_y=%d\n" COLOR_RESET, cub->input->map->size_y);
-	cub->input->map->matrix = ft_split(cub->input->map->map_1d, '\n');
-	if (!cub->input->map->matrix)
-		exit(1); // malloc fail
+		exit (1);
+	tmp_matrix = ft_split(cub->input->map->map_1d, '\n'); // to be freed
+	if (!tmp_matrix)
+		exit(1);
+	cub->input->map->matrix = ft_calloc(sizeof(char *), cub->input->map->size_y + 1);
+	cub->input->map->matrix[cub->input->map->size_y] = NULL;
+	while (i < cub->input->map->size_y)
+	{
+		cub->input->map->matrix[i] = ft_calloc(sizeof(char), cub->input->map->size_x + 1);
+		if (!cub->input->map->matrix[i])
+			exit(1);
+		cub->input->map->matrix[i][cub->input->map->size_x] = '\0';
+		i++;
+	}
+	i = 0;
+	while (i < cub->input->map->size_y)
+	{
+		j = 0;
+		while (j < cub->input->map->size_x)
+		{
+			if (j >= ft_strlen(tmp_matrix[i]))
+				cub->input->map->matrix[i][j] = '_';
+			else if (tmp_matrix[i][j] == ' ')
+				cub->input->map->matrix[i][j] = '_';
+			else
+				cub->input->map->matrix[i][j] = tmp_matrix[i][j];
+			j++;
+		}
+		i++;
+	}
 	display_map(cub->input->map->matrix);
 	display_texture(cub->input);
 	display_color(cub->input);
 	return (0);
 }
-// note: change map structure; add one more function into libft which is needed by gnl
-//cub->input->map->matrix needs malloc
-// size_x includes the new line character
+
+static int	get_map_x(char *str)
+{
+	int	len;
+
+	len = 0;
+	while (str[len] != '\0' && str[len] != '\n')
+		len++;
+	return (len);
+}
 
 static int get_map(t_cub *cub, char* line)
 {
@@ -90,7 +138,7 @@ static int get_map(t_cub *cub, char* line)
 
 	// calculate size_x of map
 	if ((int)ft_strlen(line) > cub->input->map->size_x)
-		cub->input->map->size_x = ft_strlen(line);
+		cub->input->map->size_x = get_map_x(line);
 	//printf("count=%d\n", cub->input->count);
 	//printf("size_x=%d\n", cub->input->map->size_x);
 	// calculate size_y of the map
@@ -128,90 +176,76 @@ static int	ft_atoi_isnum(const char *str)
 	return (-1);
 }
 
-// flag -1 means floor, flag 1 means ceiling
-// remember to change count;
-// if things goes wrong, return -1;
-static int get_color_c(t_cub *cub, char* line)
+static int how_many(char* str, char c)
 {
 	int i;
-	char** split_c;
+	int count;
 
-	i = 2;
-	//if ((flag == -1 && cub->input->color_f)
-	//	|| (flag == 1 && cub->input->color_c))
-	//	return (-1); // duplicate color definition
-	cub->input->color_c = malloc(sizeof(int) * 3);
-	if (!cub->input->color_c)
-		exit(1);
-	//split
-	while (line[i] >= 9 && line[i] <= 13)//skil white spaces
-		i++;
-	line += i;
-	if (line[i])
-	{
-		split_c = ft_split(line, ',');
-		if (!split_c)
-			return (-1);
-	}
-	else
-		return (-1);
 	i = 0;
-	while (i < 3)
+	count = 0;
+	while (str[i])
 	{
-		if (split_c[i])
-		{
-			cub->input->color_c[i] = ft_atoi_isnum(split_c[i]);
-			if (cub->input->color_c[i] == -1)
-				return (-1);
-		}
-		else
-			return (-1);
+		if (str[i] == c)
+			count++;
 		i++;
 	}
-	if (split_c[i]) // more than three color
-		return (-1);
-	return (0);
+	return (count);
 }
 
-static int get_color_f(t_cub *cub, char* line)
+static void	free_char(char **str)
 {
-	int i;
-	char** split_f;
+	int	i;
 
-	i = 2;
-	//if ((flag == -1 && cub->input->color_f)
-	//	|| (flag == 1 && cub->input->color_c))
-	//	return (-1); // duplicate color definition
-	cub->input->color_f = malloc(sizeof(int) * 3);
-	if (!cub->input->color_f)
-		exit(1);
-	//split
-	while (line[i] >= 9 && line[i] <= 13)//skil white spaces
-		i++;
-	line += i;
-	if (line[i])
-	{
-		split_f = ft_split(line, ',');
-		if (!split_f)
-			exit (1); // update to error msg
-	}
-	else
-		exit (1); // update to error msg
 	i = 0;
-	while (i < 3)
+	if (str == NULL)
+		return ;
+	while (str[i] != NULL)
 	{
-		if (split_f[i])
-		{
-			cub->input->color_f[i] = ft_atoi_isnum(split_f[i]);
-			if (cub->input->color_f[i] == -1)
-				exit (1); // update to error msg
-		}
-		else
-			exit (1); // update to error msg
+		free(str[i]);
+		str[i] = NULL;
 		i++;
 	}
-	if (split_f[i]) // more than three color
-		exit (1); // update to error msg
+	free(str);
+	str = NULL;
+}
+// 1 for F, 2 for c
+static int get_color(t_cub *cub, char* line, int flag)
+{
+	char *line_with_color;
+	char **color_split;
+	t_color_rgb *color;
+
+	if (ft_strncmp(cub->input->map->map_1d, "", 1)) // still something after map even after 6 parameters are given
+		exit (1);
+	if ((flag == 1 && cub->input->color_f) // duplicate color definition // add error msg
+		|| (flag == 2 && cub->input->color_c))
+		exit (1);
+	if (how_many(line, ',') != 2) // check number of semicolons;
+		exit (1);
+	if(flag == 1)
+		line_with_color = ft_strtrim(line, "F \n"); // to be freed
+	if (flag == 2)
+		line_with_color = ft_strtrim(line, "C \n"); // to be freed
+	if (!line_with_color)
+		exit(1);
+	color_split = ft_split(line_with_color, ','); // to be freed
+	if (!color_split)
+		exit(1);
+	color = ft_calloc(sizeof(t_color_rgb), 1);
+	if (!color)
+		exit(1);
+	if (flag == 1)
+		cub->input->color_f = color;
+	if (flag == 2)
+		cub->input->color_c = color;
+	color->r = ft_atoi_isnum(color_split[0]);
+	color->g = ft_atoi_isnum(color_split[1]);
+	color->b = ft_atoi_isnum(color_split[2]);
+	if (color->r == -1 || color->g == -1 || color->b == -1)
+		exit(1);
+	free(line_with_color);
+	free_char(color_split);
+	cub->input->count++;
 	return (0);
 }
 
@@ -227,43 +261,25 @@ static int get_color_f(t_cub *cub, char* line)
 static int get_texture(t_cub *cub, char*line, int flag)
 {
 	int i;
-	char *texture;
 
-	i = 3;
-	texture = NULL;
-	if ((flag == 1 && cub->input->t_north)
+	i = 0;
+	if (ft_strncmp(cub->input->map->map_1d, "", 1)) // still something after map even after 6 parameters are given
+		exit (1);
+	if ((flag == 1 && cub->input->t_north) // duplicate texture definition // add error msg
 		|| (flag == 2 && cub->input->t_south)
 		|| (flag == 3 && cub->input->t_west)
 		|| (flag == 4 && cub->input->t_east))
-		exit (1); // duplicate texture definition // add error msg
-	while (line[i] >= 9 && line[i] <= 13)//skip white spaces
-		i++;
-	line += i;
-	i = 0;
-	while (line[i] < 9 || line[i] > 13)
-		i++;
-	texture = malloc(sizeof(char) * (i + 1));
-	if (!texture)
-		exit(-1);
-	i = 0;
-	while (line[i])
-	{
-		texture[i] = line[i];
-		i++;
-		if (line[i]>= 9 && line[i] <= 13)
-			break;
-	}
-	texture[i] = '\0';
+		exit (1);
 	//check if file path is valid or not
 	if (flag == 1)
-		cub->input->t_north = texture;
+		cub->input->t_north = ft_strtrim(line, "NO \n");
 	else if (flag == 2)
-		cub->input->t_south = texture;
+		cub->input->t_south = ft_strtrim(line, "SO \n");
 	else if (flag == 3)
-		cub->input->t_west = texture;
+		cub->input->t_west = ft_strtrim(line, "WE \n");
 	else if (flag == 4)
-		cub->input->t_east = texture;
-	//printf("texture=%s\n", texture);
+		cub->input->t_east = ft_strtrim(line, "EA \n");
+	cub->input->count++;
 	return (0);
 }
 
@@ -272,10 +288,11 @@ static int line_processor(t_cub *cub, char* line)
 	int i;
 
 	i = 0;
-	while (!ft_strncmp(cub->input->map->map_1d, "", 1)
-		&& (line[i] == ' ' || (line[i] >= 9 && line[i] <= 13)))
+	if (line[i] == '\n')
+		return (0);
+	while (line[i] == ' ')
 			i++;
-	if (!line[i+1]) // empty line, just return
+	if (line[i+1] && line[i+1] == '\n') // empty line, just return
 		return (0);
 	if (line[i] == 'N' && line[i+1] == 'O')
 		get_texture(cub, line, 1);
@@ -286,9 +303,9 @@ static int line_processor(t_cub *cub, char* line)
 	else if (line[i] == 'E' && line[i+1] == 'A')
 		get_texture(cub, line, 4);
 	else if (line[i] == 'F')
-		get_color_f(cub, line);
+		get_color(cub, line, 1);
 	else if (line[i] == 'C')
-		get_color_c(cub, line);
+		get_color(cub, line, 2);
 	else
 		get_map(cub, line);
 	return (0);
@@ -307,13 +324,13 @@ static void init_map(t_map *map)
 
 static void init_input(t_input *input)
 {
-	input->count = 6;
-	input->color_f = NULL;
-	input->color_c = NULL;
+	input->count = 0;
 	input->t_north = NULL;
 	input->t_south = NULL;
 	input->t_west = NULL;
 	input->t_east = NULL;
+	input->color_c = NULL;
+	input->color_f = NULL;
 	input->position->x_p = -1;
 	input->position->y_p = -1;
 	init_map(input->map);
@@ -354,6 +371,7 @@ int parser(int fd, t_cub *cub)
 		{
 			printf("size of map is %d*%d\n", cub->input->map->size_x, cub->input->map->size_y);
 			get_matrix(cub); // check here whether it is null
+			get_direction(cub);
 			return (0); // finish reading or not able to read?
 		}
 		//process each line
