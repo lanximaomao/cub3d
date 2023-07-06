@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 15:43:17 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/06 16:03:30 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,6 @@ void	calculate_rays(t_cub *cub3d)
 			cub3d->var->ry = cub3d->var->vy;
 			cub3d->var->dis_h = cub3d->var->dis_v;
 		}
+		printf("r : %d dis_v :%f div_h:%f\n", cub3d->var->r, cub3d->var->dis_v, cub3d->var->dis_h);
 	}
 }

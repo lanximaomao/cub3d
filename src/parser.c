@@ -305,7 +305,7 @@ static int line_processor(t_cub *cub, char* line)
 	return (0);
 }
 
-static void init_input(t_input *input)
+static void init_input(t_input *input, t_position *pos)
 {
 	input->count = 6;
 	input->color_f = NULL;
@@ -314,6 +314,9 @@ static void init_input(t_input *input)
 	input->t_south = NULL;
 	input->t_west = NULL;
 	input->t_east = NULL;
+	input->position = pos;
+	input->position->x_p = -1;
+	input->position->y_p = -1;
 }
 
 static void init_map(t_map *map)
@@ -329,15 +332,22 @@ static void init_map(t_map *map)
 // pls also add map init
 int parser(int fd, t_cub *cub)
 {
-	t_map map;
-	t_input input;
+	t_map *map;
+	t_input *input;
+	t_position	*pos;
+	t_vars		*var;
 
 	char* line;
+	map = ft_calloc(sizeof(t_map), 1);
+	input = ft_calloc(sizeof(t_input), 1);
+	pos = ft_calloc(sizeof(t_position), 1);
+	var = ft_calloc(sizeof(t_vars), 1);
 	line = NULL;
-	init_input(&input);
-	init_map(&map);
-	cub->input = &input;
-	cub->input->map = &map;
+	init_input(input, pos);
+	init_map(map);
+	cub->input = input;
+	cub->input->map = map;
+	cub->var = var;
 	while (42)
 	{
 		line = get_next_line(fd); // to be freed // error catch?

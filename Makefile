@@ -6,7 +6,7 @@
 #    By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/07/05 15:45:50 by asarikha         ###   ########.fr        #
+#    Updated: 2023/07/06 14:55:54 by asarikha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,7 @@ $(LIBFT):
 
 clean:
 	@cd libft && $(MAKE) clean
-	
+	@echo "$(COLOUR_RED) $(LIBFT) removed$(COLOUR_END)"
 	@cd mlx && $(MAKE) clean
 	@echo "$(COLOUR_RED) $(MLX) removed$(COLOUR_END)"
 	@$(RM) $(OBJS)
@@ -95,10 +95,11 @@ clean:
 
 fclean : clean
 	@cd libft && $(MAKE) fclean
+	
 	@echo "$(COLOUR_RED) $(LIBFT) removed$(COLOUR_END)"
 	@$(RM) $(NAME)
 	@echo "$(COLOUR_RED) $(NAME) removed$(COLOUR_END)"
 
-re: fclean $(NAME)
+re: fclean all
 
 .PHONY: all clean fclean re

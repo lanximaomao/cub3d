@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 13:57:05 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/06 13:35:23 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@ int	mouse_event(int keycode, int x, int y, t_cub *cub3d)
 {
 	x = 0;
 	y = 0;
-	if (keycode == MOUSE_WHEEL_UP)
-	{
-	}
-	else if (keycode == MOUSE_WHEEL_DOWN)
-	{
-	}
-	else if (keycode == MOUSE_BTN)
-	{
-	}
-	else
+	keycode = 0;
+	// if (keycode == MOUSE_WHEEL_UP)
+	// {
+	// }
+	// else if (keycode == MOUSE_WHEEL_DOWN)
+	// {
+	// }
+	// else if (keycode == MOUSE_BTN)
+	// {
+	// }
+	// else
 		return (0);
+	
 	render(cub3d);
 	return (0);
 }
@@ -35,6 +37,7 @@ int	key_event(int keycode, t_cub *cub3d)
 {
 	if (keycode == KEY_ESC)
 	{
+		printf("cub3d->img->img_ptr : %p , cub3d->win_ptr: %p, cub3d->mlx_ptr: %p \n", cub3d->img->img_ptr,cub3d->win_ptr, cub3d->mlx_ptr);
 		end_cub3d(cub3d);
 	}
 	// else if (keycode == KEY_PLUS)
@@ -53,6 +56,6 @@ int	key_event(int keycode, t_cub *cub3d)
 	// 	return (1);
 	else
 		return (1);
-	render(cub3d);
+	//render(cub3d);
 	return (0);
 }

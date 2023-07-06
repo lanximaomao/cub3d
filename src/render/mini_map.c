@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/05 15:42:55 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/06 15:53:35 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static void	creat_grid(t_cub *cub3d, int x_from, int y_from, int color)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < GRID_P)
+	i = -1;
+	while (++i < GRID_P)
 	{
-		j = 0;
-		while (j < GRID_P)
+		j = -1;
+		while (++j < GRID_P)
 		{
-			creat_img(cub3d, x_from + i, y_from + j, color);
+			pixel_color(cub3d, x_from + i, y_from + j, color);
 		}
 	}
 }
@@ -33,40 +33,41 @@ static void	creat_player(t_cub *cub3d, int x_from, int y_from, int color)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < PLAYER_P)
+	i = -1;
+	while (++i < PLAYER_P)
 	{
-		j = 0;
-		while (j < PLAYER_P)
+		j = -1;
+		while (++j < PLAYER_P)
 		{
-			creat_img(cub3d, x_from + i, y_from + j, color);
+			pixel_color(cub3d, y_from + j, x_from + i, color);
 		}
 	}
 }
 
 void	draw_map2d(t_cub *cub3d)
 {
-	printf("in draw_map\n");
 	int	i;
 	int	j;
 	int	color;
 
-	i = 0;
-	while (i < cub3d->input->map->size_x)
+	i = -1;
+	while (++i < cub3d->input->map->size_y - 1)
 	{
-		j = 0;
-		while (j < cub3d->input->map->size_y)
+		j = -1;
+		while (++j < cub3d->input->map->size_x - 1)
 		{
 			if (cub3d->input->map->matrix[i][j] == '1')
-				color = BLACK;
+				color = GREEN;
 			else if (cub3d->input->map->matrix[i][j] == '0')
 				color = WHITE;
-			creat_grid(cub3d, i * GRID_P, i * GRID_P, color);
-			j++;
+			else if (cub3d->input->map->matrix[i][j] == ' ')
+				color = BLACK;
+			else
+				color = WHITE;
+			creat_grid(cub3d, j * GRID_P, i * GRID_P, color);
 		}
-		i++;
 	}
-	printf("reeturning from draw_map\n");
+	printf("returning from draw_map\n");
 }
 
 void	draw_player2d(t_cub *cub3d)
@@ -75,27 +76,23 @@ void	draw_player2d(t_cub *cub3d)
 	int	j;
 	int	color;
 
-	i = 0;
-	color = 0;
+	i = -1;
+	color = PURPLE;
 	if (cub3d->input->position->x_p != -1)
 		return (creat_player(cub3d, cub3d->input->position->x_p - 2
 				, cub3d->input->position->y_p - 2, color));
-	while (i < cub3d->input->map->size_x)
+	while (++i < cub3d->input->map->size_y - 1)
 	{
-		j = 0;
-		while (j < cub3d->input->map->size_y)
+		j = -1;
+		while (++j < cub3d->input->map->size_x - 1)
 		{
 			if (cub3d->input->map->matrix[i][j] == 'N'
 			|| cub3d->input->map->matrix[i][j] == 'S'
 			|| cub3d->input->map->matrix[i][j] == 'E'
 			|| cub3d->input->map->matrix[i][j] == 'W')
-			{
-				color = GREEN;
-				creat_player(cub3d, i * GRID_P + 30, j * GRID_P + 30, color);
-			}
-			j++;
+				creat_player(cub3d, i * GRID_P + GRID_P / 2, j
+					* GRID_P + GRID_P / 2, color);
 		}
-		i++;
 	}
 	printf("reeturning from draw_player\n");
 }
