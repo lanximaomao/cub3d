@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/06 20:23:38 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/07 13:30:31 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,14 @@ void	draw_map2d(t_cub *cub3d)
 			if (cub3d->input->map->matrix[i][j] == '1')
 				color = GREEN;
 			else if (cub3d->input->map->matrix[i][j] == '0')
-				color = WHITE;
-			else if (cub3d->input->map->matrix[i][j] == ' ')
-				color = BLACK;
+				color = LEMON_CHIFFON;
+			else if (cub3d->input->map->matrix[i][j] == '_')
+				color = TOMATO;
 			else
 				color = WHITE;
 			creat_grid(cub3d, j * GRID_P, i * GRID_P, color);
 		}
 	}
-	printf("returning from draw_map\n");
 }
 
 void	draw_player2d(t_cub *cub3d)
@@ -79,8 +78,8 @@ void	draw_player2d(t_cub *cub3d)
 	i = -1;
 	color = PURPLE;
 	if (cub3d->input->position->x_p != -1)
-		return (creat_player(cub3d, cub3d->input->position->x_p - 2
-				, cub3d->input->position->y_p - 2, color));
+		return (creat_player(cub3d, cub3d->input->position->x_p
+				, cub3d->input->position->y_p, color));
 	while (++i < cub3d->input->map->size_y)
 	{
 		j = -1;
@@ -92,7 +91,12 @@ void	draw_player2d(t_cub *cub3d)
 			|| cub3d->input->map->matrix[i][j] == 'W')
 				creat_player(cub3d, i * GRID_P + GRID_P / 2, j
 					* GRID_P + GRID_P / 2, color);
+		cub3d->input->position->x_p = i * GRID_P + GRID_P / 2;
+		cub3d->input->position->y_p = j * GRID_P + GRID_P / 2;
+		cub3d->var->px = cub3d->input->position->y_p;
+		cub3d->var->py = cub3d->input->position->x_p;
+		//break ;
+		printf("cub3d->input->position->x_p %d cub3d->input->position->y_p%d\n", i * GRID_P + GRID_P / 2, j * GRID_P + GRID_P / 2);
 		}
 	}
-	printf("reeturning from draw_player\n");
 }

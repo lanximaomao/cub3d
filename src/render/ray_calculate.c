@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ray_calculate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/06 20:48:50 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/07 12:43:08 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static	float	deg_to_rad(float a)
+float	deg_to_rad(float a)
 {
 	return (a * M_PI / 180.0);
 }
@@ -104,7 +104,6 @@ void	horizontal(t_cub *cub3d)
 
 void	calculate_rays(t_cub *cub3d)
 {
-	printf("in calculate rays\n");
 	cub3d->var->r = -1;
 	while (++(cub3d->var->r) < 60)
 	{
