@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+         #
+#    By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/07/06 14:55:54 by asarikha         ###   ########.fr        #
+#    Updated: 2023/07/06 22:59:19 by lsun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I$I
+CFLAGS =  -I$I #-Wall -Wextra -Werror
 
 RM = /bin/rm -f
 RMDIR = /bin/rmdir -p
@@ -38,7 +38,7 @@ FILES = main\
 	event\
 	parser\
 	utils
-	
+
 
 
 HEADER = cub3D.h libft.h mlx.h get_next_line.h render.h color.h
@@ -95,7 +95,7 @@ clean:
 
 fclean : clean
 	@cd libft && $(MAKE) fclean
-	
+
 	@echo "$(COLOUR_RED) $(LIBFT) removed$(COLOUR_END)"
 	@$(RM) $(NAME)
 	@echo "$(COLOUR_RED) $(NAME) removed$(COLOUR_END)"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/06 11:38:22 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/07 00:43:36 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #  define WIN_SIZE_Y 1080
 # endif
 
-
+// direction 1: North, 2: South, 3: West, 4: East
 typedef struct s_map
 {
 	char	*map_1d;
@@ -72,12 +72,20 @@ typedef struct s_vars
 	float	pa;
 }			t_vars;
 
+typedef struct s_color_rgb
+{
+	int r;
+	int g;
+	int b;
+} 	t_color_rgb;
 
 typedef struct s_input
 {
 	int			count;
-	int			*color_f;
-	int			*color_c;
+	//int			*color_f;
+	//int			*color_c;
+	t_color_rgb	*color_f;
+	t_color_rgb	*color_c;
 	char		*t_east;
 	char		*t_west;
 	char		*t_south;

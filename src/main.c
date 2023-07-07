@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/06 14:07:02 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:37:14 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,6 @@ void	hook_and_loop(t_cub *cub3d)
 
 void	clean_init_cub3d(t_cub *cub3d)
 {
-	t_img	*img;
-
-	img = (t_img *)ft_calloc(sizeof(t_img), 1);
-	if (!img)
-		clean_exit(message("error allocating memory.", "", 1), cub3d);
-	cub3d->img = img;
 	cub3d->mlx_ptr = NULL;
 	cub3d->win_ptr = NULL;
 	cub3d->mlx_ptr = mlx_init();
@@ -67,7 +61,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	close(fd);
-	
+
 	clean_init_cub3d(&cub);
 	//validate();
 	render(&cub);

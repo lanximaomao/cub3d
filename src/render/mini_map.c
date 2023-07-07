@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/06 15:53:35 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/06 20:23:38 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	draw_map2d(t_cub *cub3d)
 	int	color;
 
 	i = -1;
-	while (++i < cub3d->input->map->size_y - 1)
+	while (++i < cub3d->input->map->size_y)
 	{
 		j = -1;
-		while (++j < cub3d->input->map->size_x - 1)
+		while (++j < cub3d->input->map->size_x)
 		{
 			if (cub3d->input->map->matrix[i][j] == '1')
 				color = GREEN;
@@ -81,10 +81,10 @@ void	draw_player2d(t_cub *cub3d)
 	if (cub3d->input->position->x_p != -1)
 		return (creat_player(cub3d, cub3d->input->position->x_p - 2
 				, cub3d->input->position->y_p - 2, color));
-	while (++i < cub3d->input->map->size_y - 1)
+	while (++i < cub3d->input->map->size_y)
 	{
 		j = -1;
-		while (++j < cub3d->input->map->size_x - 1)
+		while (++j < cub3d->input->map->size_x)
 		{
 			if (cub3d->input->map->matrix[i][j] == 'N'
 			|| cub3d->input->map->matrix[i][j] == 'S'
