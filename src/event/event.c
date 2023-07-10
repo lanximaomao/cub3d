@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/07 13:26:15 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/10 10:08:44 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ int	mouse_event(int keycode, int x, int y, t_cub *cub3d)
 
 int	key_event(int keycode, t_cub *cub3d)
 {
+	//printf("cub3d->var->pdx %f cub3d->var->pdy%f\n", cub3d->var->pdx, cub3d->var->pdx);
+	//printf("cub3d->input->position->x_p %f cub3d->input->position->x_p%f\n", cub3d->var->px, cub3d->var->py);
+	//printf("2--------------------------------\n");
 	if (keycode == KEY_ESC)
 		end_cub3d(cub3d);
 	else if (keycode == KEY_UP || keycode == KEY_W)
@@ -71,10 +74,11 @@ int	key_event(int keycode, t_cub *cub3d)
 		cub3d->var->pdx = cos(deg_to_rad(cub3d->var->pa));
 		cub3d->var->pdy = -sin(deg_to_rad(cub3d->var->pa));
 	}
-	cub3d->input->position->y_p = cub3d->var->py - 2;
-	cub3d->input->position->x_p = cub3d->var->px - 2;
-	printf("cub3d->var->pdx %f cub3d->var->pdy%f\n", cub3d->var->pdx, cub3d->var->pdx);
-	printf("cub3d->input->position->x_p %f cub3d->input->position->x_p%f\n", cub3d->var->px, cub3d->var->py);
+	cub3d->input->position->y_p = cub3d->var->px - 2;
+	cub3d->input->position->x_p = cub3d->var->py - 2;
+	//printf("cub3d->var->pdx %f cub3d->var->pdy%f\n", cub3d->var->pdx, cub3d->var->pdx);
+	//printf("cub3d->input->position->x_p %f cub3d->input->position->x_p%f\n", cub3d->var->px, cub3d->var->py);
+	//printf("3-----------------------------------\n");
 	render(cub3d);
 	return (0);
 }

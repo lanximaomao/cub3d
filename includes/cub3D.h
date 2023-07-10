@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/07 12:35:04 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/10 11:27:15 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,6 @@ void	pixel_color(t_cub *cub3d, int x, int y, int color);
 void	clean_exit(int exit_code, t_cub *cub3d);
 int		message(char *str1, char *str2, int errno);
 float	deg_to_rad(float a);
+int		fix_ang(int a);
 
 #endif

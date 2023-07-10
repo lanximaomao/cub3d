@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/07 12:52:05 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/10 13:13:34 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	pixel_color(t_cub *cub3d, int x, int y, int color)
 			&bits_per_pixel, &line_length, &endian);
 	dst = cub3d->img->addr + (y * line_length + x * (bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-	//printf("x: %d y: %d color: %d\n",x,y,color);
 }
 
 
