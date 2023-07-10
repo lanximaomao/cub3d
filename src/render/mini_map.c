@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/10 14:32:06 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:20:57 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static void	creat_grid(t_cub *cub3d, int x_from, int y_from, int color)
 	int	j;
 
 	i = -1;
-	while (++i < GRID_P)
+	while (++i < GRID_P - 1)
 	{
 		j = -1;
-		while (++j < GRID_P)
+		while (++j < GRID_P - 1)
 		{
 			pixel_color(cub3d, x_from + i, y_from + j, color);
 		}
@@ -59,11 +59,11 @@ void	draw_map2d(t_cub *cub3d)
 			if (cub3d->input->map->matrix[i][j] == '1')
 				color = GREEN;
 			else if (cub3d->input->map->matrix[i][j] == '0')
-				color = LEMON_CHIFFON;
+				color = WHITE;
 			else if (cub3d->input->map->matrix[i][j] == '_')
 				color = TOMATO;
 			else
-				color = LEMON_CHIFFON;
+				color = WHITE;
 			creat_grid(cub3d, j * GRID_P, i * GRID_P, color);
 		}
 	}
@@ -75,6 +75,9 @@ void	draw_player2d(t_cub *cub3d)
 	int			j;
 
 	i = -1;
+	if (cub3d->input->position->x_p != -1)
+		return (creat_player(cub3d, cub3d->input->position->x_p
+				, cub3d->input->position->y_p, PURPLE));
 	while (++i < cub3d->input->map->size_y)
 	{
 		j = -1;
