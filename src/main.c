@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/07 12:59:27 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/10 13:19:53 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	main(int argc, char **argv)
 	close(fd);
 
 	clean_init_cub3d(&cub);
+	//validater(&cub);
 	render(&cub);
 	hook_and_loop(&cub);
 	return (0);
