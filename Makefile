@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+         #
+#    By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/07/06 22:59:19 by lsun             ###   ########.fr        #
+#    Updated: 2023/07/10 13:45:35 by asarikha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ FILES = main\
 	ray_calculate\
 	event\
 	parser\
-	utils
+	utils\
+	line
 
 
 

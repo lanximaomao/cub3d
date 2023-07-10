@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/10 13:18:28 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/10 13:45:00 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #  define WIN_SIZE_Y 1080
 # endif
 
-// direction 1: North, 2: South, 3: West, 4: East
+// direction 90: North, 270: South, 180: West, 0: East
 typedef struct s_map
 {
 	char	*map_1d;
@@ -134,5 +134,6 @@ void	clean_exit(int exit_code, t_cub *cub3d);
 int		message(char *str1, char *str2, int errno);
 float	deg_to_rad(float a);
 int		fix_ang(int a);
+int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub);
 
 #endif
