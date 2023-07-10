@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/06 18:37:14 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/07 11:22:21 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int argc, char **argv)
 	close(fd);
 
 	clean_init_cub3d(&cub);
-	//validate();
+	//validater(&cub);
 	render(&cub);
 	hook_and_loop(&cub);
 	return (0);

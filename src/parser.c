@@ -71,6 +71,29 @@ static void display_color(t_input *input)
 	printf("ceiling color = %d, %d, %d\n", input->color_c->r, input->color_c->g, input->color_c->b);
 }
 
+static int valid_char(char* str)
+{
+	int i;
+	int player_flag;
+
+	i = 0;
+	player_flag = 0;
+	while (str[i])
+	{
+		printf("%c", str[i]);
+		if (str[i] != '\n' && str[i] != '0' && str[i] != '1' &&  str[i] != ' ')
+		{
+			if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W'|| str[i] == 'E' )
+				player_flag++;
+			else
+				return (-1);
+		}
+		i++;
+	}
+	if (player_flag != 1)
+		return (-1);
+	return (0);
+}
 
 // direction
 static int get_matrix(t_cub *cub)
@@ -80,7 +103,7 @@ static int get_matrix(t_cub *cub)
 	char **tmp_matrix;
 
 	i = 0;
-	if (!cub->input->map->map_1d)
+	if (!cub->input->map->map_1d || valid_char(cub->input->map->map_1d) == -1)
 		exit (1);
 	tmp_matrix = ft_split(cub->input->map->map_1d, '\n'); // to be freed
 	if (!tmp_matrix)
@@ -132,17 +155,13 @@ static int get_map(t_cub *cub, char* line)
 	// check out whether at this point all the necessary parameters are passed.
 	if (cub->input->count != 6)
 		return (-1); // map errpr
-	// only 6 chars
 
 	// check for unclosed maps
 
 	// calculate size_x of map
 	if ((int)ft_strlen(line) > cub->input->map->size_x)
 		cub->input->map->size_x = get_map_x(line);
-	//printf("count=%d\n", cub->input->count);
-	//printf("size_x=%d\n", cub->input->map->size_x);
-	// calculate size_y of the map
-	cub->input->map->size_y += 1;
+	cub->input->map->size_y += 1; 	// calculate size_y of the map
 	// parsing
 	cub->input->map->map_1d = ft_strjoin_gnl(cub->input->map->map_1d, line); // if null
 	if (!cub->input->map->map_1d)
