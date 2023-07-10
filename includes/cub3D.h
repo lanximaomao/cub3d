@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/07 00:43:36 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/10 13:06:13 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,16 @@ typedef struct s_position
 	int	x_p;
 	int	y_p;
 }			t_position;
+
+typedef struct s_line
+{
+	int		dx;
+	int		dy;
+	int		sx;
+	int		sy;
+	int		err;
+	int		e2;
+}			t_line;
 
 typedef struct s_vars
 {
