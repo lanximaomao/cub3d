@@ -158,5 +158,6 @@ int get_map(t_cub *cub, char* line);
 
 // validator
 int valid_char(char* str);
+int valid_map(t_cub *cub);
 
 #endif

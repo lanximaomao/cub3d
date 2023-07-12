@@ -12,8 +12,8 @@ void	display_map(char **matrix)
 		j = 0;
 		while (matrix[i][j])
 		{
-			if (matrix[i][j] == ' ')
-				matrix[i][j] = '_';
+			//if (matrix[i][j] == ' ')
+			//	matrix[i][j] = '_';
 			printf("%c", matrix[i][j]);
 			j++;
 		}

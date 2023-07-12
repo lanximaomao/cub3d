@@ -13,8 +13,8 @@ static void matrix_assignment(t_cub *cub, char **tmp_matrix)
 		while (j < cub->input->map->size_x)
 		{
 			if (j >= (int)ft_strlen(tmp_matrix[i]))
-				cub->input->map->matrix[i][j] = '_';
-			else if (tmp_matrix[i][j] == ' ')
+				cub->input->map->matrix[i][j] = '*';
+			else if (tmp_matrix[i][j] == ' ' || tmp_matrix[i][j] == '0')
 				cub->input->map->matrix[i][j] = '_';
 			else
 				cub->input->map->matrix[i][j] = tmp_matrix[i][j];
@@ -22,6 +22,12 @@ static void matrix_assignment(t_cub *cub, char **tmp_matrix)
 		}
 		i++;
 	}
+	printf("before validation check");
+	display_map(cub->input->map->matrix);
+	if (valid_map(cub) == -1)
+		ft_exit("invalid map", 3);
+	printf("after validation check");
+	display_map(cub->input->map->matrix);
 }
 
 int get_matrix(t_cub *cub)
@@ -46,7 +52,7 @@ int get_matrix(t_cub *cub)
 		i++;
 	}
 	matrix_assignment(cub, tmp_matrix);
-	display_map(cub->input->map->matrix);
+	//display_map(cub->input->map->matrix);
 	display_texture(cub->input);
 	display_color(cub->input);
 	return (0);
