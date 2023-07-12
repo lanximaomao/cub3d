@@ -123,7 +123,8 @@ void	clean_exit(int exit_code, t_cub *cub3d);
 int		message(char *str1, char *str2, int errno);
 float	deg_to_rad(float a);
 int		fix_ang(int a);
-int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub);
+int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub, int color);
 void	draw_ray(t_cub *cub3d);
+void	draw_walls(t_cub *cub3d);
 
 #endif
