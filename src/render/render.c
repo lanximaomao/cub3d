@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/11 10:49:24 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:16:29 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static	void	draw_nose(t_cub *cub3d)
 	t2.x_p = cub3d->var->px + (cub3d->var->pdx * 10);
 	t1.y_p = cub3d->var->py;
 	t2.y_p = cub3d->var->py + (cub3d->var->pdy * 10);
-	bresenham_line (t1, t2, cub3d);
+	bresenham_line (t1, t2, cub3d, PURPLE);
 }
 
 void	draw_ray(t_cub *cub3d)
@@ -46,7 +46,7 @@ void	draw_ray(t_cub *cub3d)
 	t2.x_p = cub3d->var->rx;
 	t1.y_p = cub3d->var->py;
 	t2.y_p = cub3d->var->ry;
-	bresenham_line (t1, t2, cub3d);
+	bresenham_line (t1, t2, cub3d, RED);
 }
 
 void	render(t_cub *cub3d)

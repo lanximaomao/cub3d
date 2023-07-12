@@ -6,7 +6,7 @@
 #    By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/07/10 13:45:35 by asarikha         ###   ########.fr        #
+#    Updated: 2023/07/12 11:01:13 by asarikha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS =  -I$I #-Wall -Wextra -Werror
+CFLAGS =  -I$I -Wall -Wextra -Werror -g
 
 RM = /bin/rm -f
 RMDIR = /bin/rmdir -p

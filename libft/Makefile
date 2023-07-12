@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+         #
+#    By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/06/27 14:33:25 by linlinsun        ###   ########.fr        #
+#    Updated: 2023/07/12 10:56:52 by asarikha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC = ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.
 OBJECTS = $(SRC:.c=.o)
 INCLUDE = libft.h get_next_line.h
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 .PHONY: all
 all: $(NAME)

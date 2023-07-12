@@ -124,7 +124,7 @@ static int get_matrix(t_cub *cub)
 		j = 0;
 		while (j < cub->input->map->size_x)
 		{
-			if (j >= ft_strlen(tmp_matrix[i]))
+			if (j >= (int)ft_strlen(tmp_matrix[i]))
 				cub->input->map->matrix[i][j] = '_';
 			else if (tmp_matrix[i][j] == ' ')
 				cub->input->map->matrix[i][j] = '_';

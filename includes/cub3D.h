@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/10 14:58:19 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/12 10:19:25 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void	clean_exit(int exit_code, t_cub *cub3d);
 int		message(char *str1, char *str2, int errno);
 float	deg_to_rad(float a);
 int		fix_ang(int a);
-int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub);
+int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub, int color);
 void	draw_ray(t_cub *cub3d);
 
 #endif
