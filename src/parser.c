@@ -16,14 +16,14 @@ static void get_direction(t_cub *cub)
 		j = 0;
 		while (j < cub->input->map->size_x)
 		{
-			if (cub->input->map->matrix[i][j] == 'N')
-				cub->input->map->direction = 1;
-			else if (cub->input->map->matrix[i][j] == 'S')
-				cub->input->map->direction = 2;
+			if (cub->input->map->matrix[i][j] == 'E')
+				cub->input->map->direction = 0;
+			else if (cub->input->map->matrix[i][j] == 'N')
+				cub->input->map->direction = 90;
 			else if (cub->input->map->matrix[i][j] == 'W')
-				cub->input->map->direction = 3;
-			else if (cub->input->map->matrix[i][j] == 'E')
-				cub->input->map->direction = 4;
+				cub->input->map->direction = 180;
+			else if (cub->input->map->matrix[i][j] == 'S')
+				cub->input->map->direction = 270;
 			j++;
 		}
 		i++;
