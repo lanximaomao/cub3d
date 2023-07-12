@@ -123,8 +123,40 @@ void	clean_exit(int exit_code, t_cub *cub3d);
 int		message(char *str1, char *str2, int errno);
 float	deg_to_rad(float a);
 int		fix_ang(int a);
-int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub, int color);
 void	draw_ray(t_cub *cub3d);
 void	draw_walls(t_cub *cub3d);
+
+// line
+int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub, int color);
+
+// parser.c
+int parser(int fd, t_cub *cub);
+
+// init.c
+void init_cub(t_cub *cub);
+void init_input(t_input *input);
+void init_map(t_map *map);
+
+// display.c
+void	display_map(char **matrix);
+void	display_texture(t_input *input);
+void	display_color(t_input *input);
+
+// utils
+void	free_char(char **input);
+void	ft_exit(char* msg, int exit_code);
+void	display_color(t_input *input);
+int		ft_atoi_isnum(const char *str);
+int		how_many(char* str, char c);
+
+// get color
+int get_color(t_cub *cub, char* line, int flag);
+
+// get map
+int get_matrix(t_cub *cub);
+int get_map(t_cub *cub, char* line);
+
+// validator
+int valid_char(char* str);
 
 #endif

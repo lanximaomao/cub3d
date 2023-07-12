@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+         #
+#    By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/07/12 13:21:46 by asarikha         ###   ########.fr        #
+#    Updated: 2023/07/12 18:55:15 by lsun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,12 @@ FILES = main\
 	parser\
 	utils\
 	line\
-	wall
+	wall\
+	display\
+	init\
+	validator\
+	get_color\
+	get_map
 
 
 

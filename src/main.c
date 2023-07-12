@@ -1,19 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/12 11:50:08 by asarikha         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-
-
 #include "cub3D.h"
-#include "parser.h"
 
 void	hook_and_loop(t_cub *cub3d)
 {
@@ -30,12 +15,13 @@ void	clean_init_cub3d(t_cub *cub3d)
 	cub3d->var->pa = 35;
 	cub3d->var->pdx = cos(deg_to_rad(cub3d->var->pa));
 	cub3d->var->pdy = -sin(deg_to_rad(cub3d->var->pa));
-	printf("cub3d->var->pdx %f cub3d->var->pdy%f\n", cub3d->var->pdx, cub3d->var->pdx);
+	printf("cub3d->var->pdx %f cub3d->var->pdy%f\n", cub3d->var->pdx,
+			cub3d->var->pdx);
 	cub3d->mlx_ptr = mlx_init();
 	if (!cub3d->mlx_ptr)
 		clean_exit(message("MLX: error connecting to mlx.", "", 1), cub3d);
-	cub3d->win_ptr = mlx_new_window(cub3d->mlx_ptr, WIN_SIZE_X,
-			WIN_SIZE_Y, "cub3d");
+	cub3d->win_ptr = mlx_new_window(cub3d->mlx_ptr, WIN_SIZE_X, WIN_SIZE_Y,
+			"cub3d");
 	if (!cub3d->win_ptr)
 		clean_exit(message("MLX: error creating window.", "", 1), cub3d);
 	cub3d->img->img_ptr = mlx_new_image(cub3d->mlx_ptr, WIN_SIZE_X, WIN_SIZE_Y);
@@ -65,9 +51,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	close(fd);
-
 	clean_init_cub3d(&cub);
-	//validater(&cub);
 	render(&cub);
 	hook_and_loop(&cub);
 	return (0);

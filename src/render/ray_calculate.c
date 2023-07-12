@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_calculate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/12 13:07:03 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:44:37 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void	calculate_rays(t_cub *cub3d)
 	printf("px: %f py: %f",cub3d->var->px, cub3d->var->py);
 	while (++(cub3d->var->r) < 60)
 	{
-		vertical(cub3d);	
+		vertical(cub3d);
 		check_hit(cub3d, cub3d->input->map->size_y, &(cub3d->var->dis_v));
 		cub3d->var->vx = cub3d->var->rx;
 		cub3d->var->vy = cub3d->var->ry;
@@ -124,7 +124,7 @@ void	calculate_rays(t_cub *cub3d)
 			cub3d->var->ry = cub3d->var->vy;
 			cub3d->var->dis_h = cub3d->var->dis_v;
 		}
-		printf("dis %f\n",cub3d->var->dis_h);
+		//printf("dis %f\n",cub3d->var->dis_h);
 		cub3d->var->ra = fix_ang(cub3d->var->ra -1);
 		draw_ray(cub3d);
 	}
