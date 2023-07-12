@@ -6,13 +6,13 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/12 13:19:48 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:27:07 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-draw_walls(t_cub *cub3d)
+void	draw_walls(t_cub *cub3d)
 {
 	int ca=FixAng(pa-ra);
 	disH=disH*cos(degToRad(ca));                            //fix fisheye 

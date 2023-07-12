@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/07/12 10:19:25 by asarikha         ###   ########.fr       */
-=======
-/*   Updated: 2023/07/12 13:17:56 by lsun             ###   ########.fr       */
->>>>>>> 2ce818848fbde64b715acb51b6705ce23f6967ea
+/*   Updated: 2023/07/12 13:27:15 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +136,6 @@ float	deg_to_rad(float a);
 int		fix_ang(int a);
 int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub, int color);
 void	draw_ray(t_cub *cub3d);
+void	draw_walls(t_cub *cub3d);
 
 #endif

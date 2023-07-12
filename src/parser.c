@@ -29,7 +29,7 @@ static void get_direction(t_cub *cub)
 		i++;
 	}
 	if (cub->input->map->direction != 0)
-		printf("\n\ndirection=%d\n\n", cub->input->map->direction);
+		printf("\n\ndirection=%f\n\n", cub->input->map->direction);
 }
 
 static void display_map(char **matrix)
