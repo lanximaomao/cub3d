@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/06 15:18:17 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:42:27 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	message(char *str1, char *str2, int errno)
 
 int	end_cub3d(t_cub *cub3d)
 {
-	//free_everything
+	//free_everything and close fds
 	clean_exit(0, cub3d);
 	return (0);
 }

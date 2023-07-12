@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/12 13:07:03 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/12 15:56:36 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,6 @@ void	calculate_rays(t_cub *cub3d)
 		printf("dis %f\n",cub3d->var->dis_h);
 		cub3d->var->ra = fix_ang(cub3d->var->ra -1);
 		draw_ray(cub3d);
+		//draw_walls(cub3d);
 	}
 }

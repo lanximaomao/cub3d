@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/12 11:50:08 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:41:10 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	clean_init_cub3d(t_cub *cub3d)
 {
 	cub3d->mlx_ptr = NULL;
 	cub3d->win_ptr = NULL;
-	cub3d->var->pa = 35;
+	cub3d->var->pa = cub3d->input->map->direction;
 	cub3d->var->pdx = cos(deg_to_rad(cub3d->var->pa));
 	cub3d->var->pdy = -sin(deg_to_rad(cub3d->var->pa));
 	printf("cub3d->var->pdx %f cub3d->var->pdy%f\n", cub3d->var->pdx, cub3d->var->pdx);
@@ -62,6 +62,7 @@ int	main(int argc, char **argv)
 	if (parser(fd, &cub) == -1)
 	{
 		printf("Error\n");
+		
 		return (-1);
 	}
 	close(fd);

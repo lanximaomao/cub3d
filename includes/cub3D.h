@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/12 13:27:15 by asarikha         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -29,7 +18,7 @@
 # endif
 
 # ifndef WIN_SIZE_Y
-#  define WIN_SIZE_Y 1080
+#  define WIN_SIZE_Y 1800
 # endif
 
 // direction 90: North, 270: South, 180: West, 0: East
