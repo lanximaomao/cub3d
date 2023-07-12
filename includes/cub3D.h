@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/07/12 10:19:25 by asarikha         ###   ########.fr       */
+=======
+/*   Updated: 2023/07/12 13:17:56 by lsun             ###   ########.fr       */
+>>>>>>> 2ce818848fbde64b715acb51b6705ce23f6967ea
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +43,7 @@ typedef struct s_map
 	char	**matrix;
 	int		size_x;
 	int		size_y;
-	int		direction;
+	float	direction;
 }			t_map;
 
 typedef struct s_position

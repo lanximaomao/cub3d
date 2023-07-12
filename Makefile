@@ -6,7 +6,7 @@
 #    By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/07/12 11:01:13 by asarikha         ###   ########.fr        #
+#    Updated: 2023/07/12 13:21:46 by asarikha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ FILES = main\
 	event\
 	parser\
 	utils\
-	line
+	line\
+	wall
 
 
 
