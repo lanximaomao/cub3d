@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/12 13:17:56 by lsun             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -32,7 +21,7 @@
 #  define WIN_SIZE_Y 1080
 # endif
 
-// direction 1: North, 2: South, 3: West, 4: East
+// direction 90: North, 270: South, 180: West, 0: East
 typedef struct s_map
 {
 	char	*map_1d;
@@ -134,5 +123,7 @@ void	clean_exit(int exit_code, t_cub *cub3d);
 int		message(char *str1, char *str2, int errno);
 float	deg_to_rad(float a);
 int		fix_ang(int a);
+int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub);
+void	draw_ray(t_cub *cub3d);
 
 #endif
