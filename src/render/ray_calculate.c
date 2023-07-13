@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/12 15:56:36 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/13 11:21:08 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ float	deg_to_rad(float a)
 
 static void	check_hit(t_cub *cub3d, int map_side_size, float *dis)
 {
+	//static int i = 1;
 	while (cub3d->var->dof < map_side_size)
 	{
 		cub3d->var->mx = (int)(cub3d->var->rx) >> 5;
@@ -29,8 +30,12 @@ static void	check_hit(t_cub *cub3d, int map_side_size, float *dis)
 		// printf("cub3d->var->pa : %f\n", cub3d->var->pa);
 		if (cub3d->var->mp > 0 && cub3d->var->mp < cub3d->input->map->size_x
 			* cub3d->input->map->size_y
-			&& cub3d->input->map->matrix[cub3d->var->mp / cub3d->input->map->size_x][cub3d->var->mp % cub3d->input->map->size_x] == '1')
+			&& cub3d->input->map->matrix
+			[cub3d->var->mp / cub3d->input->map->size_x]
+			[cub3d->var->mp % cub3d->input->map->size_x] == '1')
 		{
+			//printf(" i: %d cub3d->var->mp / cub3d->input->map->size_x : %d , cub3d->var->mp %% cub3d->input->map->size_x : %d\n", i, cub3d->var->mp / cub3d->input->map->size_x, (cub3d->var->mp % cub3d->input->map->size_x));
+			//i++;
 			cub3d->var->dof = map_side_size;
 			*dis = cos(deg_to_rad(cub3d->var->ra))
 				* (cub3d->var->rx - cub3d->var->px)
@@ -71,7 +76,7 @@ static	void	vertical(t_cub *cub3d)
 	{
 		cub3d->var->rx = cub3d->var->px;
 		cub3d->var->ry = cub3d->var->py;
-		cub3d->var->dof = cub3d->input->map->size_y;
+		cub3d->var->dof = cub3d->input->map->size_x;
 	}
 }
 
@@ -79,7 +84,16 @@ void	horizontal(t_cub *cub3d)
 {
 	cub3d->var->dof = 0;
 	cub3d->var->dis_h = 100000;
-	cub3d->var->tan = 1.0 / cub3d->var->tan;
+	// if (cub3d->var->tan == 0)
+	// {
+	// 	printf("tan = 0");
+	// 	cub3d->var->tan = 100000;
+	// }
+	// else
+	// {
+		cub3d->var->tan = 1.0 / cub3d->var->tan;
+		printf("tan = %f", cub3d->var->tan);
+	// }
 	//printf("sin(deg_to_rad(cub3d->var->ra) %f\n" ,sin(deg_to_rad(cub3d->var->ra)));
 	if (sin(deg_to_rad(cub3d->var->ra)) > 0.001)
 	{
@@ -101,7 +115,8 @@ void	horizontal(t_cub *cub3d)
 	{
 		cub3d->var->rx = cub3d->var->px;
 		cub3d->var->ry = cub3d->var->py;
-		cub3d->var->dof = cub3d->input->map->size_x;
+		cub3d->var->dof = cub3d->input->map->size_y;
+		printf(" here in else cub3d->var->rx = %f cub3d->var->ry= %f cub3d->var->dof: %d", cub3d->var->rx, cub3d->var->ry, cub3d->var->dof);
 	}
 }
 
@@ -109,15 +124,15 @@ void	calculate_rays(t_cub *cub3d)
 {
 	cub3d->var->r = -1;
 	cub3d->var->ra = fix_ang(cub3d->var->pa + 30);
-	printf("px: %f py: %f",cub3d->var->px, cub3d->var->py);
+	//printf("px: %f py: %f",cub3d->var->px, cub3d->var->py);
 	while (++(cub3d->var->r) < 60)
 	{
 		vertical(cub3d);	
-		check_hit(cub3d, cub3d->input->map->size_y, &(cub3d->var->dis_v));
+		check_hit(cub3d, cub3d->input->map->size_x, &(cub3d->var->dis_v));
 		cub3d->var->vx = cub3d->var->rx;
 		cub3d->var->vy = cub3d->var->ry;
 		horizontal(cub3d);
-		check_hit(cub3d, cub3d->input->map->size_x, &(cub3d->var->dis_h));
+		check_hit(cub3d, cub3d->input->map->size_y, &(cub3d->var->dis_h));
 		if (cub3d->var->dis_v < cub3d->var->dis_h)
 		{
 			cub3d->var->rx = cub3d->var->vx;

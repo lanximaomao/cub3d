@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/12 15:07:12 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/13 11:11:58 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,14 @@ void	draw_ray(t_cub *cub3d)
 {
 	t_position	t1;
 	t_position	t2;
+	static int i = 1;
 
 	t1.x_p = cub3d->var->px;
 	t2.x_p = cub3d->var->rx;
 	t1.y_p = cub3d->var->py;
 	t2.y_p = cub3d->var->ry;
+	//printf("i :%d t1.x_p: %d t2.x_p: %d t1.y_p: %d t2.y_p: %d\n",i ,t1.x_p,t2.x_p,t1.y_p,t2.y_p);
+	i++;
 	bresenham_line (t1, t2, cub3d, RED);
 }
 
