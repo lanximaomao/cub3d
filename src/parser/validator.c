@@ -32,7 +32,76 @@ int valid_char(char* str)
 	return (0);
 }
 
-static int find_walls(t_cub *cub, int *i, int *j)
+static void check_down(t_cub *cub, int row, int col, char c, int *boundry_check)
+{
+	while (row < cub->input->map->size_y)
+	{
+		if (cub->input->map->matrix[row][col] == c)
+		{
+			(*boundry_check)++;
+			break;
+		}
+		row++;
+	}
+}
+
+static void check_up(t_cub *cub, int row, int col, char c, int *boundry_check)
+{
+	while (row >= 0)
+	{
+		if (cub->input->map->matrix[row][col] == c)
+		{
+			(*boundry_check)++;
+			break;
+		}
+		row--;
+	}
+}
+
+static void check_left(t_cub *cub, int row, int col, char c, int *boundry_check)
+{
+
+	while (col >= 0)
+	{
+		if (cub->input->map->matrix[row][col] == c)
+		{
+			(*boundry_check)++;
+			break;
+		}
+		col--;
+	}
+}
+
+static void check_right(t_cub *cub, int row, int col, char c, int *boundry_check)
+{
+	while (col < cub->input->map->size_x)
+	{
+		if (cub->input->map->matrix[row][col] == c)
+		{
+			(*boundry_check)++;
+			break;
+		}
+		col++;
+	}
+}
+
+static int is_inland(t_cub *cub, int row, int col, char c)
+{
+	int boundry_check;
+
+	boundry_check = 0;
+	check_up(cub, row, col, c, &boundry_check);
+	check_down(cub, row, col, c, &boundry_check);
+	check_left(cub, row, col, c, &boundry_check);
+	check_right(cub, row, col, c, &boundry_check);
+	if (boundry_check == 4)
+		return (1);
+	else
+		return (-1);
+}
+
+// add functionality here to flood only the walls are outside the island
+static int find_island(t_cub *cub, int *i, int *j, char c, int *flag)
 {
 	int row;
 	int col;
@@ -45,10 +114,20 @@ static int find_walls(t_cub *cub, int *i, int *j)
 		{
 			if (cub->input->map->matrix[row][col] == '1')
 			{
-				*i = row;
-				*j = col;
-				printf("I found a wall at [%d][%d]\n", *i, *j);
-				return (-1);
+				// if it is inside another island
+				if (*flag == 0) // not inland
+				{
+					*flag = 1;
+					*i = row;
+					*j = col;
+					printf("I found a wall at [%d][%d]\n", *i, *j);
+					return (-1);
+				}
+				else if (*flag == 1)
+				{
+					if (is_inland(cub, row, col, c) == -1) // not inland
+						ft_exit("more than one islands", 3);
+				}
 			}
 			col++;
 		}
@@ -82,16 +161,20 @@ int valid_map(t_cub *cub)
 	int row;
 	int col;
 	int count;
+	char c;
+	int flag;
 
 	row = 0;
 	col = 0;
 	count = 0;
-	while (find_walls(cub, &row, &col) == -1) // find where wall is
+	c = 'x';
+	flag = 0;
+	while (find_island(cub, &row, &col, c, &flag) == -1) // find where wall is
 	{
 		printf("find out wall at row %d and col %d\n", row, col);
 		if (row < cub->input->map->size_y && col < cub->input->map->size_x)
 		{
-			flood_fill(cub, row, col, cub->input->map->matrix[row][col], 'x' + count); // starting point is a '1'
+			flood_fill(cub, row, col, cub->input->map->matrix[row][col], c + count); // starting point is a '1'
 			count++;
 		}
 		else
