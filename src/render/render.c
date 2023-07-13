@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/13 11:11:58 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:37:14 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,34 @@ void	draw_ray(t_cub *cub3d)
 {
 	t_position	t1;
 	t_position	t2;
-	static int i = 1;
 
 	t1.x_p = cub3d->var->px;
 	t2.x_p = cub3d->var->rx;
 	t1.y_p = cub3d->var->py;
 	t2.y_p = cub3d->var->ry;
-	//printf("i :%d t1.x_p: %d t2.x_p: %d t1.y_p: %d t2.y_p: %d\n",i ,t1.x_p,t2.x_p,t1.y_p,t2.y_p);
-	i++;
 	bresenham_line (t1, t2, cub3d, RED);
+}
+
+void	draw_background(t_cub *cub3d)
+{
+	int		x;
+	int		y;
+
+	y = -1;
+	while (++y < WIN_SIZE_Y)
+	{
+		x = -1;
+		while (++x < WIN_SIZE_X)
+		{
+			pixel_color(cub3d, x, y, GREEN);
+		}
+	}
 }
 
 void	render(t_cub *cub3d)
 {
 	mlx_clear_window(cub3d->mlx_ptr, cub3d->win_ptr);
-	//drwa_background(cub3d);
+	draw_background(cub3d);
 	draw_map2d(cub3d);
 	draw_player2d(cub3d);
 	draw_nose(cub3d);

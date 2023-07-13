@@ -6,14 +6,14 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/07 12:33:47 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:27:52 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDER_H
 # define RENDER_H
 
-# define GRID_P 32
+# define GRID_P 16
 # define PLAYER_P 4
 # define PLAYE_S 5
 # define BLACK 0x000000

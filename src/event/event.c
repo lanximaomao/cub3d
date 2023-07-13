@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/10 15:51:32 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:43:25 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,18 @@ int	key_event(int keycode, t_cub *cub3d)
 		cub3d->var->px -= cub3d->var->pdx * 5;
 		cub3d->var->py -= cub3d->var->pdy * 5;
 	}
-	else if (keycode == KEY_LEFT || keycode == KEY_A)
+	else if (keycode == KEY_LEFT)
 		cub3d->var->pa += 5;
-	else if (keycode == KEY_RIGHT || keycode == KEY_D)
-		cub3d->var->pa -= 5;
+	else if (keycode == KEY_A)
+	{
+		cub3d->var->px -= 10; //angle needs to be put into consideration
+	}
+	else if (keycode == KEY_RIGHT)
+		cub3d->var->pa -= 5; 
+	else if (keycode == KEY_D)
+	{
+		cub3d->var->px += 10; //angle needs to be put into consideration
+	}	
 	if (keycode == KEY_LEFT || keycode == KEY_A
 		|| keycode == KEY_RIGHT || keycode == KEY_D)
 	{

@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/12 13:42:27 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/13 13:51:16 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	clean_exit(int exit_code, t_cub *cub3d)
 		exit(exit_code);
 	if (cub3d->img->img_ptr && cub3d->win_ptr && cub3d->mlx_ptr)
 	{
-		printf("here\n");
 		mlx_destroy_image(cub3d->mlx_ptr, cub3d->img->img_ptr);
 		mlx_destroy_window(cub3d->mlx_ptr, cub3d->win_ptr);
 		cub3d->mlx_ptr = NULL;

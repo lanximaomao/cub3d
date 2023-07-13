@@ -14,11 +14,11 @@
 # include "color.h"
 
 # ifndef WIN_SIZE_X
-#  define WIN_SIZE_X 1920
+#  define WIN_SIZE_X 2600
 # endif
 
 # ifndef WIN_SIZE_Y
-#  define WIN_SIZE_Y 1800
+#  define WIN_SIZE_Y 1300
 # endif
 
 // direction 90: North, 270: South, 180: West, 0: East
