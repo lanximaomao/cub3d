@@ -63,6 +63,7 @@ static int get_texture(t_cub *cub, char*line, int flag)
 	return (0);
 }
 
+// Can player stand outside the wall?
 static int line_processor(t_cub *cub, char* line)
 {
 	int i;
@@ -72,7 +73,7 @@ static int line_processor(t_cub *cub, char* line)
 		return (0);
 	while (line[i] == ' ')
 			i++;
-	if (line[i+1] && line[i+1] == '\n') // empty line, just return
+	if (line[i] == '\n') // empty line, just return
 		return (0);
 	if (line[i] == 'N' && line[i+1] == 'O')
 		get_texture(cub, line, 1);
@@ -100,9 +101,10 @@ int parser(int fd, t_cub *cub)
 	while (42)
 	{
 		line = get_next_line(fd); // to be freed // error catch?
+		//printf("line=%s\n", line);
 		if (!line)
 		{
-			printf("size of map is %d*%d\n", cub->input->map->size_x, cub->input->map->size_y);
+			printf("size of map is %d*%d\n", cub->input->map->size_y, cub->input->map->size_x);
 			get_matrix(cub); // check here whether it is null
 			get_direction(cub);
 			return (0); // finish reading or not able to read?

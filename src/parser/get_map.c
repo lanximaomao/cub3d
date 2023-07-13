@@ -26,7 +26,7 @@ static void matrix_assignment(t_cub *cub, char **tmp_matrix)
 	display_map(cub->input->map->matrix);
 	if (valid_map(cub) == -1)
 		ft_exit("invalid map", 3);
-	printf("after validation check");
+	printf("\nafter validation check");
 	display_map(cub->input->map->matrix);
 }
 
@@ -70,8 +70,8 @@ static int	get_map_x(char *str)
 
 int get_map(t_cub *cub, char* line)
 {
-	if (cub->input->count != 6) // check out whether at this point all the necessary parameters are passed.
-		return (-1); // map errpr
+	//if (cub->input->count != 6) // check out whether at this point all the necessary parameters are passed.
+	//	return (-1); // map errpr
 	if ((int)ft_strlen(line) > cub->input->map->size_x) // calculate size_x of map
 		cub->input->map->size_x = get_map_x(line);
 	cub->input->map->size_y += 1; 	// calculate size_y of the map

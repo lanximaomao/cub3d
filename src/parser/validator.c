@@ -27,37 +27,76 @@ int valid_char(char* str)
 		}
 		i++;
 	}
-	if (player_flag != 1)
-		return (-1);
+	//if (player_flag != 1) // turn on after debugging
+	//	return (-1);
 	return (0);
 }
 
+static int find_walls(t_cub *cub, int *i, int *j)
+{
+	int row;
+	int col;
+
+	row = 0;
+	while (row < cub->input->map->size_y)
+	{
+		col = 0;
+		while (col < cub->input->map->size_x)
+		{
+			if (cub->input->map->matrix[row][col] == '1')
+			{
+				*i = row;
+				*j = col;
+				printf("I found a wall at [%d][%d]\n", *i, *j);
+				return (-1);
+			}
+			col++;
+		}
+		row++;
+	}
+	return (1);
+}
+
 // change every possible '_' to '*'
-void flood_fill_star(t_cub *cub, int row, int col, char old, char new)
+void flood_fill(t_cub *cub, int row, int col, char old, char new)
 {
 	// breaking condition?
-	if ( col >= cub->input->map->size_x
-		|| row >= cub->input->map->size_y
+	if (row >= cub->input->map->size_y
+		|| col >= cub->input->map->size_x
 		|| col < 0 || row < 0
-		|| cub->input->map->matrix[row][col] == new )
+		|| cub->input->map->matrix[row][col] != old)
 		return;
 	else
 	{
-		if (cub->input->map->matrix[row][col] == old)
-			cub->input->map->matrix[row][col] = new;
-		flood_fill_star(cub, row, col+1, old, new);
-		flood_fill_star(cub, row, col-1, old, new);
-		flood_fill_star(cub, row + 1, col, old, new);
-		flood_fill_star(cub, row - 1, col, old, new);
+		cub->input->map->matrix[row][col] = new;
+		flood_fill(cub, row, col+1, old, new);
+		flood_fill(cub, row, col-1, old, new);
+		flood_fill(cub, row + 1, col, old, new);
+		flood_fill(cub, row - 1, col, old, new);
 	}
+	display_map(cub->input->map->matrix);
 }
 
 int valid_map(t_cub *cub)
 {
-	// flood fill "_" next to *
+	int row;
+	int col;
+	int count;
 
-	flood_fill_star(cub, 0, 0, cub->input->map->matrix[0][0], cub->input->map->matrix[0][0] + 1);
-
-	// flood fill "_" with x
+	row = 0;
+	col = 0;
+	count = 0;
+	while (find_walls(cub, &row, &col) == -1) // find where wall is
+	{
+		printf("find out wall at row %d and col %d\n", row, col);
+		if (row < cub->input->map->size_y && col < cub->input->map->size_x)
+		{
+			flood_fill(cub, row, col, cub->input->map->matrix[row][col], 'x' + count); // starting point is a '1'
+			count++;
+		}
+		else
+			printf("no more walls\n");
+	}
+	// count how many island
 	return(0);
 }
