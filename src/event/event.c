@@ -6,13 +6,13 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/13 16:43:25 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/14 16:28:33 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	fix_ang(int a)
+float	fix_ang(float a)
 {
 	if (a > 359)
 	{

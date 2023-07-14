@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/13 16:34:44 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/14 16:31:58 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	calculate_rays(t_cub *cub3d)
 {
 	cub3d->var->r = -1;
 	cub3d->var->ra = fix_ang(cub3d->var->pa + 30);
-	while (++(cub3d->var->r) < 60)
+	while (++(cub3d->var->r) < 480)
 	{
 		vertical(cub3d);
 		check_hit(cub3d, cub3d->input->map->size_x, &(cub3d->var->dis_v));
@@ -125,6 +125,6 @@ void	calculate_rays(t_cub *cub3d)
 		printf("dis %f\n",cub3d->var->dis_h);
 		draw_ray(cub3d);
 		draw_walls(cub3d);
-		cub3d->var->ra = fix_ang(cub3d->var->ra - 1);
+		cub3d->var->ra = fix_ang(cub3d->var->ra - 0.125);
 	}
 }
