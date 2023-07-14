@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/13 16:37:14 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:06:00 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	draw_background(t_cub *cub3d)
 		x = -1;
 		while (++x < WIN_SIZE_X)
 		{
-			pixel_color(cub3d, x, y, GREEN);
+			pixel_color(cub3d, x, y, ROYAL_BLUE);
 		}
 	}
 }

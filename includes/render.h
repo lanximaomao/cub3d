@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/13 16:27:52 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/14 10:05:36 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@
 # define PINK 0xff33cc
 # define TOMATO  0xff6347
 # define LEMON_CHIFFON 0xfffacd
+# define ROYAL_BLUE 0x4169e1
 
 #endif

@@ -14,7 +14,7 @@
 # include "color.h"
 
 # ifndef WIN_SIZE_X
-#  define WIN_SIZE_X 2600
+#  define WIN_SIZE_X 1950
 # endif
 
 # ifndef WIN_SIZE_Y
@@ -69,6 +69,9 @@ typedef struct s_vars
 	float	pdx;
 	float	pdy;
 	float	pa;
+	int		ca;
+	float	line_h;
+	float	line_off;
 }			t_vars;
 
 typedef struct s_color_rgb
