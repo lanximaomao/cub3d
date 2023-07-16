@@ -7,8 +7,9 @@ static void matrix_assignment(t_cub *cub, char **tmp_matrix)
 	int j;
 
 	i = 0;
-	printf("x=%d, y=%d\n", cub->input->map->size_x, cub->input->map->size_y);
+	printf("y=%d, x=%d\n", cub->input->map->size_x, cub->input->map->size_y);
 	printf("matrix_1d=\n%s\n",  cub->input->map->map_1d);
+	cub->input->map->size_y--;
 	while (i < cub->input->map->size_y)
 	{
 		printf("line%d=%s\n", i, tmp_matrix[i]);
@@ -40,7 +41,9 @@ int get_matrix(t_cub *cub)
 	char **tmp_matrix;
 
 	i = 0;
-	if (!cub->input->map->map_1d || valid_char(cub->input->map->map_1d) == -1)
+	if (!ft_strncmp(cub->input->map->map_1d, "", 1))
+		ft_exit("map missing", 3);
+	if (valid_char(cub->input->map->map_1d) == -1)
 		ft_exit("map with invalid characters", 3);
 	tmp_matrix = ft_split(cub->input->map->map_1d, '\n'); // to be freed
 	if (!tmp_matrix)
@@ -72,12 +75,16 @@ static int	get_map_x(char *str)
 	return (len);
 }
 
-int get_map(t_cub *cub, char* line)
+int get_map(t_cub *cub, char* line, int *nl_flag)
 {
 	if (cub->input->count != 6) // check out whether at this point all the necessary parameters are passed.
 		ft_exit ("map error", 3); // map error
 	if ((int)ft_strlen(line) > cub->input->map->size_x) // calculate size_x of map
 		cub->input->map->size_x = get_map_x(line);
+	if (line[0] == '\n')
+		(*nl_flag)++;
+	if (*nl_flag > 1)
+		ft_exit("nl inside map", 3);//?
 	cub->input->map->size_y += 1; 	// calculate size_y of the map
 	cub->input->map->map_1d = ft_strjoin_gnl(cub->input->map->map_1d, line); // if null
 	if (!cub->input->map->map_1d)

@@ -15,20 +15,12 @@ int valid_filetype(char *str)
 	ret = ft_strnstr(str, ".cub", ft_strlen(str));
 	if (!ret)
 		return (-1);
-	//printf("ret=%s\n", ret);
-	//printf("ret=%c\n", ret[0]);
-	//printf("ret=%c\n", ret[1]);
-	//printf("ret=%c\n", ret[2]);
-	//printf("ret=%c\n", ret[3]);
-	//printf("(ret+3)=%c\n", *(ret+3));
-	//printf("(ret+4)=%c\n", *(ret+4));
-	//printf("len=%zu", ft_strlen(ret));
-	//if (*(ret+4) != '\0')
-	//	return(-1);
+	if (*(ret+4) != '\0') // filename has to end with .cub
+		return(-1);
 	return (1);
 }
 
-int valid_char(char* str)
+int valid_char(char * str)
 {
 	int i;
 	int player_flag;
@@ -43,12 +35,12 @@ int valid_char(char* str)
 			if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W'|| str[i] == 'E' )
 				player_flag++;
 			else
-				return (-1);
+				ft_exit("invalid chars", 3);
 		}
 		i++;
 	}
-	//if (player_flag != 1) // turn on after debugging
-	//	return (-1);
+	if (player_flag != 1) // turn on after debugging
+		ft_exit("player error", 3);
 	return (0);
 }
 

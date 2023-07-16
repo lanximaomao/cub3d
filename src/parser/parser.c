@@ -3,6 +3,8 @@
 // define error code, 1 for malloc fail, 2 for wrong color, 3 for other validation error, 4 for function fail
 // check for memory leak
 // check for unclosed maps
+// to be validated: player on edge --> not close map
+// map_forbbiden?
 
 static void get_direction(t_cub *cub)
 {
@@ -44,12 +46,12 @@ static int get_texture(t_cub *cub, char*line, int flag)
 
 	i = 0;
 	if (ft_strncmp(cub->input->map->map_1d, "", 1)) // still something after map even after 6 parameters are given
-		exit (1);
+		ft_exit("no more texture after map", 3);
 	if ((flag == 1 && cub->input->t_north) // duplicate texture definition // add error msg
 		|| (flag == 2 && cub->input->t_south)
 		|| (flag == 3 && cub->input->t_west)
 		|| (flag == 4 && cub->input->t_east))
-		exit (1);
+		ft_exit("texture duplicates", 3);
 	//check if file path is valid or not
 	if (flag == 1)
 		cub->input->t_north = ft_strtrim(line, "NO \n");
@@ -64,7 +66,7 @@ static int get_texture(t_cub *cub, char*line, int flag)
 }
 
 // Can player stand outside the wall?
-static int line_processor(t_cub *cub, char* line, int *map_start)
+static int line_processor(t_cub *cub, char* line, int *map_start, int *nl_flag)
 {
 	int i;
 
@@ -91,7 +93,7 @@ static int line_processor(t_cub *cub, char* line, int *map_start)
 		get_color(cub, line, 2);
 	else
 	{
-		get_map(cub, line);
+		get_map(cub, line, nl_flag);
 		*map_start = 1; // flag to show map read started
 	}
 	return (0);
@@ -102,10 +104,12 @@ int parser(int fd, t_cub *cub)
 	char* line;
 	int		line_start;
 	int		map_start;
+	int		nl_flag;
 
 	line = NULL;
 	line_start = 0;
 	map_start = 0;
+	nl_flag = 0;
 	init_cub(cub);
 	while (42)
 	{
@@ -115,13 +119,13 @@ int parser(int fd, t_cub *cub)
 		{
 			printf("size of map is %d*%d\n", cub->input->map->size_y, cub->input->map->size_x);
 			if (line_start == 0)
-				return (0);
+				ft_exit("empty map", 3);
 			get_matrix(cub); // check here whether it is null
 			get_direction(cub);
 			return (0); // finish reading or not able to read?
 		}
 		line_start = 1;
-		line_processor(cub, line, &map_start);		//process each line
+		line_processor(cub, line, &map_start, &nl_flag);		//process each line
 		free_str(line);
 	}
 	return (0);

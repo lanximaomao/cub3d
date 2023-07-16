@@ -42,6 +42,7 @@ void free_str(char *str)
 void	ft_exit(char *msg, int exit_code)
 {
 	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 2);
 	exit(exit_code);
 }
 

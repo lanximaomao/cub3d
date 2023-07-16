@@ -156,7 +156,7 @@ int get_color(t_cub *cub, char* line, int flag);
 
 // get map
 int get_matrix(t_cub *cub);
-int get_map(t_cub *cub, char* line);
+int get_map(t_cub *cub, char* line, int *nl_flag);
 
 // validator
 int valid_char(char* str);
