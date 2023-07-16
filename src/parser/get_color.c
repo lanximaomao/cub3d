@@ -1,17 +1,5 @@
 #include "cub3D.h"
 
-static int array_size(char **str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		i++;
-	}
-	return (i);
-}
-
 static int get_color_floor(char* line, t_color_rgb *color, t_cub *cub)
 {
 	char *line_with_color;

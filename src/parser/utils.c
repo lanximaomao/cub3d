@@ -1,5 +1,17 @@
 #include "cub3D.h"
 
+int array_size(char **str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
+}
+
 int	how_many(char *str, char c)
 {
 	int	i;

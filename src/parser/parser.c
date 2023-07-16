@@ -117,7 +117,6 @@ int parser(int fd, t_cub *cub)
 		//printf("line=%s\n", line);
 		if (!line)
 		{
-			printf("size of map is %d*%d\n", cub->input->map->size_y, cub->input->map->size_x);
 			if (line_start == 0)
 				ft_exit("empty map", 3);
 			get_matrix(cub); // check here whether it is null

@@ -150,6 +150,7 @@ int		ft_atoi_isnum(const char *str);
 int		how_many(char* str, char c);
 void	free_str(char *str);
 int		valid_filetype(char *str);
+int		array_size(char **str);
 
 // get color
 int get_color(t_cub *cub, char* line, int flag);

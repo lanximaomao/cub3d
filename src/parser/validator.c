@@ -24,12 +24,16 @@ int valid_char(char * str)
 {
 	int i;
 	int player_flag;
+	int	wall_flag;
 
 	i = 0;
 	player_flag = 0;
+	wall_flag = 0;
 	while (str[i])
 	{
 		//printf("%c", str[i]);
+		if (str[i] == '1')
+			wall_flag = 1;
 		if (str[i] != '\n' && str[i] != '0' && str[i] != '1' &&  str[i] != ' ')
 		{
 			if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W'|| str[i] == 'E' )
@@ -41,6 +45,8 @@ int valid_char(char * str)
 	}
 	if (player_flag != 1) // turn on after debugging
 		ft_exit("player error", 3);
+	if (wall_flag == 0)
+		ft_exit("no wall?", 3);
 	return (0);
 }
 
@@ -168,6 +174,126 @@ void flood_fill(t_cub *cub, int row, int col, char old, char new)
 	//display_map(cub->input->map->matrix);
 }
 
+int find_char (t_cub *cub, int *row, int *col, char c)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < cub->input->map->size_y)
+	{
+		j = 0;
+		while (j < cub->input->map->size_x)
+		{
+			if (cub->input->map->matrix[i][j] == c)
+			{
+				*row = i;
+				*col = j;
+				printf("i find a 'x' at i=%d, j=%d\n", i, j);
+				return (1) ;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (-1);
+}
+
+//int trace_boundary(t_cub *cub, int row, int col, char old, char new)
+//{
+//	int start_row = row;
+//	int start_col = col;
+//	int move_flag;
+
+//	move_flag = 0;
+//	printf("row=%d, col=%d\n", row, col);
+//	if (col + 1 < cub->input->map->size_x)
+//	{
+//		if (cub->input->map->matrix[row][col + 1] == old
+//			&& cub->input->map->matrix[row][col + 1] != new)
+//		{
+//			col++;
+//			cub->input->map->matrix[row][col] = new;
+//			move_flag++;
+//		}
+//		//else
+//		//{
+
+//		//}
+//	}
+//	else if (row + 1 < cub->input->map->size_y)
+//	{
+//		if (cub->input->map->matrix[row + 1][col] == old
+//			&& cub->input->map->matrix[row + 1][col] != new)
+//			{
+//				row++;
+//				cub->input->map->matrix[row][col] = new;
+//				move_flag++;
+//			}
+//	}
+//	else if (col - 1 >= 0)
+//	{
+//		if (cub->input->map->matrix[row][col - 1] == old
+//			&& cub->input->map->matrix[row][col - 1] != new)
+//			{
+//				col--;
+//				cub->input->map->matrix[row][col] = new;
+//				move_flag++;
+//			}
+//	}
+//	else if (row - 1 >= 0)
+//	{
+//		if (cub->input->map->matrix[row - 1][col] == old
+//			&& cub->input->map->matrix[row - 1][col] != new)
+//			{
+//				row--;
+//				cub->input->map->matrix[row][col] = new;
+//				move_flag++;
+//			}
+//	}
+//	else if (move_flag != 0 &&  row == start_row && col == start_col)
+//		return (1);
+//	else if (move_flag == 0)
+//		return (-1);
+//	else
+//		return (trace_boundary(cub, row, col, 'x', '*'));
+//}
+
+int trace_boundary(t_cub *cub, int row, int col, char old, char new)
+{
+	int valid;
+
+	valid = 1;
+	if (row >= cub->input->map->size_y
+		|| col >= cub->input->map->size_x
+		|| col < 0 || row < 0
+		|| cub->input->map->matrix[row][col] != old) // always start with 'x'
+		return (-1);
+	else
+	{
+		cub->input->map->matrix[row][col] = new; // change to '*'
+		valid &= trace_boundary(cub, row, col + 1, old, new);
+		valid &= trace_boundary(cub, row + 1, col, old, new);
+		valid &= trace_boundary(cub, row, col - 1, old, new);
+		valid &= trace_boundary(cub, row-1, col, old, new);
+	}
+	printf("valid=%d\n", valid);
+	return (valid);
+}
+
+int is_closed(t_cub *cub)
+{
+	int row;
+	int col;
+
+	row = 0; // is it necessary to init?
+	col = 0;
+	if (find_char (cub, &row, &col, 'x') == -1
+		|| trace_boundary(cub, row, col, 'x', '@') == -1)
+		ft_exit("wall not closed", 3);
+}
+
 int valid_map(t_cub *cub)
 {
 	int row;
@@ -192,6 +318,8 @@ int valid_map(t_cub *cub)
 		else
 			printf("no more walls\n");
 	}
+	if (is_closed(cub) == -1)
+		ft_exit("wall not close", 3);
 	// count how many island
 	return(0);
 }

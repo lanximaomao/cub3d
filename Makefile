@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+         #
+#    By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/07/12 18:55:15 by lsun             ###   ########.fr        #
+#    Updated: 2023/07/16 20:55:11 by linlinsun        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS =  -I$I -Wall -Wextra -Werror -g
+CFLAGS =  -I$I #-Wall -Wextra -Werror -g
 
 RM = /bin/rm -f
 RMDIR = /bin/rmdir -p
