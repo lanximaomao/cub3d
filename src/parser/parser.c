@@ -64,16 +64,18 @@ static int get_texture(t_cub *cub, char*line, int flag)
 }
 
 // Can player stand outside the wall?
-static int line_processor(t_cub *cub, char* line)
+static int line_processor(t_cub *cub, char* line, int *map_start)
 {
 	int i;
 
 	i = 0;
-	if (line[i] == '\n')
+	if (*map_start == 0 && line[i] == '\n')
 		return (0);
-	while (line[i] == ' ')
+	if (*map_start == 0 && line[i] == '\n')
+		ft_exit("map error", 3);
+	while (*map_start == 0 && line[i] == ' ')
 			i++;
-	if (line[i] == '\n') // empty line, just return
+	if (*map_start == 0 && line[i] == '\n') // empty line, just return
 		return (0);
 	if (line[i] == 'N' && line[i+1] == 'O')
 		get_texture(cub, line, 1);
@@ -88,15 +90,22 @@ static int line_processor(t_cub *cub, char* line)
 	else if (line[i] == 'C')
 		get_color(cub, line, 2);
 	else
+	{
 		get_map(cub, line);
+		*map_start = 1; // flag to show map read started
+	}
 	return (0);
 }
 
 int parser(int fd, t_cub *cub)
 {
 	char* line;
+	int		line_start;
+	int		map_start;
 
 	line = NULL;
+	line_start = 0;
+	map_start = 0;
 	init_cub(cub);
 	while (42)
 	{
@@ -105,14 +114,15 @@ int parser(int fd, t_cub *cub)
 		if (!line)
 		{
 			printf("size of map is %d*%d\n", cub->input->map->size_y, cub->input->map->size_x);
+			if (line_start == 0)
+				return (0);
 			get_matrix(cub); // check here whether it is null
 			get_direction(cub);
 			return (0); // finish reading or not able to read?
 		}
-		if (line_processor(cub, line) == -1) 		//process each line
-			exit (1); //
-		free(line);
-		line = NULL;
+		line_start = 1;
+		line_processor(cub, line, &map_start);		//process each line
+		free_str(line);
 	}
 	return (0);
 }

@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "cub3D.h"
 
 int	how_many(char *str, char c)
 {
@@ -34,9 +33,15 @@ void	free_char(char **str)
 	str = NULL;
 }
 
+void free_str(char *str)
+{
+	free(str);
+	str = NULL;
+}
+
 void	ft_exit(char *msg, int exit_code)
 {
-	perror(msg);
+	ft_putstr_fd(msg, 2);
 	exit(exit_code);
 }
 

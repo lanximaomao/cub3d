@@ -35,10 +35,9 @@ int	main(int argc, char **argv)
 	int		fd;
 
 	if (argc != 2)
-	{
-		printf("wrong number of arguments.\n");
-		return (1);
-	}
+		ft_exit("wrong number of arguments", 1);
+	if (valid_filetype(argv[1]) == -1)
+		ft_exit("wrong type of file", 3);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{

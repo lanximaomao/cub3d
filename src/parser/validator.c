@@ -8,6 +8,26 @@
 
 #include "cub3D.h"
 
+int valid_filetype(char *str)
+{
+	char *ret;
+
+	ret = ft_strnstr(str, ".cub", ft_strlen(str));
+	if (!ret)
+		return (-1);
+	//printf("ret=%s\n", ret);
+	//printf("ret=%c\n", ret[0]);
+	//printf("ret=%c\n", ret[1]);
+	//printf("ret=%c\n", ret[2]);
+	//printf("ret=%c\n", ret[3]);
+	//printf("(ret+3)=%c\n", *(ret+3));
+	//printf("(ret+4)=%c\n", *(ret+4));
+	//printf("len=%zu", ft_strlen(ret));
+	//if (*(ret+4) != '\0')
+	//	return(-1);
+	return (1);
+}
+
 int valid_char(char* str)
 {
 	int i;
@@ -17,7 +37,7 @@ int valid_char(char* str)
 	player_flag = 0;
 	while (str[i])
 	{
-		printf("%c", str[i]);
+		//printf("%c", str[i]);
 		if (str[i] != '\n' && str[i] != '0' && str[i] != '1' &&  str[i] != ' ')
 		{
 			if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W'|| str[i] == 'E' )
@@ -153,7 +173,7 @@ void flood_fill(t_cub *cub, int row, int col, char old, char new)
 		flood_fill(cub, row + 1, col, old, new);
 		flood_fill(cub, row - 1, col, old, new);
 	}
-	display_map(cub->input->map->matrix);
+	//display_map(cub->input->map->matrix);
 }
 
 int valid_map(t_cub *cub)

@@ -7,11 +7,15 @@ static void matrix_assignment(t_cub *cub, char **tmp_matrix)
 	int j;
 
 	i = 0;
+	printf("x=%d, y=%d\n", cub->input->map->size_x, cub->input->map->size_y);
+	printf("matrix_1d=\n%s\n",  cub->input->map->map_1d);
 	while (i < cub->input->map->size_y)
 	{
+		printf("line%d=%s\n", i, tmp_matrix[i]);
 		j = 0;
 		while (j < cub->input->map->size_x)
 		{
+			printf("i=%d, j=%d\n", i, j);
 			if (j >= (int)ft_strlen(tmp_matrix[i]))
 				cub->input->map->matrix[i][j] = '*';
 			else if (tmp_matrix[i][j] == ' ' || tmp_matrix[i][j] == '0')
@@ -22,11 +26,11 @@ static void matrix_assignment(t_cub *cub, char **tmp_matrix)
 		}
 		i++;
 	}
-	printf("before validation check");
+	printf("\n\nbefore validation check");
 	display_map(cub->input->map->matrix);
 	if (valid_map(cub) == -1)
 		ft_exit("invalid map", 3);
-	printf("\nafter validation check");
+	printf("\n\nafter validation check");
 	display_map(cub->input->map->matrix);
 }
 
@@ -70,8 +74,8 @@ static int	get_map_x(char *str)
 
 int get_map(t_cub *cub, char* line)
 {
-	//if (cub->input->count != 6) // check out whether at this point all the necessary parameters are passed.
-	//	return (-1); // map errpr
+	if (cub->input->count != 6) // check out whether at this point all the necessary parameters are passed.
+		ft_exit ("map error", 3); // map error
 	if ((int)ft_strlen(line) > cub->input->map->size_x) // calculate size_x of map
 		cub->input->map->size_x = get_map_x(line);
 	cub->input->map->size_y += 1; 	// calculate size_y of the map
@@ -80,3 +84,4 @@ int get_map(t_cub *cub, char* line)
 		ft_exit("malloc fail", 1);
 	return (0);
 }
+

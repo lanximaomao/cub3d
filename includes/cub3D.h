@@ -148,6 +148,8 @@ void	ft_exit(char* msg, int exit_code);
 void	display_color(t_input *input);
 int		ft_atoi_isnum(const char *str);
 int		how_many(char* str, char c);
+void	free_str(char *str);
+int		valid_filetype(char *str);
 
 // get color
 int get_color(t_cub *cub, char* line, int flag);
