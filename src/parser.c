@@ -373,6 +373,9 @@ static void init_cub(t_cub *cub)
 	cub->input->position = ft_calloc(sizeof(t_position), 1);
 	if (!cub->input->position)
 		exit(1);
+	cub->key = ft_calloc(sizeof(t_keys), 1);
+	if (!cub->key)
+		exit (1);
 	init_input(cub->input);
 }
 

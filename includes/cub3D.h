@@ -96,6 +96,25 @@ typedef struct s_input
 	t_position	*position;
 }			t_input;
 
+typedef struct keys
+{
+	int	w;
+	int	a;
+	int	d;
+	int	s;
+	int	left;
+	int	right;
+	int	up;
+	int	down;
+	int	xo;
+	int	yo;
+	int	ipx;
+	int	ipy;
+	int	ipx_add_xo;
+	int	ipy_sub_yo;
+	int	ipy_add_yo;
+	int	ipx_sub_xo;
+}		t_keys;
 
 typedef struct s_img
 {
@@ -110,6 +129,7 @@ typedef struct s_cub
 	t_input	*input;
 	t_img	*img;
 	t_vars	*var;
+	t_keys	*key;
 }			t_cub;
 
 //parsing-> validation -> raycasting -> possible features
@@ -129,5 +149,7 @@ float	fix_ang(float a);
 int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub, int color);
 void	draw_ray(t_cub *cub3d);
 void	draw_walls(t_cub *cub3d);
+int		key_press(int keycode, t_cub *cub3d);
+int		key_release(int keycode, t_cub *cub3d);
 
 #endif

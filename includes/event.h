@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/06/29 12:52:20 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:21:08 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define EVENT_H
 
 # define EVENT_CLOSE_BTN 17
+# define EVENT_KEY_PRESS 2
+# define EVENT_KEY_RLEASE 3
 # define KEY_ESC 53
 # define KEY_W 13
 # define KEY_A 0

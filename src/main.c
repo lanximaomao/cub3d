@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/12 13:41:10 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:06:36 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 void	hook_and_loop(t_cub *cub3d)
 {
 	mlx_hook(cub3d->win_ptr, EVENT_CLOSE_BTN, 0, end_cub3d, cub3d);
-	mlx_key_hook(cub3d->win_ptr, key_event, cub3d);
-	mlx_mouse_hook(cub3d->win_ptr, mouse_event, &cub3d);
+	mlx_hook(cub3d->win_ptr, EVENT_KEY_RLEASE, 1L << 1, key_release, cub3d);
+	mlx_hook(cub3d->win_ptr, EVENT_KEY_PRESS, 1L << 0, key_press, cub3d);
+	//mlx_key_hook(cub3d->win_ptr, key_event, cub3d);
+	//mlx_mouse_hook(cub3d->win_ptr, mouse_event, &cub3d);
 	mlx_loop(cub3d->mlx_ptr);
 }
 
@@ -30,7 +32,6 @@ void	clean_init_cub3d(t_cub *cub3d)
 	cub3d->var->pa = cub3d->input->map->direction;
 	cub3d->var->pdx = cos(deg_to_rad(cub3d->var->pa));
 	cub3d->var->pdy = -sin(deg_to_rad(cub3d->var->pa));
-	printf("cub3d->var->pdx %f cub3d->var->pdy%f\n", cub3d->var->pdx, cub3d->var->pdx);
 	cub3d->mlx_ptr = mlx_init();
 	if (!cub3d->mlx_ptr)
 		clean_exit(message("MLX: error connecting to mlx.", "", 1), cub3d);
@@ -62,7 +63,6 @@ int	main(int argc, char **argv)
 	if (parser(fd, &cub) == -1)
 	{
 		printf("Error\n");
-		
 		return (-1);
 	}
 	close(fd);

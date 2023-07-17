@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/14 16:28:33 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/17 16:07:39 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,62 +25,45 @@ float	fix_ang(float a)
 	return (a);
 }
 
-int	mouse_event(int keycode, int x, int y, t_cub *cub3d)
+int	key_press(int keycode, t_cub *cub3d)
 {
-	x = 0;
-	y = 0;
-	keycode = 0;
-	// if (keycode == MOUSE_WHEEL_UP)
-	// {
-	// }
-	// else if (keycode == MOUSE_WHEEL_DOWN)
-	// {
-	// }
-	// else if (keycode == MOUSE_BTN)
-	// {
-	// }
-	// else
-		return (0);
-	
-	render(cub3d);
+	if (keycode == KEY_W)
+		cub3d->key->w = 1;
+	if (keycode == KEY_A)
+		cub3d->key->a = 1;
+	if (keycode == KEY_D)
+		cub3d->key->d = 1;
+	if (keycode == KEY_S)
+		cub3d->key->s = 1;
+	if (keycode == KEY_LEFT)
+		cub3d->key->left = 1;
+	if (keycode == KEY_RIGHT)
+		cub3d->key->right = 1;
+	if (keycode == KEY_UP)
+		cub3d->key->up = 1;
+	if (keycode == KEY_DOWN)
+		cub3d->key->down = 1;
+	key_event(keycode, cub3d);
 	return (0);
 }
 
-int	key_event(int keycode, t_cub *cub3d)
+int	key_release(int keycode, t_cub *cub3d)
 {
-	if (keycode == KEY_ESC)
-		end_cub3d(cub3d);
-	else if (keycode == KEY_UP || keycode == KEY_W)
-	{
-		cub3d->var->px += cub3d->var->pdx * 5;
-		cub3d->var->py += cub3d->var->pdy * 5;
-	}
-	else if (keycode == KEY_DOWN || keycode == KEY_S)
-	{
-		cub3d->var->px -= cub3d->var->pdx * 5;
-		cub3d->var->py -= cub3d->var->pdy * 5;
-	}
-	else if (keycode == KEY_LEFT)
-		cub3d->var->pa += 5;
-	else if (keycode == KEY_A)
-	{
-		cub3d->var->px -= 10; //angle needs to be put into consideration
-	}
-	else if (keycode == KEY_RIGHT)
-		cub3d->var->pa -= 5; 
-	else if (keycode == KEY_D)
-	{
-		cub3d->var->px += 10; //angle needs to be put into consideration
-	}	
-	if (keycode == KEY_LEFT || keycode == KEY_A
-		|| keycode == KEY_RIGHT || keycode == KEY_D)
-	{
-		cub3d->var->pa = fix_ang(cub3d->var->pa);
-		cub3d->var->pdx = cos(deg_to_rad(cub3d->var->pa));
-		cub3d->var->pdy = -sin(deg_to_rad(cub3d->var->pa));
-	}
-	cub3d->input->position->y_p = cub3d->var->px - 2;
-	cub3d->input->position->x_p = cub3d->var->py - 2;
-	render(cub3d);
+	if (keycode == KEY_W)
+		cub3d->key->w = 0;
+	if (keycode == KEY_A)
+		cub3d->key->a = 0;
+	if (keycode == KEY_D)
+		cub3d->key->d = 0;
+	if (keycode == KEY_S)
+		cub3d->key->s = 0;
+	if (keycode == KEY_LEFT)
+		cub3d->key->left = 0;
+	if (keycode == KEY_RIGHT)
+		cub3d->key->right = 0;
+	if (keycode == KEY_UP)
+		cub3d->key->up = 0;
+	if (keycode == KEY_DOWN)
+		cub3d->key->down = 0;
 	return (0);
 }
