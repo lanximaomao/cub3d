@@ -138,7 +138,7 @@ void init_input(t_input *input);
 void init_map(t_map *map);
 
 // display.c
-void	display_map(char **matrix);
+void	display_map(char* msg, char **matrix);
 void	display_texture(t_input *input);
 void	display_color(t_input *input);
 

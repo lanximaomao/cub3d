@@ -1,12 +1,12 @@
 #include "cub3D.h"
 
-void	display_map(char **matrix)
+void	display_map(char* msg, char **matrix)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	printf("\n\nmap matrix:\n\n");
+	printf("\n\n%s\n\n", msg);
 	while (matrix[i])
 	{
 		j = 0;

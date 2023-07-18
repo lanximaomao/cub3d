@@ -8,27 +8,30 @@ static void matrix_assignment(t_cub *cub, char **tmp_matrix)
 
 	i = 0;
 	//cub->input->map->size_y--; // what happened here?
+	//printf("x=%d, y=%d\n", cub->input->map->size_x, cub->input->map->size_y);
 	while (i < cub->input->map->size_y)
 	{
 		j = 0;
 		while (j < cub->input->map->size_x)
 		{
-			if (j >= (int)ft_strlen(tmp_matrix[i]))
-				cub->input->map->matrix[i][j] = '*';
-			else if (tmp_matrix[i][j] == ' ' || tmp_matrix[i][j] == '0')
+			//printf("i=%d, j =%d\n", i, j);
+			if ( i == 0 || i == cub->input->map->size_y - 1
+				|| j == 0 || j == cub->input->map->size_x - 1)
+				cub->input->map->matrix[i][j] = '_';
+			else if (j > (int)ft_strlen(tmp_matrix[i - 1]))
+				cub->input->map->matrix[i][j] = '_';
+			else if (tmp_matrix[i - 1][j - 1] == ' ' || tmp_matrix[i - 1][j - 1] == '0')
 				cub->input->map->matrix[i][j] = '_';
 			else
-				cub->input->map->matrix[i][j] = tmp_matrix[i][j];
+				cub->input->map->matrix[i][j] = tmp_matrix[i - 1][j - 1];
 			j++;
 		}
 		i++;
 	}
-	printf("\n\nbefore validation check");
-	display_map(cub->input->map->matrix);
+	display_map("before validation", cub->input->map->matrix);
 	if (valid_map(cub) == -1)
 		ft_exit("invalid map", 3);
-	printf("\n\nafter validation check");
-	display_map(cub->input->map->matrix);
+	display_map("after validation", cub->input->map->matrix);
 }
 
 static int get_map_row(char *str)
@@ -48,7 +51,7 @@ static int get_map_row(char *str)
 		}
 		i++;
 	}
-	return (count);
+	return (count+2);
 }
 
 int get_matrix(t_cub *cub)
@@ -77,7 +80,6 @@ int get_matrix(t_cub *cub)
 		i++;
 	}
 	matrix_assignment(cub, tmp_matrix);
-	//display_map(cub->input->map->matrix);
 	display_texture(cub->input);
 	display_color(cub->input);
 	return (0);
@@ -90,7 +92,7 @@ static int	get_map_col(char *str)
 	len = 0;
 	while (str[len] != '\0' && str[len] != '\n')
 		len++;
-	return (len);
+	return (len+2);
 }
 
 int is_empty(char *str)
