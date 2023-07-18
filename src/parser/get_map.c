@@ -30,7 +30,7 @@ static void matrix_assignment(t_cub *cub, char **tmp_matrix)
 	}
 	display_map("before validation", cub->input->map->matrix);
 	if (valid_map(cub) == -1)
-		ft_exit("invalid map", 3);
+		ft_exit("Error: invalid map", 3);
 	display_map("after validation", cub->input->map->matrix);
 }
 
@@ -61,9 +61,9 @@ int get_matrix(t_cub *cub)
 
 	i = 0;
 	if (!ft_strncmp(cub->input->map->map_1d, "", 1))
-		ft_exit("map missing", 3);
+		ft_exit("Error: map missing", 3);
 	if (valid_char(cub->input->map->map_1d) == -1)
-		ft_exit("map with invalid characters", 3);
+		ft_exit("Error: map with invalid characters", 3);
 	cub->input->map->size_y = get_map_row(cub->input->map->map_1d);
 	//printf("y=%d\n", cub->input->map->size_y);
 	tmp_matrix = ft_split(cub->input->map->map_1d, '\n'); // to be freed
@@ -120,11 +120,11 @@ int get_map(t_cub *cub, char* line, int *nl_flag)
 	if (*nl_flag == 0 && is_empty(line))
 		(*nl_flag) = 1;
 	if (*nl_flag == 1 && is_empty(line) == 0)
-		ft_exit("multiple nl inside map", 3);
+		ft_exit("Error: multiple nl inside map", 3);
 	if (*nl_flag == 0)
 		cub->input->map->map_1d = ft_strjoin_gnl(cub->input->map->map_1d, line); // if null
 	if (!cub->input->map->map_1d)
-		ft_exit("malloc fail", 1);
+		ft_exit("Error: malloc fail", 1);
 	return (0);
 }
 

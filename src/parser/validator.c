@@ -1,11 +1,3 @@
-/*
-** 1. only contains 6 possible characters, 0, 1, N, S, E, W
-** 2. closed/surrounded by walls
-** 3. if one more , at the end of the color code?
-*/
-
-// if no player is present, is it a good map? see test_map
-
 #include "cub3D.h"
 
 int valid_filetype(char *str)
@@ -31,7 +23,6 @@ int valid_char(char * str)
 	wall_flag = 0;
 	while (str[i])
 	{
-		//printf("%c", str[i]);
 		if (str[i] == '1')
 			wall_flag = 1;
 		if (str[i] != '\n' && str[i] != '0' && str[i] != '1' &&  str[i] != ' ')
@@ -39,14 +30,14 @@ int valid_char(char * str)
 			if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W'|| str[i] == 'E' )
 				player_flag++;
 			else
-				ft_exit("invalid chars", 3);
+				ft_exit("Error: invalid chars", 3);
 		}
 		i++;
 	}
 	if (player_flag != 1) // turn on after debugging
-		ft_exit("player error", 3);
+		ft_exit("Error: player error", 3);
 	if (wall_flag == 0)
-		ft_exit("no wall?", 3);
+		ft_exit("Error: no wall?", 3);
 	return (0);
 }
 
@@ -132,21 +123,19 @@ static int find_island(t_cub *cub, int *i, int *j, char c, int *flag)
 		{
 			if (cub->input->map->matrix[row][col] == '1')
 			{
-				// if it is inside another island
-				if (*flag == 0) // not inland
+				if (*flag == 0)
 				{
 					*flag = 1;
 					*i = row;
 					*j = col;
-					printf("I found a wall at [%d][%d]\n", *i, *j);
 					return (-1);
 				}
 				else if (*flag == 1)
 				{
-					if (is_inland(cub, row, col,c) == -1) // not inland
+					if (is_inland(cub, row, col,c) == -1)
 					{
 						display_map("invalid map: more than one islands", cub->input->map->matrix);
-						ft_exit("more than one islands", 3);
+						ft_exit("Error: more than one islands", 3);
 					}
 				}
 			}
@@ -157,10 +146,8 @@ static int find_island(t_cub *cub, int *i, int *j, char c, int *flag)
 	return (1);
 }
 
-// change every possible '_' to '*'
 void flood_fill(t_cub *cub, int row, int col, char old, char new)
 {
-	// breaking condition?
 	if (row >= cub->input->map->size_y
 		|| col >= cub->input->map->size_x
 		|| col < 0 || row < 0
@@ -174,7 +161,6 @@ void flood_fill(t_cub *cub, int row, int col, char old, char new)
 		flood_fill(cub, row + 1, col, old, new);
 		flood_fill(cub, row - 1, col, old, new);
 	}
-	//display_map(cub->input->map->matrix);
 }
 
 int find_char (t_cub *cub, int *row, int *col, char c)
@@ -193,7 +179,6 @@ int find_char (t_cub *cub, int *row, int *col, char c)
 			{
 				*row = i;
 				*col = j;
-				printf("i find a 'x' at i=%d, j=%d\n", i, j);
 				return (1) ;
 			}
 			j++;
@@ -237,10 +222,9 @@ int is_closed(t_cub *cub)
 
 	row = 0; // is it necessary to init?
 	col = 0;
+	direction = 0;
 	while (find_char (cub, &row, &col, '_') == 1) // within boundary
-	{
 		flood_fill(cub, row, col, '_', '@');
-	}
 	if (cub->input->map->direction == 0)
 		direction = 'E';
 	else if (cub->input->map->direction == 90)
@@ -253,13 +237,12 @@ int is_closed(t_cub *cub)
 	col = 0;
 	if (find_char(cub, &row, &col, direction) == 1)
 		flood_fill(cub, row, col, direction, '@');
-	//printf("find_char=%d\n", find_char(cub, &row, &col,'_'));
-	// check if new char on boundary
 	if (is_legal_boundary(cub, '@', direction) == -1)
 	{
 		display_map("flood filled my boundary", cub->input->map->matrix);
-		ft_exit("wall not closed", 3);
+		ft_exit("Error: wall not closed", 3);
 	}
+	return (1);
 }
 
 int valid_map(t_cub *cub)
@@ -281,10 +264,11 @@ int valid_map(t_cub *cub)
 			flood_fill(cub, row, col, cub->input->map->matrix[row][col], 'x' + count); // starting point is a '1'
 			count++;
 		}
-		else
-			printf("no more walls\n");
 	}
-	if (is_closed(cub) == -1)
-		ft_exit("wall not close", 3);
+	row = 0;
+	col = 0;
+	if (is_closed(cub) == -1 || !(get_direction(cub, &row, &col)
+		&& is_inland(cub, row, col, 'x')))
+		ft_exit("Error: wall not close", 3);
 	return(0);
 }

@@ -5,19 +5,19 @@ void	init_cub(t_cub *cub)
 {
 	cub->img = ft_calloc(sizeof(t_img), 1);
 	if (!cub->img)
-		ft_exit("malloc fail", 1);
+		ft_exit("Error: malloc fail", 1);
 	cub->var = ft_calloc(sizeof(t_vars), 1);
 	if (!cub->var)
-		ft_exit("malloc fail", 1);
+		ft_exit("Error: malloc fail", 1);
 	cub->input = ft_calloc(sizeof(t_input), 1);
 	if (!cub->input)
-		ft_exit("malloc fail", 1);
+		ft_exit("Error: malloc fail", 1);
 	cub->input->map = ft_calloc(sizeof(t_map), 1);
 	if (!cub->input->map)
-		ft_exit("malloc fail", 1);
+		ft_exit("Error: malloc fail", 1);
 	cub->input->position = ft_calloc(sizeof(t_position), 1);
 	if (!cub->input->position)
-		ft_exit("malloc fail", 1);
+		ft_exit("Error: malloc fail", 1);
 	init_input(cub->input);
 }
 
@@ -39,7 +39,7 @@ void	init_map(t_map *map)
 {
 	map->size_x = 0;
 	map->size_y = 0;
-	map->direction = 0;
+	map->direction = -1;
 	map->matrix = NULL;
 	map->map_1d = ft_strdup(""); // to be freed
 	if (!map->map_1d)

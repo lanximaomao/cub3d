@@ -35,18 +35,17 @@ int	main(int argc, char **argv)
 	int		fd;
 
 	if (argc != 2)
-		ft_exit("wrong number of arguments", 1);
+		ft_exit("Error: wrong number of arguments", 1);
 	if (valid_filetype(argv[1]) == -1)
-		ft_exit("wrong type of file", 3);
+		ft_exit("Error: wrong type of file", 3);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
-		printf("cannot open file.\n");
+		printf("Error: cannot open file.\n");
 		return (1);
 	}
 	if (parser(fd, &cub) == -1)
 	{
-		printf("Error\n");
 		return (-1);
 	}
 	close(fd);

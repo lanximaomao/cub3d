@@ -1,5 +1,24 @@
 #include "cub3D.h"
 
+int loop(t_cub *cub, FunctionPointer member)
+{
+	int row;
+	int col;
+
+	row = 0;
+	while (row < cub->input->map->size_y)
+	{
+		col = 0;
+		while (col < cub->input->map->size_x)
+		{
+			member(cub);
+			col++;
+		}
+		row++;
+	}
+	return (SUCCESS);
+}
+
 int array_size(char **str)
 {
 	int i;

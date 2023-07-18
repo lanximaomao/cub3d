@@ -21,6 +21,9 @@
 #  define WIN_SIZE_Y 1080
 # endif
 
+# define ERROR 0
+# define SUCCESS 1
+
 // direction 90: North, 270: South, 180: West, 0: East
 typedef struct s_map
 {
@@ -35,7 +38,7 @@ typedef struct s_position
 {
 	int	x_p;
 	int	y_p;
-}			t_position;
+}		t_position;
 
 typedef struct s_line
 {
@@ -109,6 +112,8 @@ typedef struct s_cub
 	t_vars	*var;
 }			t_cub;
 
+typedef void (*FunctionPointer)(t_cub*);
+
 //parsing-> validation -> raycasting -> possible features
 int		validate(void);
 void	render(t_cub *cub3d);
@@ -131,6 +136,7 @@ int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub, int color);
 
 // parser.c
 int parser(int fd, t_cub *cub);
+int get_direction(t_cub *cub, int *i, int *j);
 
 // init.c
 void init_cub(t_cub *cub);
@@ -151,6 +157,7 @@ int		how_many(char* str, char c);
 void	free_str(char *str);
 int		valid_filetype(char *str);
 int		array_size(char **str);
+int		loop(t_cub *cub, FunctionPointer member);
 
 // get color
 int get_color(t_cub *cub, char* line, int flag);
