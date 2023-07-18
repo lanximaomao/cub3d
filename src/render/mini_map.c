@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/12 11:37:51 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:04:30 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,6 @@ static void	creat_player(t_cub *cub3d, int x_from, int y_from, int color)
 	{
 		j = -1;
 		while (++j < PLAYER_P)
-		{
-			pixel_color(cub3d, y_from + j, x_from + i, color);
-		}
-	}
-	y_from += j - PLAYER_P / 2;
-	x_from += i - PLAYER_P / 2;
-	i = -1;
-	while (++i < 2 * PLAYER_P)
-	{
-		j = -1;
-		while (++j < 2 * PLAYER_P)
 		{
 			pixel_color(cub3d, y_from + j, x_from + i, color);
 		}
@@ -105,6 +94,7 @@ void	draw_player2d(t_cub *cub3d)
 				cub3d->input->position->y_p = j * GRID_P + GRID_P / 2;
 				cub3d->var->px = cub3d->input->position->y_p;
 				cub3d->var->py = cub3d->input->position->x_p;
+				cub3d->input->map->matrix[i][j] = 0;
 				break ;
 			}
 		}

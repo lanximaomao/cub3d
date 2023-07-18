@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/14 10:05:36 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/18 14:53:43 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # define GRID_P 16
 # define PLAYER_P 4
-# define PLAYE_S 5
+# define PLAYER_S 5
+# define PLAYER_OFF 12
 # define BLACK 0x000000
 # define WHITE 0xffffff
 # define GREEN 0x009933

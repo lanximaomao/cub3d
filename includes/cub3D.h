@@ -114,6 +114,9 @@ typedef struct keys
 	int	ipy_sub_yo;
 	int	ipy_add_yo;
 	int	ipx_sub_xo;
+	int	ca;
+	int	line_h;
+	int	line_off;
 }		t_keys;
 
 typedef struct s_img
