@@ -20,7 +20,7 @@ int	is_empty(char *str)
 int	get_map(t_cub *cub, char *line, int *nl_flag)
 {
 	if (cub->input->count != 6)
-		ft_exit("Error\n-----> map error", 3);
+		ft_exit("Error\n-----> not all arguments are in place", 3);
 	if (*nl_flag == 0 && is_empty(line))
 		(*nl_flag) = 1;
 	if (*nl_flag == 1 && is_empty(line) == 0)

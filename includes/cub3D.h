@@ -177,7 +177,7 @@ int get_direction(t_cub *cub, int *i, int *j);
 // validator
 int valid_map(t_cub *cub);
 int valid_char(char* str);
-int is_closed(t_cub *cub);
+int	is_closed(t_cub *cub, int row, int col);
 int is_legal_boundary (t_cub *cub, char c, char direction);
 int find_char (t_cub *cub, int *row, int *col, char c);
 void flood_fill(t_cub *cub, int row, int col, char old);

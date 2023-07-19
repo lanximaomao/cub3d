@@ -86,14 +86,10 @@ int	is_legal_boundary(t_cub *cub, char c, char direction)
 ** is it necessary to init row and col?
 ** display_map("flood filled my boundary", cub->input->map->matrix);
 */
-int	is_closed(t_cub *cub)
+int	is_closed(t_cub *cub, int row, int col)
 {
-	int		row;
-	int		col;
 	char	direction;
 
-	row = 0;
-	col = 0;
 	direction = 0;
 	while (find_char(cub, &row, &col, '_') == 1)
 		flood_fill(cub, row, col, '_');
@@ -108,8 +104,12 @@ int	is_closed(t_cub *cub)
 	row = 0;
 	col = 0;
 	if (find_char(cub, &row, &col, direction) == 1)
-		flood_fill(cub, row, col, direction);
-	if (is_legal_boundary(cub, '_' + 1, direction) == -1)
+	{
+		cub->input->map->matrix[row][col] = '_';
+		flood_fill(cub, row, col, '_');
+		cub->input->map->matrix[row][col] = direction;
+	}
+	if (is_legal_boundary(cub, '_' + 1, direction + 1) == -1)
 		ft_exit("Error\n-----> wall not closed", 3);
 	return (1);
 }
@@ -133,9 +133,9 @@ int	valid_map(t_cub *cub)
 	}
 	row = 0;
 	col = 0;
-	if (is_closed(cub) == -1)
-		ft_exit("Error\n-----> wall not close", 3);
 	get_direction(cub, &row, &col);
+	if (is_closed(cub, 0, 0) == -1)
+		ft_exit("Error\n-----> wall not close", 3);
 	if (is_inland(cub, row, col, '2') == -1)
 		ft_exit("Error\n-----> player on edge", 3);
 	return (0);
