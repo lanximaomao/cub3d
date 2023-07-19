@@ -1,27 +1,8 @@
 #include "cub3D.h"
 
-int loop(t_cub *cub, FunctionPointer member)
+int	array_size(char **str)
 {
-	int row;
-	int col;
-
-	row = 0;
-	while (row < cub->input->map->size_y)
-	{
-		col = 0;
-		while (col < cub->input->map->size_x)
-		{
-			member(cub);
-			col++;
-		}
-		row++;
-	}
-	return (SUCCESS);
-}
-
-int array_size(char **str)
-{
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -47,36 +28,6 @@ int	how_many(char *str, char c)
 	return (count);
 }
 
-void	free_char(char **str)
-{
-	int	i;
-
-	i = 0;
-	if (str == NULL)
-		return ;
-	while (str[i] != NULL)
-	{
-		free(str[i]);
-		str[i] = NULL;
-		i++;
-	}
-	free(str);
-	str = NULL;
-}
-
-void free_str(char *str)
-{
-	free(str);
-	str = NULL;
-}
-
-void	ft_exit(char *msg, int exit_code)
-{
-	ft_putstr_fd(msg, 2);
-	ft_putstr_fd("\n", 2);
-	exit(exit_code);
-}
-
 int	ft_atoi_isnum(const char *str)
 {
 	long	result;
@@ -100,4 +51,23 @@ int	ft_atoi_isnum(const char *str)
 	if (result * sign >= 0 && result * sign <= 255)
 		return (result * sign);
 	return (-1);
+}
+
+int	loop(t_cub *cub, FunctionPointer member)
+{
+	int	row;
+	int	col;
+
+	row = 0;
+	while (row < cub->input->map->size_y)
+	{
+		col = 0;
+		while (col < cub->input->map->size_x)
+		{
+			member(cub);
+			col++;
+		}
+		row++;
+	}
+	return (SUCCESS);
 }

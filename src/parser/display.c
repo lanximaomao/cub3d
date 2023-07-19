@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-void	display_map(char* msg, char **matrix)
+void	display_map(char *msg, char **matrix)
 {
 	int	i;
 	int	j;
@@ -12,8 +12,6 @@ void	display_map(char* msg, char **matrix)
 		j = 0;
 		while (matrix[i][j])
 		{
-			//if (matrix[i][j] == ' ')
-			//	matrix[i][j] = '_';
 			printf("%c", matrix[i][j]);
 			j++;
 		}
@@ -36,7 +34,7 @@ void	display_color(t_input *input)
 
 	i = 0;
 	printf("floor color = %d, %d, %d\n", input->color_f->r, input->color_f->g,
-			input->color_f->b);
+		input->color_f->b);
 	printf("ceiling color = %d, %d, %d\n", input->color_c->r, input->color_c->g,
-			input->color_c->b);
+		input->color_c->b);
 }

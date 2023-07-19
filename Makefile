@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+         #
+#    By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/07/18 19:56:45 by linlinsun        ###   ########.fr        #
+#    Updated: 2023/07/19 13:54:34 by lsun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,16 +36,21 @@ FILES = main\
 	mini_map\
 	ray_calculate\
 	event\
+	wall\
 	parser\
 	utils\
+	free_utils\
 	line\
-	wall\
 	display\
 	init\
-	validator\
 	get_color\
-	get_map
-
+	get_map \
+	get_matrix\
+	validator\
+	flood_fill\
+	is_inland\
+	valid_char\
+	valid_filetype\
 
 
 HEADER = cub3D.h libft.h mlx.h get_next_line.h render.h color.h

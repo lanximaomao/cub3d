@@ -112,6 +112,7 @@ typedef struct s_cub
 	t_vars	*var;
 }			t_cub;
 
+
 typedef void (*FunctionPointer)(t_cub*);
 
 //parsing-> validation -> raycasting -> possible features
@@ -149,12 +150,12 @@ void	display_texture(t_input *input);
 void	display_color(t_input *input);
 
 // utils
-void	free_char(char **input);
+int	free_str(char *str);
+int	free_char(char **input);
 void	ft_exit(char* msg, int exit_code);
 void	display_color(t_input *input);
 int		ft_atoi_isnum(const char *str);
 int		how_many(char* str, char c);
-void	free_str(char *str);
 int		valid_filetype(char *str);
 int		array_size(char **str);
 int		loop(t_cub *cub, FunctionPointer member);
@@ -167,7 +168,14 @@ int get_matrix(t_cub *cub);
 int get_map(t_cub *cub, char* line, int *nl_flag);
 
 // validator
-int valid_char(char* str);
 int valid_map(t_cub *cub);
+int valid_char(char* str);
+int is_closed(t_cub *cub);
+int is_legal_boundary (t_cub *cub, char c, char direction);
+int find_char (t_cub *cub, int *row, int *col, char c);
+void flood_fill(t_cub *cub, int row, int col, char old);
+int find_island(t_cub *cub, int *i, int *j, int *flag);
+int is_inland(t_cub *cub, int row, int col, char c);
+int valid_filetype(char *str);
 
 #endif

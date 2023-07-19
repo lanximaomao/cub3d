@@ -48,6 +48,9 @@ int	main(int argc, char **argv)
 	{
 		return (-1);
 	}
+	display_map("map", cub.input->map->matrix);
+	display_texture(cub.input);
+	display_color(cub.input);
 	close(fd);
 	//clean_init_cub3d(&cub);
 	//render(&cub);

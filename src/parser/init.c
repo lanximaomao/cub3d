@@ -1,6 +1,5 @@
 #include "cub3D.h"
 
-// to be fix: change exit(1) to clean_exit function
 void	init_cub(t_cub *cub)
 {
 	cub->img = ft_calloc(sizeof(t_img), 1);
@@ -41,7 +40,7 @@ void	init_map(t_map *map)
 	map->size_y = 0;
 	map->direction = -1;
 	map->matrix = NULL;
-	map->map_1d = ft_strdup(""); // to be freed
+	map->map_1d = ft_strdup("");
 	if (!map->map_1d)
 		exit(1);
 }
