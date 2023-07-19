@@ -184,5 +184,7 @@ void flood_fill(t_cub *cub, int row, int col, char old);
 int find_island(t_cub *cub, int *i, int *j, int *flag);
 int is_inland(t_cub *cub, int row, int col, char c);
 int valid_filetype(char *str);
+char which_dir(t_cub *cub);
+int	find_zero(t_cub *cub, int *row, int *col, char c);
 
 #endif

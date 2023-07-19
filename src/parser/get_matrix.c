@@ -19,9 +19,10 @@ static void	matrix_assignment(t_cub *cub, char **tmp_matrix)
 				cub->input->map->matrix[i][j] = '_';
 			else if (j > (int)ft_strlen(tmp_matrix[i - 1]))
 				cub->input->map->matrix[i][j] = '_';
-			else if (tmp_matrix[i - 1][j - 1] == ' ' || tmp_matrix[i - 1][j
-					- 1] == '0')
+			else if (tmp_matrix[i - 1][j - 1] == ' ')
 				cub->input->map->matrix[i][j] = '_';
+			else if (tmp_matrix[i - 1][j - 1] == '0')
+				cub->input->map->matrix[i][j] = '0';
 			else
 				cub->input->map->matrix[i][j] = tmp_matrix[i - 1][j - 1];
 		}

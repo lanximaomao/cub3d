@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+         #
+#    By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/07/19 15:48:25 by lsun             ###   ########.fr        #
+#    Updated: 2023/07/19 21:56:35 by linlinsun        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ FILES = main\
 	is_inland\
 	valid_char\
 	valid_filetype\
+	valid_utils\
 
 
 HEADER = cub3D.h libft.h mlx.h get_next_line.h render.h color.h

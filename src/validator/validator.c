@@ -90,17 +90,9 @@ int	is_closed(t_cub *cub, int row, int col)
 {
 	char	direction;
 
-	direction = 0;
+	direction = which_dir(cub);
 	while (find_char(cub, &row, &col, '_') == 1)
 		flood_fill(cub, row, col, '_');
-	if (cub->input->map->direction == 0)
-		direction = 'E';
-	else if (cub->input->map->direction == 90)
-		direction = 'N';
-	else if (cub->input->map->direction == 180)
-		direction = 'W';
-	else if (cub->input->map->direction == 270)
-		direction = 'S';
 	row = 0;
 	col = 0;
 	if (find_char(cub, &row, &col, direction) == 1)
@@ -108,6 +100,14 @@ int	is_closed(t_cub *cub, int row, int col)
 		cub->input->map->matrix[row][col] = '_';
 		flood_fill(cub, row, col, '_');
 		cub->input->map->matrix[row][col] = direction;
+	}
+	row = 0;
+	col = 0;
+	while (find_zero(cub, &row, &col, '0') == 1)
+	{
+		cub->input->map->matrix[row][col] = '_';
+		flood_fill(cub, row, col, '_');
+		cub->input->map->matrix[row][col] = '@';
 	}
 	if (is_legal_boundary(cub, '_' + 1, direction + 1) == -1)
 		ft_exit("Error\n-----> wall not closed", 3);
