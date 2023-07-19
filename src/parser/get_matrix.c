@@ -27,7 +27,6 @@ static void	matrix_assignment(t_cub *cub, char **tmp_matrix)
 		}
 	}
 	free_char(tmp_matrix);
-	display_map("before validation", cub->input->map->matrix);
 	if (valid_map(cub) == -1)
 		ft_exit("Error\n-----> invalid map", 3);
 }
@@ -94,13 +93,12 @@ int	get_matrix(t_cub *cub)
 	tmp_matrix = ft_split(cub->input->map->map_1d, '\n');
 	if (!tmp_matrix)
 		ft_exit("malloc fail", 1);
-	cub->input->map->matrix = ft_calloc(sizeof(char *), cub->input->map->size_y
-			+ 1);
+	cub->input->map->matrix = ft_calloc(sizeof(char *),
+		cub->input->map->size_y + 1);
 	cub->input->map->matrix[cub->input->map->size_y] = NULL;
 	while (++i < cub->input->map->size_y)
 	{
-		cub->input->map->matrix[i] = ft_calloc(sizeof(char),
-				cub->input->map->size_x + 1);
+		cub->input->map->matrix[i] = malloc(cub->input->map->size_x + 1);
 		if (!cub->input->map->matrix[i])
 			ft_exit("malloc fail", 1);
 		cub->input->map->matrix[i][cub->input->map->size_x] = '\0';

@@ -2,19 +2,19 @@
 
 void	init_cub(t_cub *cub)
 {
-	cub->img = ft_calloc(sizeof(t_img), 1);
+	cub->img = malloc(sizeof(t_img) * 1);
 	if (!cub->img)
 		ft_exit("Error\n-----> malloc fail", 1);
-	cub->var = ft_calloc(sizeof(t_vars), 1);
+	cub->var = malloc(sizeof(t_vars) * 1);
 	if (!cub->var)
 		ft_exit("Error\n-----> malloc fail", 1);
-	cub->input = ft_calloc(sizeof(t_input), 1);
+	cub->input = malloc(sizeof(t_input) * 1);
 	if (!cub->input)
 		ft_exit("Error\n-----> malloc fail", 1);
-	cub->input->map = ft_calloc(sizeof(t_map), 1);
+	cub->input->map = malloc(sizeof(t_map) * 1);
 	if (!cub->input->map)
 		ft_exit("Error\n-----> malloc fail", 1);
-	cub->input->position = ft_calloc(sizeof(t_position), 1);
+	cub->input->position = malloc(sizeof(t_position) * 1);
 	if (!cub->input->position)
 		ft_exit("Error\n-----> malloc fail", 1);
 	init_input(cub->input);

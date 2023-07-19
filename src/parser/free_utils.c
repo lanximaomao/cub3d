@@ -31,3 +31,21 @@ void	ft_exit(char *msg, int exit_code)
 	ft_putstr_fd("\n", 2);
 	exit(exit_code);
 }
+
+int free_parsing(t_cub *cub)
+{
+	free_str(cub->input->map->map_1d);
+	free_char(cub->input->map->matrix);
+	free(cub->input->color_f);
+	free(cub->input->color_c);
+	free_str(cub->input->t_east);
+	free_str(cub->input->t_west);
+	free_str(cub->input->t_south);
+	free_str(cub->input->t_north);
+	free(cub->input->map);
+	free(cub->input->position);
+	free(cub->var);
+	free(cub->img);
+	free(cub->input);
+	return (1);
+}

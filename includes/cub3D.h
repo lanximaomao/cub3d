@@ -152,6 +152,7 @@ void	display_color(t_input *input);
 // utils
 int	free_str(char *str);
 int	free_char(char **input);
+int free_parsing(t_cub *cub);
 void	ft_exit(char* msg, int exit_code);
 void	display_color(t_input *input);
 int		ft_atoi_isnum(const char *str);

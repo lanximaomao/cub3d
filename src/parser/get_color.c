@@ -9,7 +9,7 @@ static int	get_color_floor(char *line, t_color_rgb *color, t_cub *cub)
 	if (!line_with_color)
 		ft_exit("Error\n-----> ft_strtrim failed", 4);
 	color_split = ft_split(line_with_color, ',');
-	free(line_with_color);
+	free_str(line_with_color);
 	if (!color_split)
 		ft_exit("Error\n-----> ft_split failed", 4);
 	if (array_size(color_split) != 3)
@@ -62,7 +62,7 @@ int	get_color(t_cub *cub, char *line, int flag)
 		ft_exit("Error\n-----> duplicate color definition", 2);
 	if (how_many(line, ',') != 2)
 		ft_exit("Error\n-----> wrong input for RGB color", 2);
-	color = ft_calloc(sizeof(t_color_rgb), 1);
+	color = malloc(sizeof(t_color_rgb) * 1);
 	if (!color)
 		ft_exit("Error\n-----> malloc fail", 1);
 	if (flag == 1 && get_color_floor(line, color, cub) == -1)

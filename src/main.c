@@ -40,18 +40,13 @@ int	main(int argc, char **argv)
 		ft_exit("Error\n-----> wrong type of file", 3);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-	{
-		printf("Error: cannot open file.\n");
-		return (1);
-	}
-	if (parser(fd, &cub) == -1)
-	{
-		return (-1);
-	}
+		ft_exit("Error: cannot open file", 1);
+	parser(fd, &cub);
+	close(fd);
 	display_map("map", cub.input->map->matrix);
 	display_texture(cub.input);
 	display_color(cub.input);
-	close(fd);
+	free_parsing(&cub);
 	//clean_init_cub3d(&cub);
 	//render(&cub);
 	//hook_and_loop(&cub);

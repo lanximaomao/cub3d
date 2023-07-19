@@ -1,14 +1,13 @@
 #include "cub3D.h"
 
 /*
-** define error code, 1 for malloc fail, 2 for wrong color,
+** define error code:
+** 1 for malloc fail, 2 for wrong color,
 ** 3 for other validation error, 4 for function fail
+**
 ** check for memory leak
 ** check for unclosed maps
-** map_forbbiden?
-** xpm path validity?
-** check all free to free_str
-** exit to ft_exit
+** check xpm path and permission
 */
 
 /*
@@ -19,7 +18,6 @@ static int	line_processor(t_cub *cub, char *line, int *map_start, int *nl_flag)
 	int	i;
 
 	i = 0;
-	printf("line[%d]=%s\n", i, line);
 	if (*map_start == 0 && line[i] == '\n')
 		return (0);
 	while (*map_start == 0 && line[i] == ' ')
@@ -63,11 +61,11 @@ int	parser(int fd, t_cub *cub)
 			if (line_start == 0)
 				ft_exit("Error\n-----> empty map", 3);
 			get_matrix(cub);
-			return (0);
+			return (1);
 		}
 		line_start = 1;
 		line_processor(cub, line, &map_start, &nl_flag);
 		free_str(line);
 	}
-	return (0);
+	return (1);
 }
