@@ -35,9 +35,9 @@ int	main(int argc, char **argv)
 	int		fd;
 
 	if (argc != 2)
-		ft_exit("Error: wrong number of arguments", 1);
+		ft_exit("Error\n-----> wrong number of arguments", 1);
 	if (valid_filetype(argv[1]) == -1)
-		ft_exit("Error: wrong type of file", 3);
+		ft_exit("Error\n-----> wrong type of file", 3);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{

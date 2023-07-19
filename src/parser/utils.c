@@ -46,6 +46,8 @@ int	ft_atoi_isnum(const char *str)
 		result = result * 10 + (*str - '0');
 		str++;
 	}
+	while (*str == ' ')
+		str++;
 	if (*str != '\0' && (*str < 9 || *str > 13))
 		return (-1);
 	if (result * sign >= 0 && result * sign <= 255)

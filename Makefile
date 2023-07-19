@@ -6,7 +6,7 @@
 #    By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/07/19 13:54:34 by lsun             ###   ########.fr        #
+#    Updated: 2023/07/19 15:48:25 by lsun             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,8 @@ FILES = main\
 	get_color\
 	get_map \
 	get_matrix\
+	get_direction\
+	get_texture\
 	validator\
 	flood_fill\
 	is_inland\

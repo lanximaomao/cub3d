@@ -16,7 +16,9 @@ static int	check_up(t_cub *cub, int row, int col, char c)
 	while (row >= 0)
 	{
 		if (cub->input->map->matrix[row][col] == c)
+		{
 			return (1);
+		}
 		row--;
 	}
 	return (0);

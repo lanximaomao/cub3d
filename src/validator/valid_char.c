@@ -19,13 +19,13 @@ int	valid_char(char *str)
 			if (*str == 'N' || *str == 'S' || *str == 'W' || *str == 'E')
 				player_flag++;
 			else
-				ft_exit("Error: invalid chars", 3);
+				ft_exit("Error\n-----> invalid chars", 3);
 		}
 		str++;
 	}
 	if (player_flag != 1)
-		ft_exit("Error: player error", 3);
+		ft_exit("Error\n-----> player error", 3);
 	if (wall_flag == 0)
-		ft_exit("Error: no wall?", 3);
+		ft_exit("Error\n-----> no wall?", 3);
 	return (0);
 }

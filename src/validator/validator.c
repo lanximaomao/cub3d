@@ -23,7 +23,7 @@ int	find_island(t_cub *cub, int *i, int *j, int *flag)
 					return (-1);
 				}
 				else if (*flag == 1 && is_inland(cub, row, col, '2') == -1)
-					ft_exit("Error: more than one islands", 3);
+					ft_exit("Error\n-----> more than one islands", 3);
 			}
 		}
 	}
@@ -110,7 +110,7 @@ int	is_closed(t_cub *cub)
 	if (find_char(cub, &row, &col, direction) == 1)
 		flood_fill(cub, row, col, direction);
 	if (is_legal_boundary(cub, '_' + 1, direction) == -1)
-		ft_exit("Error: wall not closed", 3);
+		ft_exit("Error\n-----> wall not closed", 3);
 	return (1);
 }
 
@@ -133,8 +133,10 @@ int	valid_map(t_cub *cub)
 	}
 	row = 0;
 	col = 0;
-	if (is_closed(cub) == -1 || !(get_direction(cub, &row, &col)
-			&& is_inland(cub, row, col, 'x')))
-		ft_exit("Error: wall not close", 3);
+	if (is_closed(cub) == -1)
+		ft_exit("Error\n-----> wall not close", 3);
+	get_direction(cub, &row, &col);
+	if (is_inland(cub, row, col, '2') == -1)
+		ft_exit("Error\n-----> player on edge", 3);
 	return (0);
 }

@@ -19,34 +19,62 @@ static void	matrix_assignment(t_cub *cub, char **tmp_matrix)
 				cub->input->map->matrix[i][j] = '_';
 			else if (j > (int)ft_strlen(tmp_matrix[i - 1]))
 				cub->input->map->matrix[i][j] = '_';
-			else if (tmp_matrix[i - 1][j - 1] == ' '
-				|| tmp_matrix[i - 1][j - 1] == '0')
+			else if (tmp_matrix[i - 1][j - 1] == ' ' || tmp_matrix[i - 1][j
+					- 1] == '0')
 				cub->input->map->matrix[i][j] = '_';
 			else
 				cub->input->map->matrix[i][j] = tmp_matrix[i - 1][j - 1];
 		}
 	}
 	free_char(tmp_matrix);
+	display_map("before validation", cub->input->map->matrix);
 	if (valid_map(cub) == -1)
-		ft_exit("Error: invalid map", 3);
+		ft_exit("Error\n-----> invalid map", 3);
 }
 
 static int	get_map_row(char *str)
 {
 	int	i;
-	int	count;
+	int	row;
 
 	i = 0;
-	count = 0;
+	row = 0;
 	while (str[i])
 	{
 		if (str[i] == '\n')
-		{
-			count++;
-		}
+			row++;
 		i++;
 	}
-	return (count + 2);
+	return (row + 2);
+}
+
+static int	get_map_col(char *str)
+{
+	int	col;
+	int	tmp_col;
+
+	col = 0;
+	tmp_col = 0;
+	while (*str != '\0')
+	{
+		tmp_col = 0;
+		while (*str != '\n')
+		{
+			tmp_col++;
+			str++;
+		}
+		str++;
+		if (tmp_col > col)
+			col = tmp_col;
+	}
+	return (col + 2);
+}
+
+static int	get_map_size(t_cub *cub)
+{
+	cub->input->map->size_x = get_map_col(cub->input->map->map_1d);
+	cub->input->map->size_y = get_map_row(cub->input->map->map_1d);
+	return (1);
 }
 
 /*
@@ -59,10 +87,10 @@ int	get_matrix(t_cub *cub)
 
 	i = -1;
 	if (!ft_strncmp(cub->input->map->map_1d, "", 1))
-		ft_exit("Error: map missing", 3);
+		ft_exit("Error\n-----> map missing", 3);
 	if (valid_char(cub->input->map->map_1d) == -1)
-		ft_exit("Error: map with invalid characters", 3);
-	cub->input->map->size_y = get_map_row(cub->input->map->map_1d);
+		ft_exit("Error\n-----> map with invalid characters", 3);
+	get_map_size(cub);
 	tmp_matrix = ft_split(cub->input->map->map_1d, '\n');
 	if (!tmp_matrix)
 		ft_exit("malloc fail", 1);

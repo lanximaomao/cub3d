@@ -137,7 +137,7 @@ int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub, int color);
 
 // parser.c
 int parser(int fd, t_cub *cub);
-int get_direction(t_cub *cub, int *i, int *j);
+
 
 // init.c
 void init_cub(t_cub *cub);
@@ -166,6 +166,12 @@ int get_color(t_cub *cub, char* line, int flag);
 // get map
 int get_matrix(t_cub *cub);
 int get_map(t_cub *cub, char* line, int *nl_flag);
+
+// get texture
+int	get_texture(t_cub *cub, char *line, int flag);
+
+// get_direction
+int get_direction(t_cub *cub, int *i, int *j);
 
 // validator
 int valid_map(t_cub *cub);
