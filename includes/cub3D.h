@@ -144,7 +144,7 @@ int		key_event(int keycode, t_cub *cub3d);
 void	draw_map2d(t_cub *cub3d);
 void	draw_player2d(t_cub *cub3d);
 void	calculate_rays(t_cub *cub3d);
-void	pixel_color(t_cub *cub3d, int x, int y, int color);
+void	pixel_color(t_cub *cub3d, int x, int y, unsigned long color);
 void	clean_exit(int exit_code, t_cub *cub3d);
 int		message(char *str1, char *str2, int errno);
 float	deg_to_rad(float a);

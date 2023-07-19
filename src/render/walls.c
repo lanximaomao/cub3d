@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/18 16:28:17 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/19 13:32:20 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,30 @@ unsigned long	calculate_hex_color(t_color_rgb *rgb)
 
 void	draw_sky_floor(t_cub *cub3d, t_position	t1, t_position	t2)
 {
-	t_position		sky_1;
-	t_position		sky_2;
-	t_position		floor_1;
-	t_position		floor_2;
-	unsigned long	color;
+	t_position		s1;
+	t_position		s2;
+	t_position		f1;
+	t_position		f2;
 
-	sky_1.x_p = t1.x_p;
-	sky_1.x_p = t1.x_p;
-	sky_1.y_p = 0;
-	sky_1.y_p = t1.y_p;
-	color = calculate_hex_color(cub3d->input->color_c);
-	bresenham_line (sky_1, sky_2, cub3d, color);
-	floor_1.x_p = t1.x_p;
-	floor_1.x_p = t1.x_p;
-	floor_1.y_p = t2.y_p;
-	floor_1.y_p = WIN_SIZE_Y - 1;
-	color = calculate_hex_color(cub3d->input->color_f);
-	bresenham_line (floor_1, floor_2, cub3d, color);
+	s1.x_p = t1.x_p;
+	s2.x_p = t1.x_p;
+	s1.y_p = 0;
+	s2.y_p = t1.y_p - 1;
+	if (t1.x_p < GRID_P * cub3d->input->map->size_x
+		&& s2.y_p < GRID_P * cub3d->input->map->size_y)
+			s2.y_p = 0;
+	if (t1.x_p < GRID_P * cub3d->input->map->size_x
+		&& s2.y_p >= GRID_P * cub3d->input->map->size_y)
+			s1.y_p = GRID_P * cub3d->input->map->size_y + 1;
+	bresenham_line (s1, s2, cub3d, calculate_hex_color(cub3d->input->color_c));
+	f1.x_p = t1.x_p;
+	f2.x_p = t1.x_p;
+	f1.y_p = t2.y_p + 1;
+	f2.y_p = WIN_SIZE_Y - 1;
+	if (t1.x_p < GRID_P * cub3d->input->map->size_x
+		&& f1.y_p <= GRID_P * cub3d->input->map->size_y)
+			f1.y_p = GRID_P * cub3d->input->map->size_y + 1;
+	bresenham_line (f1, f2, cub3d, calculate_hex_color(cub3d->input->color_f));
 	return ;
 }
 
@@ -60,6 +66,7 @@ void	draw_walls(t_cub *cub3d)
 	i = -1;
 	while (++i < 2)
 	{
+		draw_sky_floor(cub3d, t1, t2);
 		if (t1.x_p < GRID_P * cub3d->input->map->size_x
 			&& t1.y_p < GRID_P * cub3d->input->map->size_y)
 			t1.y_p = GRID_P * cub3d->input->map->size_y;
@@ -67,5 +74,4 @@ void	draw_walls(t_cub *cub3d)
 		t1.x_p++;
 		t2.x_p++;
 	}
-	draw_sky_floor(cub3d, t1, t2);
 }

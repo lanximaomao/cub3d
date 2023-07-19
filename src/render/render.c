@@ -6,13 +6,13 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/14 10:06:00 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/19 13:23:48 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	pixel_color(t_cub *cub3d, int x, int y, int color)
+void	pixel_color(t_cub *cub3d, int x, int y, unsigned long color)
 {
 	int		bits_per_pixel;
 	int		line_length;

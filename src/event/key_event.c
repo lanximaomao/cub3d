@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/18 14:54:31 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/19 13:39:56 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,12 @@ static void	move_up_down(int dir, t_cub *cub3d)
 
 static void	move_right_left(int dir, t_cub *cub3d)
 {
-	calculate_next(cub3d);
 	if (dir == KEY_LEFT)
 	{
 		cub3d->var->pa += 90;
 		cub3d->var->pdx = cos(deg_to_rad(cub3d->var->pa));
 		cub3d->var->pdy = -sin(deg_to_rad(cub3d->var->pa));
-		cub3d->var->px += cub3d->var->pdx * PLAYER_S;
-		cub3d->var->py += cub3d->var->pdy * PLAYER_S;
+		move_up_down(KEY_UP, cub3d);
 		cub3d->var->pa -= 90;
 	}
 	if (dir == KEY_RIGHT)
@@ -72,8 +70,7 @@ static void	move_right_left(int dir, t_cub *cub3d)
 		cub3d->var->pa -= 90;
 		cub3d->var->pdx = cos(deg_to_rad(cub3d->var->pa));
 		cub3d->var->pdy = -sin(deg_to_rad(cub3d->var->pa));
-		cub3d->var->px += cub3d->var->pdx * PLAYER_S;
-		cub3d->var->py += cub3d->var->pdy * PLAYER_S;
+		move_up_down(KEY_UP, cub3d);
 		cub3d->var->pa += 90;
 	}
 }
