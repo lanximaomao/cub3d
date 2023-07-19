@@ -32,7 +32,7 @@ void	ft_exit(char *msg, int exit_code)
 	exit(exit_code);
 }
 
-int free_parsing(t_cub *cub)
+int	free_parsing(t_cub *cub)
 {
 	free_str(cub->input->map->map_1d);
 	free_char(cub->input->map->matrix);

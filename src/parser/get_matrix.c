@@ -94,7 +94,7 @@ int	get_matrix(t_cub *cub)
 	if (!tmp_matrix)
 		ft_exit("malloc fail", 1);
 	cub->input->map->matrix = ft_calloc(sizeof(char *),
-		cub->input->map->size_y + 1);
+			cub->input->map->size_y + 1);
 	cub->input->map->matrix[cub->input->map->size_y] = NULL;
 	while (++i < cub->input->map->size_y)
 	{
