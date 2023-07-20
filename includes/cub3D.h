@@ -126,14 +126,14 @@ typedef struct s_img
 {
 	void	*img_ptr;
 	char	*addr;
+	int		size_line;
+	int		bpp;
+	int		endian;
 }			t_img;
 
 typedef struct s_tex
 {
 	t_img	*img;
-	int		size_line;
-	int		bpp;
-	int		endian;
 	int		width;
 	int		height;
 	char	*type;

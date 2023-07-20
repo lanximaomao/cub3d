@@ -8,7 +8,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS =  -I$I -Wall -Wextra -Werror -g 
+CFLAGS =  -I$I -g #-Wall -Wextra -Werror
 
 RM = /bin/rm -f
 RMDIR = /bin/rmdir -p
@@ -19,32 +19,33 @@ S = src
 O = obj
 I = includes
 
-FILES = main\
-	end\
-	render\
-	mini_map\
-	ray_calculate\
-	event\
-	key_event\
-	walls\
-	parser\
-	utils\
-	free_utils\
-	line\
-	display\
-	init\
-	get_color\
-	get_map \
-	get_matrix\
-	get_back\
-	get_direction\
-	get_texture\
-	validator\
-	flood_fill\
-	is_inland\
-	valid_char\
-	valid_filetype\
-	valid_utils\
+FILES = play
+#FILES = main\
+#	end\
+#	render\
+#	mini_map\
+#	ray_calculate\
+#	event\
+#	key_event\
+#	walls\
+#	parser\
+#	utils\
+#	free_utils\
+#	line\
+#	display\
+#	init\
+#	get_color\
+#	get_map \
+#	get_matrix\
+#	get_back\
+#	get_direction\
+#	get_texture\
+#	validator\
+#	flood_fill\
+#	is_inland\
+#	valid_char\
+#	valid_filetype\
+#	valid_utils\
 
 
 
