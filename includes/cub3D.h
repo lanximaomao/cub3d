@@ -130,8 +130,7 @@ typedef struct s_img
 
 typedef struct s_tex
 {
-	void	*tex_ptr;
-	int		*tex_data;
+	t_img	*img;
 	int		size_line;
 	int		bpp;
 	int		endian;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/13 13:51:16 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:40:00 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@ void	clean_exit(int exit_code, t_cub *cub3d)
 {
 	if (!cub3d)
 		exit(exit_code);
+	if (cub3d->tex_e->img)
+		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_e->img);
+	if (cub3d->tex_s->img)
+		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_s->img);
+	if (cub3d->tex_n->img)
+		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_n->img);
+	if (cub3d->tex_w->img)
+		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_w->img);
 	if (cub3d->img->img_ptr && cub3d->win_ptr && cub3d->mlx_ptr)
 	{
 		mlx_destroy_image(cub3d->mlx_ptr, cub3d->img->img_ptr);
@@ -52,6 +60,7 @@ int	message(char *str1, char *str2, int errno)
 int	end_cub3d(t_cub *cub3d)
 {
 	//free_everything and close fds
+	free_parsing(cub3d);
 	clean_exit(0, cub3d);
 	return (0);
 }

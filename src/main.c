@@ -3,7 +3,7 @@
 void	hook_and_loop(t_cub *cub3d)
 {
 	mlx_hook(cub3d->win_ptr, EVENT_CLOSE_BTN, 0, end_cub3d, cub3d);
-	mlx_hook(cub3d->win_ptr, EVENT_KEY_RLEASE, 1L << 1, key_release, cub3d);
+	//mlx_hook(cub3d->win_ptr, EVENT_KEY_RLEASE, 1L << 1, key_release, cub3d);
 	mlx_hook(cub3d->win_ptr, EVENT_KEY_PRESS, 1L << 0, key_press, cub3d);
 	//mlx_key_hook(cub3d->win_ptr, key_event, cub3d);
 	//mlx_mouse_hook(cub3d->win_ptr, mouse_event, &cub3d);
@@ -27,6 +27,7 @@ void	clean_init_cub3d(t_cub *cub3d)
 	cub3d->img->img_ptr = mlx_new_image(cub3d->mlx_ptr, WIN_SIZE_X, WIN_SIZE_Y);
 	if (!(cub3d->img->img_ptr))
 		clean_exit(message("image creation error.", "", 1), cub3d);
+	init_tex(cub3d);
 }
 
 int	main(int argc, char **argv)
@@ -46,9 +47,8 @@ int	main(int argc, char **argv)
 	display_map("map", cub.input->map->matrix);
 	display_texture(cub.input);
 	display_color(cub.input);
-	free_parsing(&cub);
-	//clean_init_cub3d(&cub);
-	//render(&cub);
-	//hook_and_loop(&cub);
+	clean_init_cub3d(&cub);
+	render(&cub);
+	hook_and_loop(&cub);
 	return (0);
 }

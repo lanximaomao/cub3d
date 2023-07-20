@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/20 13:44:57 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/20 16:31:53 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ void	draw_sky_floor(t_cub *cub3d, t_position	t1, t_position	t2)
 
 void	new_tex(t_cub *cub3d, t_tex *tex, char *file, char *type)
 {
-	tex->tex_ptr = mlx_xpm_file_to_image(cub3d->mlx_ptr, file,
+	tex->img->img_ptr = mlx_xpm_file_to_image(cub3d->mlx_ptr, file,
 			&(tex->width), &(tex->height));
-	if (!tex->tex_ptr)
+	if (!tex->img->img_ptr)
 		clean_exit(message("MLX: error copenning xpm file.", "", 1), cub3d);
-	tex->tex_data
-		= (int *)mlx_get_data_addr(tex->tex_ptr, &(tex->bpp),
+	tex->img->addr
+		= mlx_get_data_addr(tex->img->img_ptr, &(tex->bpp),
 			&(tex->size_line), &(tex->endian));
-	if (!tex->tex_data)
+	if (!tex->img->addr)
 		clean_exit(message("MLX: error getting data address.", "", 1), cub3d);
 		tex->type = type;
 
@@ -75,6 +75,18 @@ void	init_tex(t_cub *cub3d)
 		end_cub3d(cub3d);
 	cub3d->tex_s = ft_calloc(sizeof(t_tex), 1);
 	if (!(cub3d->tex_s))
+		end_cub3d(cub3d);
+	cub3d->tex_e->img = ft_calloc(sizeof(t_img), 1);
+	if (!(cub3d->tex_e->img))
+		end_cub3d(cub3d);
+	cub3d->tex_w->img = ft_calloc(sizeof(t_img), 1);
+	if (!(cub3d->tex_w->img))
+		end_cub3d(cub3d);
+	cub3d->tex_n->img = ft_calloc(sizeof(t_img), 1);
+	if (!(cub3d->tex_n->img))
+		end_cub3d(cub3d);
+	cub3d->tex_s->img = ft_calloc(sizeof(t_img), 1);
+	if (!(cub3d->tex_s->img))
 		end_cub3d(cub3d);
 	new_tex(cub3d, cub3d->tex_e, cub3d->input->t_east, "EA");
 	new_tex(cub3d, cub3d->tex_w, cub3d->input->t_east, "WE");

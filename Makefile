@@ -8,7 +8,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS =  -I$I -Wall -Wextra -Werror -g
+CFLAGS =  -I$I -Wall -Wextra -Werror -g 
 
 RM = /bin/rm -f
 RMDIR = /bin/rmdir -p
@@ -25,7 +25,8 @@ FILES = main\
 	mini_map\
 	ray_calculate\
 	event\
-	wall\
+	key_event\
+	walls\
 	parser\
 	utils\
 	free_utils\
@@ -43,7 +44,8 @@ FILES = main\
 	is_inland\
 	valid_char\
 	valid_filetype\
-	valid_utils
+	valid_utils\
+
 
 
 
