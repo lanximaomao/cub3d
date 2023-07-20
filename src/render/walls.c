@@ -46,7 +46,7 @@ void	new_tex(t_cub *cub3d, t_tex *tex, char *file, char *type)
 			&(tex->size_line), &(tex->endian));
 	if (!tex->img->addr)
 		clean_exit(message("MLX: error getting data address.", "", 1), cub3d);
-		tex->type = type;
+		tex->type = ft_strdup(type); // to be freed
 
 }
 
