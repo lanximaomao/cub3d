@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: azarsarikhani <azarsarikhani@student.42    +#+  +:+       +#+         #
+#    By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/06/27 11:08:59 by azarsarikha      ###   ########.fr        #
+#    Updated: 2023/07/17 11:22:34 by asarikha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I$I
+CFLAGS =  -I$I -Wall -Wextra -Werror -g
 
 RM = /bin/rm -f
 RMDIR = /bin/rmdir -p
@@ -31,10 +31,20 @@ O = obj
 I = includes
 
 FILES = main\
-	validate
+	end\
+	render\
+	mini_map\
+	ray_calculate\
+	event\
+	parser\
+	utils\
+	line\
+	walls\
+	key_event
 
 
-HEADER = cub3D.h libft.h mlx.h get_next_line.h
+
+HEADER = cub3D.h libft.h mlx.h get_next_line.h render.h color.h
 HEADER := $(addprefix $I/,$(HEADER))
 
 SRCS := $(foreach FILE,$(FILES),$(shell find $S -type f -name '$(FILE).c'))
@@ -45,12 +55,12 @@ O_DIRS = $(dir $(OBJS))
 MLX_PATH	= mlx/
 MLX_NAME	= libmlx.a
 MLX			= $(MLX_PATH)$(MLX_NAME)
-MLX_LNK	= -L ./mlx -lmlx -framework OpenGL -framework AppKit 
+MLX_LNK	= -L ./mlx -lmlx -framework OpenGL -framework AppKit
 
 NAME = cub3D
 
 ### RULES ###
-all: $(MLX) $(LIBFT) $(NAME) 
+all: $(MLX) $(LIBFT) $(NAME)
 
 $O/%.o: $S/%.c $(HEADER)
 	@mkdir -p $(O_DIRS)
@@ -60,8 +70,8 @@ $(NAME): $(OBJS)
 	@echo "Compiling cub3D..."
 	@$(CC) $(CFLAGS) $(MLX) $(MLX_LNK) $(LIBFT) $(OBJS) -o $(NAME)
 	@echo "$(COLOUR_GREEN) $(NAME) created$(COLOUR_END)"
-	
-### MLX	
+
+### MLX
 $(MLX):
 	@echo "Making MiniLibX..."
 	@make -sC $(MLX_PATH)
@@ -81,14 +91,18 @@ $(LIBFT):
 clean:
 	@cd libft && $(MAKE) clean
 	@echo "$(COLOUR_RED) $(LIBFT) removed$(COLOUR_END)"
+	@cd mlx && $(MAKE) clean
+	@echo "$(COLOUR_RED) $(MLX) removed$(COLOUR_END)"
 	@$(RM) $(OBJS)
 	@if [ -d $O ]; then $(RM) -rf $(O_DIRS) $O; fi
 
 fclean : clean
 	@cd libft && $(MAKE) fclean
+
+	@echo "$(COLOUR_RED) $(LIBFT) removed$(COLOUR_END)"
 	@$(RM) $(NAME)
 	@echo "$(COLOUR_RED) $(NAME) removed$(COLOUR_END)"
 
-re: fclean $(NAME)
+re: fclean all
 
 .PHONY: all clean fclean re
