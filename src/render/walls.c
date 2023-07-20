@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   walls.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/20 16:31:53 by lsun             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3D.h"
 
 unsigned long	calculate_hex_color(t_color_rgb *rgb)
@@ -89,9 +77,9 @@ void	init_tex(t_cub *cub3d)
 	if (!(cub3d->tex_s->img))
 		end_cub3d(cub3d);
 	new_tex(cub3d, cub3d->tex_e, cub3d->input->t_east, "EA");
-	new_tex(cub3d, cub3d->tex_w, cub3d->input->t_east, "WE");
-	new_tex(cub3d, cub3d->tex_n, cub3d->input->t_east, "NO");
-	new_tex(cub3d, cub3d->tex_s, cub3d->input->t_east, "SO");
+	new_tex(cub3d, cub3d->tex_w, cub3d->input->t_west, "WE");
+	new_tex(cub3d, cub3d->tex_n, cub3d->input->t_north, "NO");
+	new_tex(cub3d, cub3d->tex_s, cub3d->input->t_south, "SO");
 }
 
 void	draw_walls(t_cub *cub3d)
