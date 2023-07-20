@@ -13,45 +13,45 @@ float	fix_ang(float a)
 	return (a);
 }
 
-int	key_press(int keycode, t_cub *cub3d)
+int	key_press(int keycode, t_cub *cub)
 {
 	if (keycode == KEY_W)
-		cub3d->key->w = 1;
+		cub->key->w = 1;
 	if (keycode == KEY_A)
-		cub3d->key->a = 1;
+		cub->key->a = 1;
 	if (keycode == KEY_D)
-		cub3d->key->d = 1;
+		cub->key->d = 1;
 	if (keycode == KEY_S)
-		cub3d->key->s = 1;
+		cub->key->s = 1;
 	if (keycode == KEY_LEFT)
-		cub3d->key->left = 1;
+		cub->key->left = 1;
 	if (keycode == KEY_RIGHT)
-		cub3d->key->right = 1;
+		cub->key->right = 1;
 	if (keycode == KEY_UP)
-		cub3d->key->up = 1;
+		cub->key->up = 1;
 	if (keycode == KEY_DOWN)
-		cub3d->key->down = 1;
-	key_event(keycode, cub3d);
+		cub->key->down = 1;
+	key_event(keycode, cub);
 	return (0);
 }
 
-int	key_release(int keycode, t_cub *cub3d)
+int	key_release(int keycode, t_cub *cub)
 {
 	if (keycode == KEY_W)
-		cub3d->key->w = 0;
+		cub->key->w = 0;
 	if (keycode == KEY_A)
-		cub3d->key->a = 0;
+		cub->key->a = 0;
 	if (keycode == KEY_D)
-		cub3d->key->d = 0;
+		cub->key->d = 0;
 	if (keycode == KEY_S)
-		cub3d->key->s = 0;
+		cub->key->s = 0;
 	if (keycode == KEY_LEFT)
-		cub3d->key->left = 0;
+		cub->key->left = 0;
 	if (keycode == KEY_RIGHT)
-		cub3d->key->right = 0;
+		cub->key->right = 0;
 	if (keycode == KEY_UP)
-		cub3d->key->up = 0;
+		cub->key->up = 0;
 	if (keycode == KEY_DOWN)
-		cub3d->key->down = 0;
+		cub->key->down = 0;
 	return (0);
 }

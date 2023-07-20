@@ -1,37 +1,37 @@
 #include "cub3D.h"
 
-void	clean_exit(int exit_code, t_cub *cub3d)
+void	clean_exit(int exit_code, t_cub *cub)
 {
-	if (!cub3d)
+	if (!cub)
 		exit(exit_code);
-	if (cub3d->tex_e->img)
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_e->img);
-	if (cub3d->tex_s->img)
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_s->img);
-	if (cub3d->tex_n->img)
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_n->img);
-	if (cub3d->tex_w->img)
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_w->img);
-	if (cub3d->img->img_ptr && cub3d->win_ptr && cub3d->mlx_ptr)
+	if (cub->tex_e->img)
+		mlx_destroy_image(cub->mlx_ptr, cub->tex_e->img);
+	if (cub->tex_s->img)
+		mlx_destroy_image(cub->mlx_ptr, cub->tex_s->img);
+	if (cub->tex_n->img)
+		mlx_destroy_image(cub->mlx_ptr, cub->tex_n->img);
+	if (cub->tex_w->img)
+		mlx_destroy_image(cub->mlx_ptr, cub->tex_w->img);
+	if (cub->img->img_ptr && cub->win_ptr && cub->mlx_ptr)
 	{
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->img->img_ptr);
-		mlx_destroy_window(cub3d->mlx_ptr, cub3d->win_ptr);
-		cub3d->mlx_ptr = NULL;
-		cub3d->win_ptr = NULL;
-		cub3d->img->addr = NULL;
+		mlx_destroy_image(cub->mlx_ptr, cub->img->img_ptr);
+		mlx_destroy_window(cub->mlx_ptr, cub->win_ptr);
+		cub->mlx_ptr = NULL;
+		cub->win_ptr = NULL;
+		cub->img->addr = NULL;
 		exit (exit_code);
 	}
-	else if (cub3d->win_ptr && cub3d->mlx_ptr)
+	else if (cub->win_ptr && cub->mlx_ptr)
 	{
-		mlx_destroy_window(cub3d->mlx_ptr, cub3d->win_ptr);
-		cub3d->win_ptr = NULL;
-		cub3d->mlx_ptr = NULL;
+		mlx_destroy_window(cub->mlx_ptr, cub->win_ptr);
+		cub->win_ptr = NULL;
+		cub->mlx_ptr = NULL;
 		exit (exit_code);
 	}
-	else if (cub3d->img->img_ptr && cub3d->mlx_ptr)
+	else if (cub->img->img_ptr && cub->mlx_ptr)
 	{
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->img->img_ptr);
-		cub3d->img->img_ptr = NULL;
+		mlx_destroy_image(cub->mlx_ptr, cub->img->img_ptr);
+		cub->img->img_ptr = NULL;
 		exit (exit_code);
 	}
 	exit (exit_code);
@@ -39,16 +39,16 @@ void	clean_exit(int exit_code, t_cub *cub3d)
 
 int	message(char *str1, char *str2, int errno)
 {
-	ft_putstr_fd("cub3d: ", 2);
+	ft_putstr_fd("cub: ", 2);
 	ft_putstr_fd(str1, 2);
 	ft_putendl_fd(str2, 2);
 	return (errno);
 }
 
-int	end_cub3d(t_cub *cub3d)
+int	end_cub(t_cub *cub)
 {
 	//free_everything and close fds
-	free_parsing(cub3d);
-	clean_exit(0, cub3d);
+	free_parsing(cub);
+	clean_exit(0, cub);
 	return (0);
 }
