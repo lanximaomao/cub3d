@@ -116,7 +116,6 @@ typedef struct s_cub
 typedef void (*FunctionPointer)(t_cub*);
 
 //parsing-> validation -> raycasting -> possible features
-int		validate(void);
 void	render(t_cub *cub3d);
 int		end_cub3d(t_cub *cub3d);
 int		mouse_event(int keycode, int x, int y, t_cub *cub3d);
@@ -166,6 +165,7 @@ int get_color(t_cub *cub, char* line, int flag);
 
 // get map
 int get_matrix(t_cub *cub);
+int matrix_revert(t_cub *cub);
 int get_map(t_cub *cub, char* line, int *nl_flag);
 
 // get texture

@@ -138,5 +138,5 @@ int	valid_map(t_cub *cub)
 		ft_exit("Error\n-----> wall not close", 3);
 	if (is_inland(cub, row, col, '2') == -1)
 		ft_exit("Error\n-----> player on edge", 3);
-	return (0);
+	return (1);
 }

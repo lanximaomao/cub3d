@@ -1,4 +1,5 @@
 #include "cub3D.h"
+
 /*
 ** display_map("before validation", cub->input->map->matrix);
 ** display_map("after validation", cub->input->map->matrix);
@@ -28,8 +29,8 @@ static void	matrix_assignment(t_cub *cub, char **tmp_matrix)
 		}
 	}
 	free_char(tmp_matrix);
-	if (valid_map(cub) == -1)
-		ft_exit("Error\n-----> invalid map", 3);
+	valid_map(cub);
+	matrix_revert(cub);;
 }
 
 static int	get_map_row(char *str)
