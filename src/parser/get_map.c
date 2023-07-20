@@ -19,7 +19,7 @@ int	is_empty(char *str)
 */
 int	get_map(t_cub *cub, char *line, int *nl_flag)
 {
-	int end;
+	int	end;
 
 	end = ft_strlen(line);
 	line[end - 1] = '\0';
