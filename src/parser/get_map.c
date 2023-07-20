@@ -19,6 +19,16 @@ int	is_empty(char *str)
 */
 int	get_map(t_cub *cub, char *line, int *nl_flag)
 {
+	int end;
+
+	end = ft_strlen(line);
+	line[end - 1] = '\0';
+	while (end >= 2 && (line[end - 2] == ' '))
+	{
+		line[end - 2] = '\0';
+		end--;
+	}
+	line[end - 1] = '\n';
 	if (cub->input->count != 6)
 		ft_exit("Error\n-----> not all arguments are in place", 3);
 	if (*nl_flag == 0 && is_empty(line))
