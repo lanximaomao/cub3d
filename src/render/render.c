@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/19 13:23:48 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/20 11:22:27 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	pixel_color(t_cub *cub3d, int x, int y, unsigned long color)
 			&bits_per_pixel, &line_length, &endian);
 	dst = cub3d->img->addr + (y * line_length + x * (bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+	// printf("dst :%s\n\n",dst);
+	// printf("cub3d->img->addr :%s\n",cub3d->img->addr);
 }
 
 static	void	draw_nose(t_cub *cub3d)
@@ -73,6 +75,7 @@ void	render(t_cub *cub3d)
 	draw_player2d(cub3d);
 	draw_nose(cub3d);
 	calculate_rays(cub3d);
+	init_tex(cub3d);
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
 		cub3d->img->img_ptr, 0, 0);
 }

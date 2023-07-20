@@ -6,7 +6,7 @@
 /*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/19 13:32:20 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/20 13:44:57 by asarikha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,41 @@ void	draw_sky_floor(t_cub *cub3d, t_position	t1, t_position	t2)
 	return ;
 }
 
+void	new_tex(t_cub *cub3d, t_tex *tex, char *file, char *type)
+{
+	tex->tex_ptr = mlx_xpm_file_to_image(cub3d->mlx_ptr, file,
+			&(tex->width), &(tex->height));
+	if (!tex->tex_ptr)
+		clean_exit(message("MLX: error copenning xpm file.", "", 1), cub3d);
+	tex->tex_data
+		= (int *)mlx_get_data_addr(tex->tex_ptr, &(tex->bpp),
+			&(tex->size_line), &(tex->endian));
+	if (!tex->tex_data)
+		clean_exit(message("MLX: error getting data address.", "", 1), cub3d);
+		tex->type = type;
+
+}
+
+void	init_tex(t_cub *cub3d)
+{
+	cub3d->tex_e = ft_calloc(sizeof(t_tex), 1);
+	if (!(cub3d->tex_e))
+		end_cub3d(cub3d);
+	cub3d->tex_w = ft_calloc(sizeof(t_tex), 1);
+	if (!(cub3d->tex_w))
+		end_cub3d(cub3d);
+	cub3d->tex_n = ft_calloc(sizeof(t_tex), 1);
+	if (!(cub3d->tex_n))
+		end_cub3d(cub3d);
+	cub3d->tex_s = ft_calloc(sizeof(t_tex), 1);
+	if (!(cub3d->tex_s))
+		end_cub3d(cub3d);
+	new_tex(cub3d, cub3d->tex_e, cub3d->input->t_east, "EA");
+	new_tex(cub3d, cub3d->tex_w, cub3d->input->t_east, "WE");
+	new_tex(cub3d, cub3d->tex_n, cub3d->input->t_east, "NO");
+	new_tex(cub3d, cub3d->tex_s, cub3d->input->t_east, "SO");
+}
+
 void	draw_walls(t_cub *cub3d)
 {
 	t_position	t1;
@@ -71,6 +106,7 @@ void	draw_walls(t_cub *cub3d)
 			&& t1.y_p < GRID_P * cub3d->input->map->size_y)
 			t1.y_p = GRID_P * cub3d->input->map->size_y;
 		bresenham_line (t1, t2, cub3d, YELLOW);
+		//put_texture_to_wall(cub3d)
 		t1.x_p++;
 		t2.x_p++;
 	}

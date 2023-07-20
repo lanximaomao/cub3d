@@ -125,6 +125,19 @@ typedef struct s_img
 	char	*addr;
 }			t_img;
 
+typedef struct s_tex
+{
+	void	*tex_ptr;
+	int		*tex_data;
+	int		size_line;
+	int		bpp;
+	int		endian;
+	int		width;
+	int		height;
+	char	*type;
+}		t_tex;
+
+
 typedef struct s_cub
 {
 	void	*mlx_ptr;
@@ -133,13 +146,16 @@ typedef struct s_cub
 	t_img	*img;
 	t_vars	*var;
 	t_keys	*key;
+	t_tex	*tex_s;
+	t_tex	*tex_e;
+	t_tex	*tex_w;
+	t_tex	*tex_n;
 }			t_cub;
 
 //parsing-> validation -> raycasting -> possible features
 int		validate(void);
 void	render(t_cub *cub3d);
 int		end_cub3d(t_cub *cub3d);
-int		mouse_event(int keycode, int x, int y, t_cub *cub3d);
 int		key_event(int keycode, t_cub *cub3d);
 void	draw_map2d(t_cub *cub3d);
 void	draw_player2d(t_cub *cub3d);
@@ -154,5 +170,6 @@ void	draw_ray(t_cub *cub3d);
 void	draw_walls(t_cub *cub3d);
 int		key_press(int keycode, t_cub *cub3d);
 int		key_release(int keycode, t_cub *cub3d);
+void	init_tex(t_cub *cub3d);
 
 #endif
