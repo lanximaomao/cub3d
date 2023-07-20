@@ -1,19 +1,4 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2023/07/19 13:59:02 by asarikha         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-
-
 #include "cub3D.h"
-#include "parser.h"
 
 void	hook_and_loop(t_cub *cub3d)
 {
@@ -35,8 +20,8 @@ void	clean_init_cub3d(t_cub *cub3d)
 	cub3d->mlx_ptr = mlx_init();
 	if (!cub3d->mlx_ptr)
 		clean_exit(message("MLX: error connecting to mlx.", "", 1), cub3d);
-	cub3d->win_ptr = mlx_new_window(cub3d->mlx_ptr, WIN_SIZE_X,
-			WIN_SIZE_Y, "cub3d");
+	cub3d->win_ptr = mlx_new_window(cub3d->mlx_ptr, WIN_SIZE_X, WIN_SIZE_Y,
+			"cub3d");
 	if (!cub3d->win_ptr)
 		clean_exit(message("MLX: error creating window.", "", 1), cub3d);
 	cub3d->img->img_ptr = mlx_new_image(cub3d->mlx_ptr, WIN_SIZE_X, WIN_SIZE_Y);
@@ -50,26 +35,20 @@ int	main(int argc, char **argv)
 	int		fd;
 
 	if (argc != 2)
-	{
-		printf("wrong number of arguments.\n");
-		return (1);
-	}
+		ft_exit("Error\n-----> wrong number of arguments", 1);
+	if (valid_filetype(argv[1]) == -1)
+		ft_exit("Error\n-----> wrong type of file", 3);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-	{
-		printf("cannot open file.\n");
-		return (1);
-	}
-	if (parser(fd, &cub) == -1)
-	{
-		printf("Error\n");
-		return (-1);
-	}
+		ft_exit("Error: cannot open file", 1);
+	parser(fd, &cub);
 	close(fd);
-
-	clean_init_cub3d(&cub);
-	//validater(&cub);
-	render(&cub);
-	hook_and_loop(&cub);
+	display_map("map", cub.input->map->matrix);
+	display_texture(cub.input);
+	display_color(cub.input);
+	free_parsing(&cub);
+	//clean_init_cub3d(&cub);
+	//render(&cub);
+	//hook_and_loop(&cub);
 	return (0);
 }

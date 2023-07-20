@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#              #
-#    Updated: 2023/07/17 11:22:34 by asarikha         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
 ### COLOURS ###
 
@@ -36,11 +25,25 @@ FILES = main\
 	mini_map\
 	ray_calculate\
 	event\
+	wall\
 	parser\
 	utils\
+	free_utils\
 	line\
-	walls\
-	key_event
+	display\
+	init\
+	get_color\
+	get_map \
+	get_matrix\
+	get_back\
+	get_direction\
+	get_texture\
+	validator\
+	flood_fill\
+	is_inland\
+	valid_char\
+	valid_filetype\
+	valid_utils
 
 
 
