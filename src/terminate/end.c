@@ -4,14 +4,6 @@ void	clean_exit(int exit_code, t_cub *cub3d)
 {
 	if (!cub3d)
 		exit(exit_code);
-	if (cub3d->tex_e->img)
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_e->img);
-	if (cub3d->tex_s->img)
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_s->img);
-	if (cub3d->tex_n->img)
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_n->img);
-	if (cub3d->tex_w->img)
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_w->img);
 	if (cub3d->img->img_ptr && cub3d->win_ptr && cub3d->mlx_ptr)
 	{
 		mlx_destroy_image(cub3d->mlx_ptr, cub3d->img->img_ptr);
