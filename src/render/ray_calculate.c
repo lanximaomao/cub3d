@@ -94,6 +94,9 @@ void	horizontal(t_cub *cub3d)
 
 void	calculate_rays(t_cub *cub3d)
 {
+	// float	dis_v;
+	// float	dis_h;
+
 	cub3d->var->r = -1;
 	cub3d->var->ra = fix_ang(cub3d->var->pa + 30);
 	while (++(cub3d->var->r) < 960)
@@ -109,8 +112,19 @@ void	calculate_rays(t_cub *cub3d)
 			cub3d->var->rx = cub3d->var->vx;
 			cub3d->var->ry = cub3d->var->vy;
 			cub3d->var->dis_h = cub3d->var->dis_v;
+			if (cub3d->var->ra < 90 || (cub3d->var->ra < 270 && cub3d->var->ra > 360))
+				cub3d->var->dir = 1; //west
+			else if (cub3d->var->ra > 90 && cub3d->var->ra < 270)
+				cub3d->var->dir = 2; //east
 		}
-		//printf("dis %f\n",cub3d->var->dis_h);
+		else
+		{
+			if (cub3d->var->ra < 180)
+				cub3d->var->dir = 3; //south
+			else
+				cub3d->var->dir = 4; //north
+		}
+		//printf("%d\n",cub3d->var->dir);
 		draw_ray(cub3d);
 		draw_walls(cub3d);
 		cub3d->var->ra = fix_ang(cub3d->var->ra - 0.0625);

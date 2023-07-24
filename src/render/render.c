@@ -60,7 +60,7 @@ void	draw_tex(t_cub	*cub)
 {
 	int i = -1;
 	int j = -1;
-	//int	k = 0;
+
 
 	printf("%d %d\n",cub->tex_e->height,cub->tex_e->width);
 
@@ -70,7 +70,6 @@ void	draw_tex(t_cub	*cub)
 		while(++j < cub->tex_e->width)
 		{
 			pixel_color (cub,  i + 2000, j , cub->tex_e->matrix[i % cub->tex_e->height][j]);
-			//pixel_color (cub,  i + 1 + 2000 , j , cub->tex_e->matrix[i % cub->tex_e->height][j]);
 		}
 
 	}

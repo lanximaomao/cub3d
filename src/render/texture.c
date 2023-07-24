@@ -12,14 +12,12 @@ void	fill_tex_matrix(t_tex *tex)
 		x = 0;
 		while (x < tex->width)
 		{
-			tex->matrix[y][x] = *(unsigned int*)(tex->img->addr +  (tex->line_length * y) + (x * (tex->bpp / 8)));
-			//tex->matrix[y][x] = (int)tex->img->addr[tex->width * y + x];
+			tex->matrix[y][x] = *(unsigned int *)(tex->img->addr
+					+ (tex->line_length * y) + (x * (tex->bpp / 8)));
 			x++;
 		}
-		printf("\n");
 		y++;
 	}
-	printf("\n\n\n");
 }
 
 void	get_tex(t_cub *cub3d, t_tex *tex, char *file, char *type)

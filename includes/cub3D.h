@@ -75,6 +75,7 @@ typedef struct s_vars
 	int		ca;
 	float	line_h;
 	float	line_off;
+	int		dir;
 }			t_vars;
 
 typedef struct s_color_rgb
