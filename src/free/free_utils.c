@@ -32,20 +32,20 @@ void	ft_exit(char *msg, int exit_code)
 	exit(exit_code);
 }
 
-static void	free_double_pointer(void **pointer, int size)
-{
-	int		i;
+// static void	free_double_pointer(void **pointer, int size)
+// {
+// 	int		i;
 
-	i = 0;
-	if (!pointer)
-		return ;
-	while (i <= size)
-	{
-		free(pointer[i]);
-		i++;
-	}
-	free(pointer);
-}
+// 	i = 0;
+// 	if (!pointer)
+// 		return ;
+// 	while (i <= size)
+// 	{
+// 		free(pointer[i]);
+// 		i++;
+// 	}
+// 	free(pointer);
+// }
 
 int	free_parsing(t_cub *cub)
 {
@@ -62,18 +62,14 @@ int	free_parsing(t_cub *cub)
 	free(cub->var);
 	free(cub->input);
 	free(cub->key);
-	//free(cub->tex_e);
-	//free(cub->tex_w);
-	//free(cub->tex_s);
-	//free(cub->tex_n);
-	//free(cub->tex_e->img);
-	//free(cub->tex_w->img);
-	//free(cub->tex_s->img);
-	//free(cub->tex_n->img);
 	free(cub->tex_e->type);
 	free(cub->tex_w->type);
 	free(cub->tex_s->type);
 	free(cub->tex_n->type);
-	free_double_pointer((void **)cub->tex_e->matrix, cub->tex_e->height);
+	//free_double_pointer((void **)cub->tex_e->matrix, cub->tex_e->height);
+	free(cub->tex_e);
+	free(cub->tex_w);
+	free(cub->tex_s);
+	free(cub->tex_n);
 	return (1);
 }

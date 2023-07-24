@@ -1,5 +1,27 @@
 #include "cub3D.h"
 
+void	fill_tex_matrix(t_tex *tex)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	x = 0;
+	while (y < tex->height)
+	{
+		x = 0;
+		while (x < tex->width)
+		{
+			tex->matrix[y][x] = (int)tex->img->addr[tex->width * y + x];
+			//printf(" %lu" ,calculate_hex_color(tex->matrix[y][x]));
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
+	printf("\n\n\n");
+}
+
 void	get_tex(t_cub *cub3d, t_tex *tex, char *file, char *type)
 {
 	int	i;
@@ -7,7 +29,7 @@ void	get_tex(t_cub *cub3d, t_tex *tex, char *file, char *type)
 	tex->img->img_ptr = mlx_xpm_file_to_image(cub3d->mlx_ptr, file,
 			&(tex->width), &(tex->height));
 	if (!tex->img->img_ptr)
-		clean_exit(message("MLX: error copenning xpm file.", "", 1), cub3d);
+		clean_exit(message("MLX: error openning xpm file.", "", 1), cub3d);
 	tex->img->addr
 		= mlx_get_data_addr(tex->img->img_ptr, &(tex->bpp),
 			&(tex->line_length), &(tex->endian));
@@ -20,32 +42,15 @@ void	get_tex(t_cub *cub3d, t_tex *tex, char *file, char *type)
 	i = -1;
 	while (++i < tex->height)
 	{
-		tex->matrix[i] = ft_calloc(sizeof(int *) * tex->width, 1);
+		tex->matrix[i] = ft_calloc(sizeof(int) * tex->width, 1);
 		if (!tex->matrix[i])
 			end_cub3d(cub3d);
 
 	}
-	fill_tex_matrix(cub3d, tex);
+	fill_tex_matrix(tex);
 }
 
-void	fill_the_matrix(t_cub *cub3d, t_tex *tex)
-{
-	int	y;
-	int	x;
 
-	y = 0;
-	x = 0;
-	while (y < tex->height)
-	{
-		x = 0;
-		while (x < tex->width)
-		{
-			tex->matrix[y][x] = tex->img->addr[tex->width * y + x];
-			x++;
-		}
-		y++;
-	}
-}
 
 void	alocate_tex(t_cub *cub3d)
 {

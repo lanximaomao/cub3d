@@ -14,7 +14,7 @@
 # include "color.h"
 
 # ifndef WIN_SIZE_X
-#  define WIN_SIZE_X 1950
+#  define WIN_SIZE_X 2150
 # endif
 
 # ifndef WIN_SIZE_Y
@@ -159,23 +159,25 @@ typedef struct s_cub
 typedef void (*FunctionPointer)(t_cub*);
 
 //parsing-> validation -> raycasting -> possible features
-void	render(t_cub *cub3d);
-int		end_cub3d(t_cub *cub3d);
-int		key_event(int keycode, t_cub *cub3d);
-void	draw_map2d(t_cub *cub3d);
-void	draw_player2d(t_cub *cub3d);
-void	calculate_rays(t_cub *cub3d);
-void	pixel_color(t_cub *cub3d, int x, int y, unsigned long color);
-void	clean_exit(int exit_code, t_cub *cub3d);
-int		message(char *str1, char *str2, int errno);
-float	deg_to_rad(float a);
-float	fix_ang(float a);
-int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub, int color);
-void	draw_ray(t_cub *cub3d);
-void	draw_walls(t_cub *cub3d);
-int		key_press(int keycode, t_cub *cub3d);
-int		key_release(int keycode, t_cub *cub3d);
-void	init_tex(t_cub *cub3d);
+void			render(t_cub *cub3d);
+int				end_cub3d(t_cub *cub3d);
+int				key_event(int keycode, t_cub *cub3d);
+void			draw_map2d(t_cub *cub3d);
+void			draw_player2d(t_cub *cub3d);
+void			calculate_rays(t_cub *cub3d);
+void			pixel_color(t_cub *cub3d, int x, int y, unsigned long color);
+void			clean_exit(int exit_code, t_cub *cub3d);
+int				message(char *str1, char *str2, int errno);
+float			deg_to_rad(float a);
+float			fix_ang(float a);
+int				bresenham_line(t_position pos0, t_position pos1, t_cub *cub
+					, int color);
+void			draw_ray(t_cub *cub3d);
+void			draw_walls(t_cub *cub3d);
+int				key_press(int keycode, t_cub *cub3d);
+int				key_release(int keycode, t_cub *cub3d);
+void			init_tex(t_cub *cub3d);
+unsigned long	calculate_hex_color(t_color_rgb *rgb);
 
 // line
 int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub, int color);
