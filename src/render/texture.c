@@ -12,8 +12,8 @@ void	fill_tex_matrix(t_tex *tex)
 		x = 0;
 		while (x < tex->width)
 		{
-			tex->matrix[y][x] = (int)tex->img->addr[tex->width * y + x];
-			//printf(" %lu" ,calculate_hex_color(tex->matrix[y][x]));
+			tex->matrix[y][x] = *(unsigned int*)(tex->img->addr +  (tex->line_length * y) + (x * (tex->bpp / 8)));
+			//tex->matrix[y][x] = (int)tex->img->addr[tex->width * y + x];
 			x++;
 		}
 		printf("\n");

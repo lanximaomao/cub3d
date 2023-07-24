@@ -11,6 +11,7 @@ void	pixel_color(t_cub *cub3d, int x, int y, unsigned long color)
 			&bits_per_pixel, &line_length, &endian);
 	dst = cub3d->img->addr + (y * line_length + x * (bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+	
 	// printf("dst :%s\n\n",dst);
 	// printf("cub3d->img->addr :%s\n",cub3d->img->addr);
 }
@@ -59,18 +60,19 @@ void	draw_tex(t_cub	*cub)
 {
 	int i = -1;
 	int j = -1;
+	//int	k = 0;
 
 	printf("%d %d\n",cub->tex_e->height,cub->tex_e->width);
+
 	while (++i < cub->tex_e->height)
 	{
 		j = -1;
 		while(++j < cub->tex_e->width)
 		{
-
-			printf("%d ", cub->tex_e->matrix[i][j]);
-			//pixel_color (cub,  i + 2000, j , calculate_hex_color(cub->tex_e->matrix[i][j]));
+			pixel_color (cub,  i + 2000, j , cub->tex_e->matrix[i % cub->tex_e->height][j]);
+			//pixel_color (cub,  i + 1 + 2000 , j , cub->tex_e->matrix[i % cub->tex_e->height][j]);
 		}
-		printf("\n");
+
 	}
 }
 

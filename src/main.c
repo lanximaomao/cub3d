@@ -49,7 +49,6 @@ int	main(int argc, char **argv)
 	display_color(cub.input);
 	clean_init_cub3d(&cub);
 	render(&cub);
-	
 	hook_and_loop(&cub);
 	return (0);
 }
