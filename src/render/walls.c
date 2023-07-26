@@ -53,32 +53,49 @@ void	put_textured_wall(t_position	t1, t_position	t2, t_cub *cub3d)
 	tex = texture_(cub3d);
 	cub3d->var->wall->ty = cub3d->var->wall->ty_off * cub3d->var->wall->ty_step;
 	if (cub3d->var->dir == 'S' || cub3d->var->dir == 'N')
-	{
 		cub3d->var->wall->tx = (int)(cub3d->var->rx * 4) % tex->width;
-		if (cub3d->var->ra > 180)
-		{
-			cub3d->var->wall->tx = tex->height - 1 - cub3d->var->wall->tx;
-		}
-	}
 	else
-	{
 		cub3d->var->wall->tx = (int)(cub3d->var->ry * 4) % tex->width;
-		if (cub3d->var->ra > 90 && cub3d->var->ra < 270)
-		{
-			cub3d->var->wall->tx = tex->height - 1 - cub3d->var->wall->tx;
-		}
-	}
-	printf("\n");
+	if (cub3d->var->ra > 90)
+		cub3d->var->wall->tx = tex->height - 1 - cub3d->var->wall->tx;
 	while (t1.y_p < t2.y_p)
 	{
-		pixel_color(cub3d, t1.x_p, t1.y_p,
-			tex->matrix[(int)cub3d->var->wall->ty]
-		[(int)cub3d->var->wall->tx]);
+		if (!(t1.x_p < GRID_P * cub3d->input->map->size_x && t1.y_p < GRID_P * cub3d->input->map->size_y))
+		{
+			pixel_color(cub3d, t1.x_p, t1.y_p,
+				tex->matrix[(int)cub3d->var->wall->ty][(int)cub3d->var->wall->tx]);
+		}
 		cub3d->var->wall->ty += cub3d->var->wall->ty_step;
 		t1.y_p++;
-		//printf(" ty : %f  tx :%f ",cub3d->var->wall->ty,cub3d->var->wall->tx);
 	}
 }
+
+//void put_texture_to_wall(t_position t1, t_position t2, t_cub* cub)
+//{
+
+//	double step_size;
+//	double		tex_index_row;
+//	double		tex_index_col;
+//	int		color;
+
+
+
+//	tex_index_col = 0;
+//	step_size = cub->tex_e->height/(t2.y_p - t1.x_p);
+//	//  fix row number
+//	tex_index_row = (int)cub->var->rx % cub->tex_e->height;
+
+//	while (t1.y_p <= t2.y_p) // for every pixel in this line
+//	{
+//		tex_index_col += step_size;
+//		{
+//			color = cub->tex_e->matrix[tex_index_row][cub->tex_e->height - 1 - tex_index_col]; 		//botton up
+//			pixel_color(cub, t1.x_p, t1.y_p, color);
+//			t1.y_p++;
+//		}
+//	}
+//}
+
 
 void	draw_walls(t_cub *cub3d)
 {
@@ -102,12 +119,12 @@ void	draw_walls(t_cub *cub3d)
 	t2.x_p = cub3d->var->r;
 	t2.y_p = cub3d->var->line_off + cub3d->var->line_h;
 	draw_sky_floor(cub3d, t1, t2);
-	if (t1.x_p < GRID_P * cub3d->input->map->size_x
-		&& t1.y_p < GRID_P * cub3d->input->map->size_y)
-		t1.y_p = GRID_P * cub3d->input->map->size_y;
-	if (t1.x_p < GRID_P * cub3d->input->map->size_x
-		&& t2.y_p < GRID_P * cub3d->input->map->size_y)
-		t2.y_p = t1.y_p;
+	//if (t1.x_p < GRID_P * cub3d->input->map->size_x
+	//	&& t1.y_p < GRID_P * cub3d->input->map->size_y)
+	//	t1.y_p = GRID_P * cub3d->input->map->size_y;
+	//if (t1.x_p < GRID_P * cub3d->input->map->size_x
+	//	&& t2.y_p < GRID_P * cub3d->input->map->size_y)
+	//	t2.y_p = t1.y_p;
 	//bresenham_line (t1, t2, cub3d, YELLOW);
 	put_textured_wall(t1, t2, cub3d);
 }

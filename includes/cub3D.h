@@ -82,7 +82,7 @@ typedef struct s_vars
 	float	pdy;
 	float	pa;
 	int		ca;
-	float	line_h;
+	int	line_h;
 	float	line_off;
 	int		dir;
 	t_wall	*wall;
