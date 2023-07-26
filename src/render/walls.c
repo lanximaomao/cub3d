@@ -62,8 +62,6 @@ void	put_textured_wall(t_position	t1, t_position	t2, t_cub *cub3d)
 	{
 		if (!(t1.x_p < GRID_P * cub3d->input->map->size_x && t1.y_p < GRID_P * cub3d->input->map->size_y))
 		{
-			//ft_putnbr_fd((int)cub3d->var->wall->ty, 1);
-			//ft_putnbr_fd((int)cub3d->var->wall->tx, 1);
 			pixel_color(cub3d, t1.x_p, t1.y_p,
 				tex->matrix[(int)cub3d->var->wall->ty][(int)cub3d->var->wall->tx]);
 		}
@@ -71,33 +69,6 @@ void	put_textured_wall(t_position	t1, t_position	t2, t_cub *cub3d)
 		t1.y_p++;
 	}
 }
-
-//void put_texture_to_wall(t_position t1, t_position t2, t_cub* cub)
-//{
-
-//	double step_size;
-//	double		tex_index_row;
-//	double		tex_index_col;
-//	int		color;
-
-
-
-//	tex_index_col = 0;
-//	step_size = cub->tex_e->height/(t2.y_p - t1.x_p);
-//	//  fix row number
-//	tex_index_row = (int)cub->var->rx % cub->tex_e->height;
-
-//	while (t1.y_p <= t2.y_p) // for every pixel in this line
-//	{
-//		tex_index_col += step_size;
-//		{
-//			color = cub->tex_e->matrix[tex_index_row][cub->tex_e->height - 1 - tex_index_col]; 		//botton up
-//			pixel_color(cub, t1.x_p, t1.y_p, color);
-//			t1.y_p++;
-//		}
-//	}
-//}
-
 
 void	draw_walls(t_cub *cub3d)
 {
@@ -112,7 +83,7 @@ void	draw_walls(t_cub *cub3d)
 	cub3d->var->wall->ty_off = 0;
 	if (cub3d->var->line_h > 1200)
 	{
-		cub3d->var->wall->ty_off = (cub3d->var->line_h - 1200) * 4;
+		//cub3d->var->wall->ty_off = (cub3d->var->line_h - 1200) * 4;
 		cub3d->var->line_h = 1200;
 	}
 	cub3d->var->line_off = 600 - (cub3d->var->line_h / 2);
@@ -121,12 +92,5 @@ void	draw_walls(t_cub *cub3d)
 	t2.x_p = cub3d->var->r;
 	t2.y_p = cub3d->var->line_off + cub3d->var->line_h;
 	draw_sky_floor(cub3d, t1, t2);
-	//if (t1.x_p < GRID_P * cub3d->input->map->size_x
-	//	&& t1.y_p < GRID_P * cub3d->input->map->size_y)
-	//	t1.y_p = GRID_P * cub3d->input->map->size_y;
-	//if (t1.x_p < GRID_P * cub3d->input->map->size_x
-	//	&& t2.y_p < GRID_P * cub3d->input->map->size_y)
-	//	t2.y_p = t1.y_p;
-	//bresenham_line (t1, t2, cub3d, YELLOW);
 	put_textured_wall(t1, t2, cub3d);
 }
