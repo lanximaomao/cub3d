@@ -58,10 +58,12 @@ void	put_textured_wall(t_position	t1, t_position	t2, t_cub *cub3d)
 		cub3d->var->wall->tx = (int)(cub3d->var->ry * 4) % tex->width;
 	if (cub3d->var->ra > 90)
 		cub3d->var->wall->tx = tex->height - 1 - cub3d->var->wall->tx;
-	while (t1.y_p < t2.y_p)
+	while (t1.y_p < t2.y_p && (int)cub3d->var->wall->ty  < tex->height)
 	{
 		if (!(t1.x_p < GRID_P * cub3d->input->map->size_x && t1.y_p < GRID_P * cub3d->input->map->size_y))
 		{
+			//ft_putnbr_fd((int)cub3d->var->wall->ty, 1);
+			//ft_putnbr_fd((int)cub3d->var->wall->tx, 1);
 			pixel_color(cub3d, t1.x_p, t1.y_p,
 				tex->matrix[(int)cub3d->var->wall->ty][(int)cub3d->var->wall->tx]);
 		}
