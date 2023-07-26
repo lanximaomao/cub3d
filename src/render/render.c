@@ -56,34 +56,34 @@ void	draw_background(t_cub *cub3d)
 	}
 }
 
-void	draw_tex(t_cub	*cub)
-{
-	int i = -1;
-	int j = -1;
+// void	draw_tex(t_cub	*cub)
+// {
+// 	int i = -1;
+// 	int j = -1;
 
 
-	printf("%d %d\n",cub->tex_e->height,cub->tex_e->width);
+// 	printf("%d %d\n",cub->tex_e->height,cub->tex_e->width);
 
-	while (++i < cub->tex_e->height)
-	{
-		j = -1;
-		while(++j < cub->tex_e->width)
-		{
-			pixel_color (cub,  i + 2000, j , cub->tex_e->matrix[i % cub->tex_e->height][j]);
-		}
+// 	while (++i < cub->tex_e->height)
+// 	{
+// 		j = -1;
+// 		while(++j < cub->tex_e->width)
+// 		{
+// 			pixel_color (cub,  i + 2000, j , cub->tex_e->matrix[i % cub->tex_e->height][j]);
+// 		}
 
-	}
-}
+// 	}
+// }
 
 void	render(t_cub *cub3d)
 {
 	mlx_clear_window(cub3d->mlx_ptr, cub3d->win_ptr);
-	//draw_background(cub3d);
+	draw_background(cub3d);
 	draw_map2d(cub3d);
 	draw_player2d(cub3d);
 	draw_nose(cub3d);
 	calculate_rays(cub3d);
-	draw_tex(cub3d);
+	//draw_tex(cub3d);
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
 		cub3d->img->img_ptr, 0, 0);
 }

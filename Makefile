@@ -8,7 +8,7 @@ COLOUR_END=\033[0m
 
 ### SET UP ###
 CC = cc
-CFLAGS =  -I$I #-Wall -Wextra -Werror -g 
+CFLAGS =  -I$I -Wall -Wextra -Werror -g 
 
 RM = /bin/rm -f
 RMDIR = /bin/rmdir -p

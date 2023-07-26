@@ -19,7 +19,10 @@ void	init_cub(t_cub *cub)
 		ft_exit("Error\n-----> malloc fail", 1);
 	cub->key = ft_calloc(sizeof(t_keys), 1);
 	if (!cub->key)
-		exit (1);
+		ft_exit("Error\n-----> malloc fail", 1);
+	cub->var->wall = ft_calloc(sizeof(t_wall), 1);
+	if (!cub->var->wall)
+		ft_exit("Error\n-----> malloc fail", 1);
 	init_input(cub->input);
 }
 

@@ -14,13 +14,14 @@
 # include "color.h"
 
 # ifndef WIN_SIZE_X
-#  define WIN_SIZE_X 2150
+#  define WIN_SIZE_X 1920
 # endif
 
 # ifndef WIN_SIZE_Y
 #  define WIN_SIZE_Y 1300
 # endif
 
+# define FOV 60.0
 # define ERROR 0
 # define SUCCESS 1
 
@@ -50,6 +51,14 @@ typedef struct s_line
 	int		e2;
 }			t_line;
 
+typedef struct s_wall
+{
+	float	ty;
+	float	ty_step;
+	float	ty_off;
+	float	tx;
+}		t_wall;
+
 typedef struct s_vars
 {
 	int		dof;
@@ -76,14 +85,15 @@ typedef struct s_vars
 	float	line_h;
 	float	line_off;
 	int		dir;
+	t_wall	*wall;
 }			t_vars;
 
 typedef struct s_color_rgb
 {
-	int r;
-	int g;
-	int b;
-} 	t_color_rgb;
+	int	r;
+	int	g;
+	int	b;
+}		t_color_rgb;
 
 typedef struct s_input
 {
