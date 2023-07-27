@@ -1,18 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/27 11:36:49 by asarikha          #+#    #+#             */
+/*   Updated: 2023/07/27 11:41:21 by asarikha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
-/*
-** define error code:
-** 1 for malloc fail, 2 for wrong color,
-** 3 for other validation error, 4 for function fail
-**
-** check for memory leak
-** check for unclosed maps
-** check xpm path and permission
-*/
-
-/*
-** if map has not started, first skip space, then return upon nl
-*/
 static int	line_processor(t_cub *cub, char *line, int *map_start, int *nl_flag)
 {
 	int	i;

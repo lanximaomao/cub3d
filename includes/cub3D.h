@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/21 11:31:11 by asarikha          #+#    #+#             */
+/*   Updated: 2023/07/27 11:44:39 by asarikha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -148,7 +159,6 @@ typedef struct s_tex
 	char	*type;
 }		t_tex;
 
-
 typedef struct s_cub
 {
 	void	*mlx_ptr;
@@ -162,7 +172,6 @@ typedef struct s_cub
 	t_tex	*tex_w;
 	t_tex	*tex_n;
 }			t_cub;
-
 
 //parsing-> validation -> raycasting -> possible features
 void			render(t_cub *cub3d);
@@ -192,7 +201,6 @@ int				bresenham_line(t_position pos0, t_position pos1,
 
 // parser.c
 int				parser(int fd, t_cub *cub);
-
 
 // init.c
 void			init_cub(t_cub *cub);
@@ -233,8 +241,8 @@ int				get_direction(t_cub *cub, int *i, int *j);
 int				valid_map(t_cub *cub);
 int				valid_char(char *str);
 int				is_closed(t_cub *cub, int row, int col);
-int				is_legal_boundary (t_cub *cub, char c, char direction);
-int				find_char (t_cub *cub, int *row, int *col, char c);
+int				is_legal_boundary(t_cub *cub, char c, char direction);
+int				find_char(t_cub *cub, int *row, int *col, char c);
 void			flood_fill(t_cub *cub, int row, int col, char old);
 int				find_island(t_cub *cub, int *i, int *j, int *flag);
 int				is_inland(t_cub *cub, int row, int col, char c);
