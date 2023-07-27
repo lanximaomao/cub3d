@@ -82,7 +82,7 @@ typedef struct s_vars
 	float	pdy;
 	float	pa;
 	int		ca;
-	int	line_h;
+	int		line_h;
 	float	line_off;
 	int		dir;
 	t_wall	*wall;
@@ -181,69 +181,71 @@ void			clean_exit(int exit_code, t_cub *cub3d);
 int				message(char *str1, char *str2, int errno);
 float			deg_to_rad(float a);
 float			fix_ang(float a);
-int				bresenham_line(t_position pos0, t_position pos1, t_cub *cub
-					, int color);
+int				bresenham_line(t_position pos0, t_position pos1, t_cub *cub,
+					int color);
 void			draw_ray(t_cub *cub3d);
 void			draw_walls(t_cub *cub3d);
 int				key_press(int keycode, t_cub *cub3d);
 int				key_release(int keycode, t_cub *cub3d);
 void			init_tex(t_cub *cub3d);
 unsigned long	calculate_hex_color(t_color_rgb *rgb);
+void			free_tex(t_cub *cub);
 
 // line
-int		bresenham_line(t_position pos0, t_position pos1, t_cub *cub, int color);
+int				bresenham_line(t_position pos0, t_position pos1,
+					t_cub *cub, int color);
 
 // parser.c
-int parser(int fd, t_cub *cub);
+int				parser(int fd, t_cub *cub);
 
 
 // init.c
-void init_cub(t_cub *cub);
-void init_input(t_input *input);
-void init_map(t_map *map);
+void			init_cub(t_cub *cub);
+void			init_input(t_input *input);
+void			init_map(t_map *map);
 
 // display.c
-void	display_map(char* msg, char **matrix);
-void	display_texture(t_input *input);
-void	display_color(t_input *input);
+void			display_map(char *msg, char **matrix);
+void			display_texture(t_input *input);
+void			display_color(t_input *input);
 
 // utils
-int	free_str(char *str);
-int	free_char(char **input);
-int free_parsing(t_cub *cub);
-void	ft_exit(char* msg, int exit_code);
-void	display_color(t_input *input);
-int		ft_atoi_isnum(const char *str);
-int		how_many(char* str, char c);
-int		valid_filetype(char *str);
-int		array_size(char **str);
-int		loop(t_cub *cub, FunctionPointer member);
+int				free_str(char *str);
+int				free_char(char **input);
+int				free_everything(t_cub *cub);
+void			ft_exit(char *msg, int exit_code);
+void			display_color(t_input *input);
+int				ft_atoi_isnum(const char *str);
+int				how_many(char *str, char c);
+int				valid_filetype(char *str);
+int				array_size(char **str);
+int				loop(t_cub *cub, FunctionPointer member);
 
 // get color
-int get_color(t_cub *cub, char* line, int flag);
+int				get_color(t_cub *cub, char *line, int flag);
 
 // get map
-int get_matrix(t_cub *cub);
-int matrix_revert(t_cub *cub);
-int get_map(t_cub *cub, char* line, int *nl_flag);
+int				get_matrix(t_cub *cub);
+int				matrix_revert(t_cub *cub);
+int				get_map(t_cub *cub, char *line, int *nl_flag);
 
 // get texture
-int	get_texture(t_cub *cub, char *line, int flag);
+int				get_texture(t_cub *cub, char *line, int flag);
 
 // get_direction
-int get_direction(t_cub *cub, int *i, int *j);
+int				get_direction(t_cub *cub, int *i, int *j);
 
 // validator
-int valid_map(t_cub *cub);
-int valid_char(char* str);
-int	is_closed(t_cub *cub, int row, int col);
-int is_legal_boundary (t_cub *cub, char c, char direction);
-int find_char (t_cub *cub, int *row, int *col, char c);
-void flood_fill(t_cub *cub, int row, int col, char old);
-int find_island(t_cub *cub, int *i, int *j, int *flag);
-int is_inland(t_cub *cub, int row, int col, char c);
-int valid_filetype(char *str);
-char which_dir(t_cub *cub);
-int	find_zero(t_cub *cub, int *row, int *col, char c);
+int				valid_map(t_cub *cub);
+int				valid_char(char *str);
+int				is_closed(t_cub *cub, int row, int col);
+int				is_legal_boundary (t_cub *cub, char c, char direction);
+int				find_char (t_cub *cub, int *row, int *col, char c);
+void			flood_fill(t_cub *cub, int row, int col, char old);
+int				find_island(t_cub *cub, int *i, int *j, int *flag);
+int				is_inland(t_cub *cub, int row, int col, char c);
+int				valid_filetype(char *str);
+char			which_dir(t_cub *cub);
+int				find_zero(t_cub *cub, int *row, int *col, char c);
 
 #endif

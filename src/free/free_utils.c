@@ -32,22 +32,7 @@ void	ft_exit(char *msg, int exit_code)
 	exit(exit_code);
 }
 
-// static void	free_double_pointer(void **pointer, int size)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	if (!pointer)
-// 		return ;
-// 	while (i <= size)
-// 	{
-// 		free(pointer[i]);
-// 		i++;
-// 	}
-// 	free(pointer);
-// }
-
-int	free_parsing(t_cub *cub)
+int	free_everything(t_cub *cub)
 {
 	free_str(cub->input->map->map_1d);
 	free_char(cub->input->map->matrix);
@@ -59,17 +44,10 @@ int	free_parsing(t_cub *cub)
 	free_str(cub->input->t_north);
 	free(cub->input->map);
 	free(cub->input->position);
+	free(cub->var->wall);
 	free(cub->var);
 	free(cub->input);
 	free(cub->key);
-	free(cub->tex_e->type);
-	free(cub->tex_w->type);
-	free(cub->tex_s->type);
-	free(cub->tex_n->type);
-	//free_double_pointer((void **)cub->tex_e->matrix, cub->tex_e->height);
-	free(cub->tex_e);
-	free(cub->tex_w);
-	free(cub->tex_s);
-	free(cub->tex_n);
+	free_tex(cub);
 	return (1);
 }

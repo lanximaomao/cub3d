@@ -37,10 +37,41 @@ int	message(char *str1, char *str2, int errno)
 	return (errno);
 }
 
+static void	free_tex_matrix(int **matrix, int height, int width)
+{
+	int		i;
+
+	i = 0;
+	if (!matrix)
+		return ;
+	while (i < width)
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+}
+
+void	free_tex(t_cub *cub)
+{
+	free(cub->tex_e->type);
+	free(cub->tex_w->type);
+	free(cub->tex_s->type);
+	free(cub->tex_n->type);
+	free_tex_matrix(cub->tex_e->matrix, cub->tex_e->height, cub->tex_e->width);
+	free_tex_matrix(cub->tex_w->matrix, cub->tex_w->height, cub->tex_w->width);
+	free_tex_matrix(cub->tex_s->matrix, cub->tex_s->height, cub->tex_s->width);
+	free_tex_matrix(cub->tex_n->matrix, cub->tex_n->height, cub->tex_n->width);
+	free(cub->tex_e);
+	free(cub->tex_w);
+	free(cub->tex_s);
+	free(cub->tex_n);
+}
+
 int	end_cub3d(t_cub *cub3d)
 {
 	//free_everything and close fds
-	free_parsing(cub3d);
+	free_everything(cub3d);
 	clean_exit(0, cub3d);
 	return (0);
 }

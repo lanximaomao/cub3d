@@ -83,7 +83,7 @@ void	draw_walls(t_cub *cub3d)
 	cub3d->var->wall->ty_off = 0;
 	if (cub3d->var->line_h > 1200)
 	{
-		//cub3d->var->wall->ty_off = (cub3d->var->line_h - 1200) * 4;
+		//cub3d->var->wall->ty_off = (cub3d->var->line_h - 1250) * 4;
 		cub3d->var->line_h = 1200;
 	}
 	cub3d->var->line_off = 600 - (cub3d->var->line_h / 2);
