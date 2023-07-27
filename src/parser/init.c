@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:36:46 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 13:04:42 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/27 19:24:04 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,14 @@ void	init_cub(t_cub *cub)
 	cub->input->position = malloc(sizeof(t_position) * 1);
 	if (!cub->input->position)
 		ft_exit("Error\n-----> malloc fail", 1);
-	cub->key = ft_calloc(sizeof(t_keys), 1);
+	cub->key = malloc(sizeof(t_keys) * 1);
 	if (!cub->key)
 		ft_exit("Error\n-----> malloc fail", 1);
-	cub->var->wall = ft_calloc(sizeof(t_wall), 1);
+	cub->var->wall = malloc(sizeof(t_wall) * 1);
 	if (!cub->var->wall)
 		ft_exit("Error\n-----> malloc fail", 1);
 	init_input(cub->input);
+	init_tex(cub);
 }
 
 void	init_input(t_input *input)
@@ -61,4 +62,32 @@ void	init_map(t_map *map)
 	map->map_1d = ft_strdup("");
 	if (!map->map_1d)
 		exit(1);
+}
+
+void	init_tex(t_cub *cub)
+{
+	cub->tex_e = malloc(sizeof(t_tex));
+	if (!cub->tex_e)
+		ft_exit("Error\n-----> malloc fail", 1);
+	cub->tex_w = malloc(sizeof(t_tex));
+	if (!cub->tex_w)
+		ft_exit("Error\n-----> malloc fail", 1);
+	cub->tex_n = malloc(sizeof(t_tex));
+	if (!cub->tex_n)
+		ft_exit("Error\n-----> malloc fail", 1);
+	cub->tex_s = malloc(sizeof(t_tex));
+	if (!cub->tex_s)
+		ft_exit("Error\n-----> malloc fail", 1);
+	cub->tex_e->img = malloc(sizeof(t_img));
+	if (!cub->tex_e->img)
+		ft_exit("Error\n-----> malloc fail", 1);
+	cub->tex_w->img = malloc(sizeof(t_img));
+	if (!cub->tex_w->img)
+		ft_exit("Error\n-----> malloc fail", 1);
+	cub->tex_n->img = malloc(sizeof(t_img));
+	if (!cub->tex_n->img)
+		ft_exit("Error\n-----> malloc fail", 1);
+	cub->tex_s->img = malloc(sizeof(t_img));
+	if (!cub->tex_s->img)
+		ft_exit("Error\n-----> malloc fail", 1);
 }

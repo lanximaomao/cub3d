@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:36:36 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 13:04:34 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/27 18:59:04 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ static void	matrix_assignment(t_cub *cub, char **tmp_matrix)
 		}
 	}
 	free_char(tmp_matrix);
-	valid_map(cub);
-	matrix_revert(cub);
 }
 
 static int	get_map_row(char *str)
@@ -107,7 +105,7 @@ int	get_matrix(t_cub *cub)
 	tmp_matrix = ft_split(cub->input->map->map_1d, '\n');
 	if (!tmp_matrix)
 		ft_exit("malloc fail", 1);
-	cub->input->map->matrix = ft_calloc(sizeof(char *),
+	cub->input->map->matrix = malloc(sizeof(char *) * 
 			cub->input->map->size_y + 1);
 	cub->input->map->matrix[cub->input->map->size_y] = NULL;
 	while (++i < cub->input->map->size_y)

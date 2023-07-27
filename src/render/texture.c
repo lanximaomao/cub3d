@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 13:05:06 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/27 20:14:58 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,101 +32,42 @@ void	fill_tex_matrix(t_tex *tex)
 	}
 }
 
-void	get_tex(t_cub *cub3d, t_tex *tex, char *file, char *type)
+int	get_tex_data(t_cub *cub, t_tex *tex, char *file, char *type)
 {
 	int	i;
 
-	tex->img->img_ptr = mlx_xpm_file_to_image(cub3d->mlx_ptr, file,
+	tex->type = NULL;
+	tex->matrix = NULL;
+	tex->img->img_ptr = mlx_xpm_file_to_image(cub->mlx_ptr, file,
 			&(tex->width), &(tex->height));
 	if (!tex->img->img_ptr)
-		clean_exit(message("MLX: error openning xpm file.", "", 1), cub3d);
+	{
+		message("cann't open texture file\n", 3);
+		return (0);
+	}
 	tex->img->addr
 		= mlx_get_data_addr(tex->img->img_ptr, &(tex->bpp),
 			&(tex->line_length), &(tex->endian));
 	if (!tex->img->addr)
-		clean_exit(message("MLX: error getting data address.", "", 1), cub3d);
+	{
+		message("cann't get texture data\n", 3);
+		return (0);
+	}
 	tex->type = ft_strdup(type);
-	tex->matrix = ft_calloc(sizeof(int *) * tex->height, 1);
+	tex->matrix = malloc(sizeof(int *) * tex->height);
 	if (!tex->matrix)
-		end_cub3d(cub3d);
+	{
+		message("malloc fail\n", 1);
+		return (0);
+	}
 	i = -1;
 	while (++i < tex->height)
 	{
-		tex->matrix[i] = ft_calloc(sizeof(int) * tex->width, 1);
+		tex->matrix[i] = malloc(sizeof(int) * tex->width);
 		if (!tex->matrix[i])
-			end_cub3d(cub3d);
+			return (0);
 	}
 	fill_tex_matrix(tex);
+	return (1);
 }
 
-void	alocate_tex(t_cub *cub3d)
-{
-	cub3d->tex_e = ft_calloc(sizeof(t_tex), 1);
-	if (!(cub3d->tex_e))
-		end_cub3d(cub3d);
-	cub3d->tex_w = ft_calloc(sizeof(t_tex), 1);
-	if (!(cub3d->tex_w))
-		end_cub3d(cub3d);
-	cub3d->tex_n = ft_calloc(sizeof(t_tex), 1);
-	if (!(cub3d->tex_n))
-		end_cub3d(cub3d);
-	cub3d->tex_s = ft_calloc(sizeof(t_tex), 1);
-	if (!(cub3d->tex_s))
-		end_cub3d(cub3d);
-	cub3d->tex_e->img = ft_calloc(sizeof(t_img), 1);
-	if (!(cub3d->tex_e->img))
-		end_cub3d(cub3d);
-	cub3d->tex_w->img = ft_calloc(sizeof(t_img), 1);
-	if (!(cub3d->tex_w->img))
-		end_cub3d(cub3d);
-	cub3d->tex_n->img = ft_calloc(sizeof(t_img), 1);
-	if (!(cub3d->tex_n->img))
-		end_cub3d(cub3d);
-	cub3d->tex_s->img = ft_calloc(sizeof(t_img), 1);
-	if (!(cub3d->tex_s->img))
-		end_cub3d(cub3d);
-}
-
-void	texture_extension_check(t_cub *cub3d)
-{
-	int	str_end;
-
-	str_end = ft_strlen(cub3d->input->t_east);
-	str_end = str_end - 4;
-	if (ft_strncmp(&(cub3d->input->t_east[str_end]), ".xpm", 4))
-		clean_exit(message("error textures was not in .xpm.", "", 1),
-			cub3d);
-	str_end = ft_strlen(cub3d->input->t_west);
-	str_end = str_end - 4;
-	if (ft_strncmp(&(cub3d->input->t_west[str_end]), ".xpm", 4))
-		clean_exit(message("error textures was not in .xpm.", "", 1),
-			cub3d);
-	str_end = ft_strlen(cub3d->input->t_north);
-	str_end = str_end - 4;
-	if (ft_strncmp(&(cub3d->input->t_north[str_end]), ".xpm", 4))
-		clean_exit(message("error textures was not in .xpm.", "", 1),
-			cub3d);
-	str_end = ft_strlen(cub3d->input->t_south);
-	str_end = str_end - 4;
-	if (ft_strncmp(&(cub3d->input->t_south[str_end]), ".xpm", 4))
-		clean_exit(message("error textures was not in .xpm.", "", 1),
-			cub3d);
-}
-
-void	init_tex(t_cub *cub3d)
-{
-	texture_extension_check(cub3d);
-	alocate_tex(cub3d);
-	get_tex(cub3d, cub3d->tex_e, cub3d->input->t_east, "EA");
-	get_tex(cub3d, cub3d->tex_w, cub3d->input->t_west, "WE");
-	get_tex(cub3d, cub3d->tex_n, cub3d->input->t_north, "NO");
-	get_tex(cub3d, cub3d->tex_s, cub3d->input->t_south, "SO");
-	if (cub3d->tex_e->img)
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_e->img);
-	if (cub3d->tex_s->img)
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_s->img);
-	if (cub3d->tex_n->img)
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_n->img);
-	if (cub3d->tex_w->img)
-		mlx_destroy_image(cub3d->mlx_ptr, cub3d->tex_w->img);
-}

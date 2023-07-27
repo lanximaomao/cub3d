@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:41:59 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 13:05:32 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/27 20:27:26 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,9 @@ int	valid_map(t_cub *cub)
 	row = 0;
 	col = 0;
 	flag = 0;
+	// check for xpm extension
+	texture_extension_check(cub);
+	texture_validity_check(cub);
 	while (find_island(cub, &row, &col, &flag) == -1)
 	{
 		if (row < cub->input->map->size_y && col < cub->input->map->size_x)
@@ -150,5 +153,6 @@ int	valid_map(t_cub *cub)
 		ft_exit("Error\n-----> wall not close", 3);
 	if (is_inland(cub, row, col, '2') == -1)
 		ft_exit("Error\n-----> player on edge", 3);
+	matrix_revert(cub);
 	return (1);
 }

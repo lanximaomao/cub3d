@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:40:45 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 13:03:49 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/27 18:17:08 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,11 @@ void	ft_exit(char *msg, int exit_code)
 	exit(exit_code);
 }
 
-int	free_everything(t_cub *cub)
+
+int	message(char *str1, int errno)
 {
-	free_str(cub->input->map->map_1d);
-	free_char(cub->input->map->matrix);
-	free(cub->input->color_f);
-	free(cub->input->color_c);
-	free_str(cub->input->t_east);
-	free_str(cub->input->t_west);
-	free_str(cub->input->t_south);
-	free_str(cub->input->t_north);
-	free(cub->input->map);
-	free(cub->input->position);
-	free(cub->var->wall);
-	free(cub->var);
-	free(cub->input);
-	free(cub->key);
-	free_tex(cub);
-	return (1);
+	ft_putstr_fd("cub: ", 2);
+	ft_putstr_fd(str1, 2);
+	return (errno);
 }
+

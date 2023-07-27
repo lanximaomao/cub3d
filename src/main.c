@@ -6,7 +6,7 @@
 /*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:42:06 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 12:37:50 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/27 20:12:47 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,34 @@
 
 #include "cub3D.h"
 
-void	hook_and_loop(t_cub *cub3d)
+void	hook_and_loop(t_cub *cub)
 {
-	mlx_hook(cub3d->win_ptr, EVENT_CLOSE_BTN, 0, end_cub3d, cub3d);
-	mlx_hook(cub3d->win_ptr, EVENT_KEY_PRESS, 1L << 0, key_press, cub3d);
-	mlx_loop(cub3d->mlx_ptr);
+	mlx_hook(cub->win_ptr, EVENT_CLOSE_BTN, 0, end, cub);
+	mlx_hook(cub->win_ptr, EVENT_KEY_PRESS, 1L << 0, key_press, cub);
+	mlx_loop(cub->mlx_ptr);
 }
 
-void	clean_init_cub3d(t_cub *cub3d)
+void	init_render(t_cub *cub)
 {
-	cub3d->mlx_ptr = NULL;
-	cub3d->win_ptr = NULL;
-	cub3d->var->pa = cub3d->input->map->direction;
-	cub3d->var->pdx = cos(deg_to_rad(cub3d->var->pa));
-	cub3d->var->pdy = -sin(deg_to_rad(cub3d->var->pa));
-	cub3d->mlx_ptr = mlx_init();
-	if (!cub3d->mlx_ptr)
-		clean_exit(message("MLX: error connecting to mlx.", "", 1), cub3d);
-	cub3d->win_ptr = mlx_new_window(cub3d->mlx_ptr, WIN_SIZE_X, WIN_SIZE_Y,
-			"cub3d");
-	if (!cub3d->win_ptr)
-		clean_exit(message("MLX: error creating window.", "", 1), cub3d);
-	cub3d->img->img_ptr = mlx_new_image(cub3d->mlx_ptr, WIN_SIZE_X, WIN_SIZE_Y);
-	if (!(cub3d->img->img_ptr))
-		clean_exit(message("image creation error.", "", 1), cub3d);
-	init_tex(cub3d);
+	cub->mlx_ptr = mlx_init();
+	if (!cub->mlx_ptr)
+		end(message("MLX: error connecting to mlx.", 1), cub);
+	cub->win_ptr = mlx_new_window(cub->mlx_ptr, WIN_SIZE_X, WIN_SIZE_Y,
+			"cub");
+	if (!cub->win_ptr)
+		end(message("MLX: error creating window.", 1), cub);
+	cub->img->img_ptr = mlx_new_image(cub->mlx_ptr, WIN_SIZE_X, WIN_SIZE_Y);
+	if (!(cub->img->img_ptr))
+		end(message("image creation error.", 1), cub);
+
+	if (!(get_tex_data(cub, cub->tex_e, cub->input->t_east, "EA")
+		&& get_tex_data(cub, cub->tex_w, cub->input->t_west, "WE")
+		&& get_tex_data(cub, cub->tex_n, cub->input->t_north, "NO")
+		&& get_tex_data(cub, cub->tex_s, cub->input->t_south, "SO")))
+		end(message("texture error\n", 3), cub);
+	cub->var->pa = cub->input->map->direction;
+	cub->var->pdx = cos(deg_to_rad(cub->var->pa));
+	cub->var->pdy = -sin(deg_to_rad(cub->var->pa));
 }
 
 int	main(int argc, char **argv)
@@ -57,10 +60,12 @@ int	main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		ft_exit("Error: cannot open file", 1);
-	parser(fd, &cub);
-	close(fd);
-	clean_init_cub3d(&cub);
-	render(&cub);
-	hook_and_loop(&cub);
+	if (parser(fd, &cub) && close(fd) != -1 && valid_map(&cub))
+	{
+		init_render(&cub);
+		render(&cub);
+		hook_and_loop(&cub);
+	}
+	end(0, &cub);
 	return (0);
 }

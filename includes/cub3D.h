@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 11:31:11 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 11:44:39 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/27 20:26:59 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,26 +174,24 @@ typedef struct s_cub
 }			t_cub;
 
 //parsing-> validation -> raycasting -> possible features
-void			render(t_cub *cub3d);
-int				end_cub3d(t_cub *cub3d);
-int				key_event(int keycode, t_cub *cub3d);
-void			draw_map2d(t_cub *cub3d);
-void			draw_player2d(t_cub *cub3d);
-void			calculate_rays(t_cub *cub3d);
-void			pixel_color(t_cub *cub3d, int x, int y, unsigned long color);
-void			clean_exit(int exit_code, t_cub *cub3d);
-int				message(char *str1, char *str2, int errno);
+void			render(t_cub *cub);
+int				key_event(int keycode, t_cub *cub);
+void			draw_map2d(t_cub *cub);
+void			draw_player2d(t_cub *cub);
+void			calculate_rays(t_cub *cub);
+void			pixel_color(t_cub *cub, int x, int y, unsigned long color);
+int				end(int exit_code, t_cub *cub);
+int				message(char *str1, int errno);
 float			deg_to_rad(float a);
 float			fix_ang(float a);
 int				bresenham_line(t_position pos0, t_position pos1, t_cub *cub,
 					int color);
-void			draw_ray(t_cub *cub3d);
-void			draw_walls(t_cub *cub3d);
-int				key_press(int keycode, t_cub *cub3d);
-int				key_release(int keycode, t_cub *cub3d);
-void			init_tex(t_cub *cub3d);
+void			draw_ray(t_cub *cub);
+void			draw_walls(t_cub *cub);
+int				key_press(int keycode, t_cub *cub);
+int				key_release(int keycode, t_cub *cub);
+void			init_tex(t_cub *cub);
 unsigned long	calculate_hex_color(t_color_rgb *rgb);
-void			free_tex(t_cub *cub);
 
 // line
 int				bresenham_line(t_position pos0, t_position pos1,
@@ -215,7 +213,7 @@ void			display_color(t_input *input);
 // utils
 int				free_str(char *str);
 int				free_char(char **input);
-int				free_everything(t_cub *cub);
+int				free_cub(t_cub *cub);
 void			ft_exit(char *msg, int exit_code);
 void			display_color(t_input *input);
 int				ft_atoi_isnum(const char *str);
@@ -234,11 +232,16 @@ int				get_map(t_cub *cub, char *line, int *nl_flag);
 // get texture
 int				get_texture(t_cub *cub, char *line, int flag);
 
+int				get_tex_data(t_cub *cub, t_tex *tex, char *file, char *type);
+
+
 // get_direction
 int				get_direction(t_cub *cub, int *i, int *j);
 
 // validator
 int				valid_map(t_cub *cub);
+int				texture_extension_check(t_cub *cub);
+int				texture_validity_check(t_cub *cub);
 int				valid_char(char *str);
 int				is_closed(t_cub *cub, int row, int col);
 int				is_legal_boundary(t_cub *cub, char c, char direction);
