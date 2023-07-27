@@ -13,6 +13,11 @@ float	fix_ang(float a)
 	return (a);
 }
 
+float	deg_to_rad(float a)
+{
+	return (a * M_PI / 180.0);
+}
+
 int	key_press(int keycode, t_cub *cub3d)
 {
 	if (keycode == KEY_W)

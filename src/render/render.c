@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#             */
+/*   Updated: 2023/07/27 11:14:44 by asarikha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 void	pixel_color(t_cub *cub3d, int x, int y, unsigned long color)
@@ -10,10 +22,8 @@ void	pixel_color(t_cub *cub3d, int x, int y, unsigned long color)
 	cub3d->img->addr = mlx_get_data_addr(cub3d->img->img_ptr,
 			&bits_per_pixel, &line_length, &endian);
 	dst = cub3d->img->addr + (y * line_length + x * (bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-	
-	// printf("dst :%s\n\n",dst);
-	// printf("cub3d->img->addr :%s\n",cub3d->img->addr);
+	if ((x >= 0 && x < WIN_SIZE_X) && (y >= 0 && y < WIN_SIZE_Y))
+		*(unsigned int *)dst = color;
 }
 
 static	void	draw_nose(t_cub *cub3d)
@@ -56,25 +66,6 @@ void	draw_background(t_cub *cub3d)
 	}
 }
 
-// void	draw_tex(t_cub	*cub)
-// {
-// 	int i = -1;
-// 	int j = -1;
-
-
-// 	printf("%d %d\n",cub->tex_e->height,cub->tex_e->width);
-
-// 	while (++i < cub->tex_e->height)
-// 	{
-// 		j = -1;
-// 		while(++j < cub->tex_e->width)
-// 		{
-// 			pixel_color (cub,  i + 2000, j , cub->tex_e->matrix[i % cub->tex_e->height][j]);
-// 		}
-
-// 	}
-// }
-
 void	render(t_cub *cub3d)
 {
 	mlx_clear_window(cub3d->mlx_ptr, cub3d->win_ptr);
@@ -83,7 +74,6 @@ void	render(t_cub *cub3d)
 	draw_player2d(cub3d);
 	draw_nose(cub3d);
 	calculate_rays(cub3d);
-	//draw_tex(cub3d);
 	mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr,
 		cub3d->img->img_ptr, 0, 0);
 }

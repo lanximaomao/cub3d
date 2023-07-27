@@ -55,7 +55,6 @@ typedef struct s_wall
 {
 	float	ty;
 	float	ty_step;
-	float	ty_off;
 	float	tx;
 }		t_wall;
 
@@ -98,8 +97,6 @@ typedef struct s_color_rgb
 typedef struct s_input
 {
 	int			count;
-	//int			*color_f;
-	//int			*color_c;
 	t_color_rgb	*color_f;
 	t_color_rgb	*color_c;
 	char		*t_east;
@@ -167,8 +164,6 @@ typedef struct s_cub
 }			t_cub;
 
 
-typedef void (*FunctionPointer)(t_cub*);
-
 //parsing-> validation -> raycasting -> possible features
 void			render(t_cub *cub3d);
 int				end_cub3d(t_cub *cub3d);
@@ -219,7 +214,6 @@ int				ft_atoi_isnum(const char *str);
 int				how_many(char *str, char c);
 int				valid_filetype(char *str);
 int				array_size(char **str);
-int				loop(t_cub *cub, FunctionPointer member);
 
 // get color
 int				get_color(t_cub *cub, char *line, int flag);

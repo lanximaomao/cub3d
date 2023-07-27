@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   end.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#             */
+/*   Updated: 2023/07/27 11:13:56 by asarikha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 void	clean_exit(int exit_code, t_cub *cub3d)
@@ -70,7 +82,6 @@ void	free_tex(t_cub *cub)
 
 int	end_cub3d(t_cub *cub3d)
 {
-	//free_everything and close fds
 	free_everything(cub3d);
 	clean_exit(0, cub3d);
 	return (0);

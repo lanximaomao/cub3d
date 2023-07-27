@@ -1,8 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_calculate.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#             */
+/*   Updated: 2023/07/27 11:13:30 by asarikha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
-float	deg_to_rad(float a)
+static void	set_distance(t_cub *cub3d)
 {
-	return (a * M_PI / 180.0);
+	if (cub3d->var->dis_v < cub3d->var->dis_h)
+	{
+		cub3d->var->rx = cub3d->var->vx;
+		cub3d->var->ry = cub3d->var->vy;
+		cub3d->var->dis_h = cub3d->var->dis_v;
+		if (cub3d->var->ra < 90
+			|| (cub3d->var->ra > 270 && cub3d->var->ra < 360))
+			cub3d->var->dir = 'W';
+		else if (cub3d->var->ra > 90 && cub3d->var->ra < 270)
+			cub3d->var->dir = 'E';
+	}
+	else
+	{
+		if (cub3d->var->ra < 180)
+			cub3d->var->dir = 'S';
+		else
+			cub3d->var->dir = 'N';
+	}
 }
 
 static void	check_hit(t_cub *cub3d, int map_side_size, float *dis)
@@ -94,9 +123,6 @@ void	horizontal(t_cub *cub3d)
 
 void	calculate_rays(t_cub *cub3d)
 {
-	// float	dis_v;
-	// float	dis_h;
-
 	cub3d->var->r = -1;
 	cub3d->var->ra = fix_ang(cub3d->var->pa + FOV / 2);
 	while (++(cub3d->var->r) < WIN_SIZE_X)
@@ -107,24 +133,7 @@ void	calculate_rays(t_cub *cub3d)
 		cub3d->var->vy = cub3d->var->ry;
 		horizontal(cub3d);
 		check_hit(cub3d, cub3d->input->map->size_y, &(cub3d->var->dis_h));
-		if (cub3d->var->dis_v < cub3d->var->dis_h)
-		{
-			cub3d->var->rx = cub3d->var->vx;
-			cub3d->var->ry = cub3d->var->vy;
-			cub3d->var->dis_h = cub3d->var->dis_v;
-			//cub3d->var->dir = 'N';
-			if (cub3d->var->ra < 90 || (cub3d->var->ra > 270 && cub3d->var->ra < 360))
-				cub3d->var->dir = 'W'; //west
-			else if (cub3d->var->ra > 90 && cub3d->var->ra < 270)
-				cub3d->var->dir = 'E'; //east
-		}
-		else
-		{
-			if (cub3d->var->ra < 180)
-				cub3d->var->dir = 'S'; //south
-			else
-				cub3d->var->dir = 'N'; //north
-		}
+		set_distance(cub3d);
 		draw_ray(cub3d);
 		draw_walls(cub3d);
 		cub3d->var->ra = fix_ang(cub3d->var->ra - FOV / WIN_SIZE_X);

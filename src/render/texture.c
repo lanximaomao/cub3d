@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#             */
+/*   Updated: 2023/07/27 11:15:03 by asarikha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 void	fill_tex_matrix(t_tex *tex)
@@ -33,7 +45,7 @@ void	get_tex(t_cub *cub3d, t_tex *tex, char *file, char *type)
 			&(tex->line_length), &(tex->endian));
 	if (!tex->img->addr)
 		clean_exit(message("MLX: error getting data address.", "", 1), cub3d);
-	tex->type = ft_strdup(type); // to be freed
+	tex->type = ft_strdup(type);
 	tex->matrix = ft_calloc(sizeof(int *) * tex->height, 1);
 	if (!tex->matrix)
 		end_cub3d(cub3d);
@@ -43,12 +55,9 @@ void	get_tex(t_cub *cub3d, t_tex *tex, char *file, char *type)
 		tex->matrix[i] = ft_calloc(sizeof(int) * tex->width, 1);
 		if (!tex->matrix[i])
 			end_cub3d(cub3d);
-
 	}
 	fill_tex_matrix(tex);
 }
-
-
 
 void	alocate_tex(t_cub *cub3d)
 {

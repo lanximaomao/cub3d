@@ -54,22 +54,3 @@ int	ft_atoi_isnum(const char *str)
 		return (result * sign);
 	return (-1);
 }
-
-int	loop(t_cub *cub, FunctionPointer member)
-{
-	int	row;
-	int	col;
-
-	row = 0;
-	while (row < cub->input->map->size_y)
-	{
-		col = 0;
-		while (col < cub->input->map->size_x)
-		{
-			member(cub);
-			col++;
-		}
-		row++;
-	}
-	return (SUCCESS);
-}

@@ -3,10 +3,7 @@
 void	hook_and_loop(t_cub *cub3d)
 {
 	mlx_hook(cub3d->win_ptr, EVENT_CLOSE_BTN, 0, end_cub3d, cub3d);
-	//mlx_hook(cub3d->win_ptr, EVENT_KEY_RLEASE, 1L << 1, key_release, cub3d);
 	mlx_hook(cub3d->win_ptr, EVENT_KEY_PRESS, 1L << 0, key_press, cub3d);
-	//mlx_key_hook(cub3d->win_ptr, key_event, cub3d);
-	//mlx_mouse_hook(cub3d->win_ptr, mouse_event, &cub3d);
 	mlx_loop(cub3d->mlx_ptr);
 }
 

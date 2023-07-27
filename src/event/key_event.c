@@ -99,6 +99,8 @@ int	key_event(int keycode, t_cub *cub3d)
 		move_right_left(KEY_RIGHT, cub3d);
 	cub3d->input->position->y_p = cub3d->var->px - 2;
 	cub3d->input->position->x_p = cub3d->var->py - 2;
+	cub3d->var->pdx = cos(deg_to_rad(cub3d->var->pa));
+	cub3d->var->pdy = -sin(deg_to_rad(cub3d->var->pa));
 	render(cub3d);
 	return (0);
 }

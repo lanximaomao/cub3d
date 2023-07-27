@@ -1,9 +1,9 @@
 #include "cub3D.h"
 
-int matrix_revert(t_cub *cub)
+int	matrix_revert(t_cub *cub)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (++i < cub->input->map->size_y)

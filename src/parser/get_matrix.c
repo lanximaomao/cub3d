@@ -30,7 +30,7 @@ static void	matrix_assignment(t_cub *cub, char **tmp_matrix)
 	}
 	free_char(tmp_matrix);
 	valid_map(cub);
-	matrix_revert(cub);;
+	matrix_revert(cub);
 }
 
 static int	get_map_row(char *str)

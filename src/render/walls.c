@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   walls.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#             */
+/*   Updated: 2023/07/27 11:15:51 by asarikha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 unsigned long	calculate_hex_color(t_color_rgb *rgb)
 {
-	return ((rgb->r & 0xff) << 16)
-		+ ((rgb->g & 0xff) << 8) + (rgb->b & 0xff);
+	return (((rgb->r & 0xff) << 16)
+		+ ((rgb->g & 0xff) << 8) + (rgb->b & 0xff));
 }
 
 void	draw_sky_floor(t_cub *cub3d, t_position	t1, t_position	t2)
@@ -34,6 +46,7 @@ void	draw_sky_floor(t_cub *cub3d, t_position	t1, t_position	t2)
 	bresenham_line (f1, f2, cub3d, calculate_hex_color(cub3d->input->color_f));
 	return ;
 }
+
 t_tex	*texture_(t_cub *cub3d)
 {
 	if (cub3d->var->dir == 'N')
@@ -46,24 +59,29 @@ t_tex	*texture_(t_cub *cub3d)
 		return (cub3d->tex_e);
 	return (0);
 }
+
 void	put_textured_wall(t_position	t1, t_position	t2, t_cub *cub3d)
 {
 	t_tex	*tex;
 
 	tex = texture_(cub3d);
-	cub3d->var->wall->ty = cub3d->var->wall->ty_off * cub3d->var->wall->ty_step;
+	cub3d->var->wall->ty = 0;
 	if (cub3d->var->dir == 'S' || cub3d->var->dir == 'N')
-		cub3d->var->wall->tx = (int)(cub3d->var->rx * 4) % tex->width;
+		cub3d->var->wall->tx = (int)(cub3d->var->rx * tex->width / GRID_P)
+			% tex->width;
 	else
-		cub3d->var->wall->tx = (int)(cub3d->var->ry * 4) % tex->width;
+		cub3d->var->wall->tx = (int)(cub3d->var->ry * tex->width / GRID_P)
+			% tex->width;
 	if (cub3d->var->ra > 90)
 		cub3d->var->wall->tx = tex->height - 1 - cub3d->var->wall->tx;
-	while (t1.y_p < t2.y_p && (int)cub3d->var->wall->ty  < tex->height)
+	while (t1.y_p < t2.y_p && (int)cub3d->var->wall->ty < tex->height)
 	{
-		if (!(t1.x_p < GRID_P * cub3d->input->map->size_x && t1.y_p < GRID_P * cub3d->input->map->size_y))
+		if (!(t1.x_p < GRID_P * cub3d->input->map->size_x
+				&& t1.y_p < GRID_P * cub3d->input->map->size_y))
 		{
 			pixel_color(cub3d, t1.x_p, t1.y_p,
-				tex->matrix[(int)cub3d->var->wall->ty][(int)cub3d->var->wall->tx]);
+				tex->matrix[(int)cub3d->var->wall->ty]
+			[(int)cub3d->var->wall->tx]);
 		}
 		cub3d->var->wall->ty += cub3d->var->wall->ty_step;
 		t1.y_p++;
@@ -80,12 +98,6 @@ void	draw_walls(t_cub *cub3d)
 	cub3d->var->line_h = 40000 / (cub3d->var->dis_h);
 	cub3d->var->wall->ty_step = texture_(cub3d)->height
 		/ (float)cub3d->var->line_h;
-	cub3d->var->wall->ty_off = 0;
-	if (cub3d->var->line_h > 1200)
-	{
-		//cub3d->var->wall->ty_off = (cub3d->var->line_h - 1250) * 4;
-		cub3d->var->line_h = 1200;
-	}
 	cub3d->var->line_off = 600 - (cub3d->var->line_h / 2);
 	t1.x_p = (cub3d->var->r);
 	t1.y_p = cub3d->var->line_off;
