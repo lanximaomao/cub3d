@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:36:08 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 11:36:09 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/27 13:04:30 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ int	is_empty(char *str)
 	return (1);
 }
 
-/*
-** check out whether at this point all the necessary parameters are passed.
-*/
 int	get_map(t_cub *cub, char *line, int *nl_flag)
 {
 	int	end;

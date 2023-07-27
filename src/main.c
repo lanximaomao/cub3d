@@ -3,12 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asarikha <asarikha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:42:06 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 11:42:07 by asarikha         ###   ########.fr       */
+/*   Updated: 2023/07/27 12:37:50 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/*
+** display_map("map", cub.input->map->matrix);
+** display_texture(cub.input);
+** display_color(cub.input);
+*/
 
 #include "cub3D.h"
 
@@ -53,9 +59,6 @@ int	main(int argc, char **argv)
 		ft_exit("Error: cannot open file", 1);
 	parser(fd, &cub);
 	close(fd);
-	display_map("map", cub.input->map->matrix);
-	display_texture(cub.input);
-	display_color(cub.input);
 	clean_init_cub3d(&cub);
 	render(&cub);
 	hook_and_loop(&cub);
