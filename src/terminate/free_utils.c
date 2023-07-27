@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:40:45 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 18:17:08 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/28 00:25:37 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ void	ft_exit(char *msg, int exit_code)
 	exit(exit_code);
 }
 
-
 int	message(char *str1, int errno)
 {
 	ft_putstr_fd("cub: ", 2);
 	ft_putstr_fd(str1, 2);
 	return (errno);
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 18:16:46 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/28 00:22:32 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,25 +79,25 @@ void	set_coordinates(t_cub *cub, int i, int j)
 
 void	draw_player2d(t_cub *cub)
 {
-	int			i;
-	int			j;
+	int	i;
+	int	j;
 
 	i = -1;
 	if (cub->input->position->x_p != -1)
-		return (creat_player(cub, cub->input->position->x_p
-				, cub->input->position->y_p, PURPLE));
+		return (creat_player(cub, cub->input->position->x_p,
+				cub->input->position->y_p, PURPLE));
 	while (++i < cub->input->map->size_y)
 	{
 		j = -1;
 		while (++j < cub->input->map->size_x)
 		{
 			if (cub->input->map->matrix[i][j] == 'N'
-			|| cub->input->map->matrix[i][j] == 'S'
-			|| cub->input->map->matrix[i][j] == 'E'
-			|| cub->input->map->matrix[i][j] == 'W')
+				|| cub->input->map->matrix[i][j] == 'S'
+				|| cub->input->map->matrix[i][j] == 'E'
+				|| cub->input->map->matrix[i][j] == 'W')
 			{
-				creat_player(cub, i * GRID_P + GRID_P / 2, j
-					* GRID_P + GRID_P / 2, PURPLE);
+				creat_player(cub, i * GRID_P + GRID_P / 2, j * GRID_P + GRID_P
+					/ 2, PURPLE);
 				set_coordinates(cub, i, j);
 				cub->input->map->matrix[i][j] = 0;
 				break ;

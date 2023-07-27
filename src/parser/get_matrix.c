@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_matrix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:36:36 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 18:59:04 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/28 00:20:18 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ int	get_matrix(t_cub *cub)
 	tmp_matrix = ft_split(cub->input->map->map_1d, '\n');
 	if (!tmp_matrix)
 		ft_exit("malloc fail", 1);
-	cub->input->map->matrix = malloc(sizeof(char *) * 
-			cub->input->map->size_y + 1);
+	cub->input->map->matrix = malloc(sizeof(char *)
+			* cub->input->map->size_y + 1);
 	cub->input->map->matrix[cub->input->map->size_y] = NULL;
 	while (++i < cub->input->map->size_y)
 	{

@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 18:17:04 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/28 00:21:27 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-unsigned long	calculate_hex_color(t_color_rgb *rgb)
-{
-	return (((rgb->r & 0xff) << 16)
-		+ ((rgb->g & 0xff) << 8) + (rgb->b & 0xff));
-}
 
 void	draw_sky_floor(t_cub *cub, t_position	t1, t_position	t2)
 {

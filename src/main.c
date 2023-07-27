@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:42:06 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 20:12:47 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/28 00:27:09 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 void	hook_and_loop(t_cub *cub)
 {
-	mlx_hook(cub->win_ptr, EVENT_CLOSE_BTN, 0, end, cub);
+	mlx_hook(cub->win_ptr, EVENT_CLOSE_BTN, 0, close_window, cub);
 	mlx_hook(cub->win_ptr, EVENT_KEY_PRESS, 1L << 0, key_press, cub);
 	mlx_loop(cub->mlx_ptr);
 }
@@ -37,11 +37,10 @@ void	init_render(t_cub *cub)
 	cub->img->img_ptr = mlx_new_image(cub->mlx_ptr, WIN_SIZE_X, WIN_SIZE_Y);
 	if (!(cub->img->img_ptr))
 		end(message("image creation error.", 1), cub);
-
-	if (!(get_tex_data(cub, cub->tex_e, cub->input->t_east, "EA")
-		&& get_tex_data(cub, cub->tex_w, cub->input->t_west, "WE")
-		&& get_tex_data(cub, cub->tex_n, cub->input->t_north, "NO")
-		&& get_tex_data(cub, cub->tex_s, cub->input->t_south, "SO")))
+	if (get_tex_data(cub, cub->tex_e, cub->input->t_east, "EA") == 0
+		|| get_tex_data(cub, cub->tex_w, cub->input->t_west, "WE") == 0
+		|| get_tex_data(cub, cub->tex_n, cub->input->t_north, "NO") == 0
+		|| get_tex_data(cub, cub->tex_s, cub->input->t_south, "SO") == 0)
 		end(message("texture error\n", 3), cub);
 	cub->var->pa = cub->input->map->direction;
 	cub->var->pdx = cos(deg_to_rad(cub->var->pa));
@@ -65,7 +64,7 @@ int	main(int argc, char **argv)
 		init_render(&cub);
 		render(&cub);
 		hook_and_loop(&cub);
+		end(0, &cub);
 	}
-	end(0, &cub);
 	return (0);
 }

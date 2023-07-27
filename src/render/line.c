@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   line.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 13:04:52 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/28 00:21:46 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-static int	ft_abs(int a)
-{
-	if (a < 0)
-		return (-a);
-	return (a);
-}
 
 static t_line	line_init(t_position pos0, t_position pos1)
 {

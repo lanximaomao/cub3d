@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:40:35 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 18:16:26 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/27 23:59:26 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-float	fix_ang(float a)
-{
-	if (a > 359)
-	{
-		a -= 360;
-	}
-	if (a < 0)
-	{
-		a += 360;
-	}
-	return (a);
-}
-
-float	deg_to_rad(float a)
-{
-	return (a * M_PI / 180.0);
-}
 
 int	key_press(int keycode, t_cub *cub)
 {
@@ -70,5 +52,11 @@ int	key_release(int keycode, t_cub *cub)
 		cub->key->up = 0;
 	if (keycode == KEY_DOWN)
 		cub->key->down = 0;
+	return (0);
+}
+
+int	close_window(t_cub *cub)
+{
+	end(0, cub);
 	return (0);
 }

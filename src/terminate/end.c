@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 20:32:56 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/28 00:25:06 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void free_input(t_cub *cub)
+static void	free_input(t_cub *cub)
 {
 	free_str(cub->input->map->map_1d);
 	free_char(cub->input->map->matrix);
@@ -31,7 +31,7 @@ static void free_input(t_cub *cub)
 
 static void	free_tex_matrix(int **matrix, int height)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	if (!matrix)
@@ -88,8 +88,5 @@ int	end(int exit_code, t_cub *cub)
 	cub->img->addr = NULL;
 	free_input(cub);
 	free(cub->key);
-	exit (exit_code);
+	exit(exit_code);
 }
-
-
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_filetype.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:41:54 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 20:29:17 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/28 00:26:49 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	texture_extension_check(t_cub *cub)
 	return (1);
 }
 
-int texture_validity_check(t_cub *cub)
+int	texture_validity_check(t_cub *cub)
 {
-	int fd;
+	int	fd;
 
 	fd = open(cub->input->t_east, O_RDONLY);
 	if (fd == -1)

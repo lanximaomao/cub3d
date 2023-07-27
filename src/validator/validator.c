@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validator.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:41:59 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/27 20:27:26 by lsun             ###   ########.fr       */
+/*   Updated: 2023/07/28 00:26:24 by linlinsun        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ int	is_closed(t_cub *cub, int row, int col)
 }
 
 /*
+** add texture check
 ** starting point to flood is a '1'
 */
 int	valid_map(t_cub *cub)
@@ -138,7 +139,6 @@ int	valid_map(t_cub *cub)
 	row = 0;
 	col = 0;
 	flag = 0;
-	// check for xpm extension
 	texture_extension_check(cub);
 	texture_validity_check(cub);
 	while (find_island(cub, &row, &col, &flag) == -1)
