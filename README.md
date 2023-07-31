@@ -46,6 +46,15 @@ Use the following command format to run the program:
 
 	./cub3d map.cub
 
+
+
+## Images
+
+![Visulization](diagram/eagle.png)
+![Visulization](diagram/library.png)
+![Visulization](diagram/maze.png)
+
+
 ## External resources
 
 + [Lode's Computer Graphics Tutorial](https://lodev.org/cgtutor/raycasting.html)
