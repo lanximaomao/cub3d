@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/28 00:21:27 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/07/31 11:33:13 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	draw_sky_floor(t_cub *cub, t_position	t1, t_position	t2)
 	f1.y_p = t2.y_p + 1;
 	f2.y_p = WIN_SIZE_Y - 1;
 	if (t1.x_p < GRID_P * cub->input->map->size_x
-		&& f1.y_p <= GRID_P * cub->input->map->size_y)
+		&& f1.y_p < GRID_P * cub->input->map->size_y)
 			f1.y_p = GRID_P * cub->input->map->size_y + 1;
 	bresenham_line (f1, f2, cub, calculate_hex_color(cub->input->color_f));
 	return ;
