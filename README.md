@@ -12,7 +12,7 @@ cub3D creates a “realistic” 3D graphical representation of the inside of a m
 
 **1. Compilation:**
 
-To compile the program, run the following command:
+To compile the program, please run the following command:
 
 	make
 
