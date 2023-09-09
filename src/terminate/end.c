@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: linlinsun <linlinsun@student.42.fr>        +#+  +:+       +#+        */
+/*   By: lsun <lsun@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 11:11:43 by asarikha          #+#    #+#             */
-/*   Updated: 2023/07/28 00:25:06 by linlinsun        ###   ########.fr       */
+/*   Updated: 2023/07/31 10:40:12 by lsun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	end(int exit_code, t_cub *cub)
 {
 	if (!cub)
 		exit(exit_code);
-	free_tex(cub); // need to be here so that mlx_ptr is stil valid
+	free_tex(cub);
 	if (cub->img->img_ptr && cub->win_ptr && cub->mlx_ptr)
 	{
 		mlx_destroy_image(cub->mlx_ptr, cub->img->img_ptr);

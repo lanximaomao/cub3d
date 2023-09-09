@@ -2,7 +2,7 @@
 
 ## Description
 
-cub3D creates a “realistic” 3D graphical representation of the inside of a maze from a first-person perspective using the ray-Casting algorithm and 42 school's own graphic library miniLibX.
+cub3D creates a “realistic” 3D graphical representation of the inside of a maze from a first-person perspective using the ray-Casting algorithm and 42 school's own graphic library miniLibX. Detailed project requirements can be found [here](cub3d.pdf).
 
 ## Language Used
 
@@ -45,6 +45,15 @@ An example of map loos like this:
 Use the following command format to run the program:
 
 	./cub3d map.cub
+
+
+
+## Images
+
+![Visulization](diagram/eagle.png)
+![Visulization](diagram/library.png)
+![Visulization](diagram/maze.png)
+
 
 ## External resources
 
